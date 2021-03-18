@@ -1,12 +1,18 @@
 using FluentValidation.AspNetCore;
+using Hfttf.TaskManagement.Core.Entities;
+using Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore;
 using Hfttf.TaskManagement.Service.ServiceExtensions;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace Hfttf.TaskManagement.API
 {
@@ -27,6 +33,13 @@ namespace Hfttf.TaskManagement.API
 
             services.AddCustomDbContext(Configuration["ConnectionStrings:Default"]);
             #endregion
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false; //buradaki optionslar loglamalar için imkan saðlýyor. 
+            })
+              .AddEntityFrameworkStores<TaskManagementContext>()
+              .AddDefaultTokenProviders();
 
             #region Dependency Injections
             services.AddContainerWithDependencies();
@@ -49,6 +62,32 @@ namespace Hfttf.TaskManagement.API
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
             #endregion
+
+
+            //Adding Authentication
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+
+            //Adding Jwt Bearer
+            .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["JWT:ValidAudience"],
+                    ValidIssuer = Configuration["JWT:ValidIssuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:Secret"])),
+                };
+            });
+
+
 
             services.AddSwaggerGen(c =>
             {
@@ -73,10 +112,10 @@ namespace Hfttf.TaskManagement.API
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-              
+                app.UseDeveloperExceptionPage();                
             }
 
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors("CorsPolicy");
             app.UseAuthentication();
