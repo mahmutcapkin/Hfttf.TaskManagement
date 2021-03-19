@@ -1,5 +1,12 @@
 ﻿using Hfttf.TaskManagement.Core.Models;
 using Hfttf.TaskManagement.Service.Services.BankInformations.Commands;
+using Hfttf.TaskManagement.Service.Services.BankInformations.Queries;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Net;
+using System.Threading.Tasks;
+
 namespace Hfttf.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
