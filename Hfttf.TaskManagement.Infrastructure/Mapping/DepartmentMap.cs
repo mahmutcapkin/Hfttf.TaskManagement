@@ -12,7 +12,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
 
             builder.Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(200)
+                .HasMaxLength(100)
                 .IsUnicode(false);
 
             builder.Property(I => I.CreatedDate).HasColumnType("smalldatetime").IsRequired(false);

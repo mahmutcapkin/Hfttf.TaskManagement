@@ -12,9 +12,9 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
             builder.Property(I => I.CreatedDate).HasColumnType("smalldatetime").IsRequired(false);
             builder.Property(I => I.UpdatedDate).HasColumnType("smalldatetime").IsRequired(false);
 
-            //builder.HasOne(d => d.User)
-            //       .WithMany(p => p.UserAssignments)
-            //       .HasForeignKey(d => d.UserId);
+            builder.HasOne(d => d.ApplicationUser)
+                   .WithMany(p => p.UserAssignments)
+                   .HasForeignKey(d => d.ApplicationUserId);
 
             builder.HasOne(d => d.Task)
                 .WithMany(p => p.UserAssignments)

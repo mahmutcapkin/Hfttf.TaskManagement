@@ -15,9 +15,17 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
 
-            //builder.HasOne(d => d.ApplicationUser)
-            //  .WithMany(p => p.Experiences)
-            //  .HasForeignKey(d => d.ApplicationUserId);
+            builder.Property(e => e.Company)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+            builder.Property(e => e.Job)
+                 .HasMaxLength(50)
+                 .IsUnicode(false);
+
+            builder.HasOne(d => d.ApplicationUser)
+              .WithMany(p => p.Experiences)
+              .HasForeignKey(d => d.ApplicationUserId);
 
         }
     }

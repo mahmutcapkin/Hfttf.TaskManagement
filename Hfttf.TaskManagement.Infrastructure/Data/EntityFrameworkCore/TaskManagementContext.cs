@@ -29,6 +29,20 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
             modelBuilder.ApplyConfiguration(new ExperienceMap());
             modelBuilder.ApplyConfiguration(new BankInformationMap());
             modelBuilder.ApplyConfiguration(new EducationInformationMap());
+
+            modelBuilder.ApplyConfiguration(new LeaderMap());
+
+            modelBuilder.Entity<Leader>()
+                        .HasOne<Project>(ad => ad.Project)
+                        .WithOne(s => s.Leader)
+                        .HasForeignKey<Project>(ad => ad.LeaderId);
+
+            modelBuilder.Entity<Project>()
+                        .HasOne<Leader>(ad => ad.Leader)
+                        .WithOne(s => s.Project)
+                        .HasForeignKey<Leader>(ad => ad.ProjectId);
+
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -47,6 +61,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
         public DbSet<BankInformation> BankInformations { get; set; }
         public DbSet<EducationInformation> EducationInformations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
+        public DbSet<Leader> Leaders { get; set; }
 
     }
 }

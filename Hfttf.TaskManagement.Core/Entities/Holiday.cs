@@ -8,7 +8,7 @@ namespace Hfttf.TaskManagement.Core.Entities
         public string Title { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Day { get; set; }
+        public string NumberOfDay { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public bool IsActive { get; set; }

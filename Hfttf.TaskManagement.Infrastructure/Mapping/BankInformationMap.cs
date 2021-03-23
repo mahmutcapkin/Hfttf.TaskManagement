@@ -6,18 +6,24 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
 {
     public class BankInformationMap : IEntityTypeConfiguration<BankInformation>
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<BankInformation> builder)
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
 
-            //builder.HasOne(d => d.ApplicationUser)
-            // .WithMany(p => p.BankInformations)
-            // .HasForeignKey(d => d.ApplicationUserId);
+            builder.Property(e => e.BankName)
+                  .HasMaxLength(50)
+                  .IsUnicode(false);
+            builder.Property(e => e.IBANNo)
+                 .HasMaxLength(20)
+                 .IsUnicode(false);
+            builder.Property(e => e.AccountNo)
+               .HasMaxLength(20)
+               .IsUnicode(false);
+
+            builder.HasOne(d => d.ApplicationUser)
+             .WithMany(p => p.BankInformations)
+             .HasForeignKey(d => d.ApplicationUserId);
         }
     }
 }

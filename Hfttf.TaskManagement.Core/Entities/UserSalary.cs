@@ -5,9 +5,7 @@ namespace Hfttf.TaskManagement.Core.Entities
 {
     public class UserSalary : Entity
     {
-
         public decimal Salary { get; set; }
-        public sbyte PayType { get; set; }
         public string CreateBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string UpdateBy { get; set; }

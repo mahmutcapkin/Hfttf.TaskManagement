@@ -11,7 +11,6 @@ namespace Hfttf.TaskManagement.Core.Entities
         public PriorityLevel Priority { get; set; }
         public string ApprovedBy { get; set; }
         public DateTime DueDate { get; set; }
-        public sbyte Status { get; set; }
         public string CreateBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string UpdateBy { get; set; }
@@ -24,16 +23,5 @@ namespace Hfttf.TaskManagement.Core.Entities
         public IList<UserAssignment> UserAssignments { get; set; }
         public IList<TaskComment> TaskComments { get; set; }
     }
-    public enum PriorityLevel
-    {
-        Highest = 1,
-        High,
-        Medium,
-        Low,
-        Lowest
-    }
-
-
-
 
 }

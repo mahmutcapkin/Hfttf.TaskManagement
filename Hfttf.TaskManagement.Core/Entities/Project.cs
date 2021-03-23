@@ -8,7 +8,7 @@ namespace Hfttf.TaskManagement.Core.Entities
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public sbyte Priority { get; set; }
+        public PriorityLevel Priority { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -16,9 +16,18 @@ namespace Hfttf.TaskManagement.Core.Entities
         public DateTime? UpdatedDate { get; set; }
         public string UpdateBy { get; set; }
         public byte IsActive { get; set; }
-        //public IList<Leader> Leaders { get; set; }
-        //public IList<ProjectTeam> ProjectTeams { get; set; }
+        public int? LeaderId { get; set; }
+        public Leader Leader { get; set; }
+        public IList<ApplicationUser> ApplicationUsers { get; set; }
         public IList<Task> Tasks { get; set; }
 
+    }
+    public enum PriorityLevel
+    {
+        Highest = 1,
+        High,
+        Medium,
+        Low,
+        Lowest
     }
 }

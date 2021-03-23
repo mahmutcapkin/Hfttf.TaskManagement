@@ -6,6 +6,7 @@ using Hfttf.TaskManagement.Service.Services.EducationInformations.Mappers;
 using Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Mappers;
 using Hfttf.TaskManagement.Service.Services.Experiences.Mappers;
 using Hfttf.TaskManagement.Service.Services.Holidays.Mappers;
+using Hfttf.TaskManagement.Service.Services.Leaders.Mappers;
 using Hfttf.TaskManagement.Service.Services.Projects.Mappers;
 using Hfttf.TaskManagement.Service.Services.TaskComments.Mappers;
 using Hfttf.TaskManagement.Service.Services.Tasks.Mappers;
@@ -38,6 +39,7 @@ namespace Hfttf.TaskManagement.Service.Mappers
                 configuration.AddProfile<BankInformationProfile>();
                 configuration.AddProfile<EducationInformationProfile>();
                 configuration.AddProfile<ExperienceProfile>();
+                configuration.AddProfile<LeaderProfile>();
 
             });
             var mapper = config.CreateMapper();

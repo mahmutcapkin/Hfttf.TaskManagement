@@ -5,10 +5,16 @@ namespace Hfttf.TaskManagement.Core.Entities
 {
     public class TaskStatus : Entity
     {
-        public string Name { get; set; }
-        public int StatusNameId { get; set; }
+        public StatusLevel Status { get; set; }
         public IList<Task> Tasks { get; set; }
 
+    }
+    public enum StatusLevel
+    {
+        Pending=1,
+        InProgress,
+        OnHold,
+        Cancelled
     }
 
 }

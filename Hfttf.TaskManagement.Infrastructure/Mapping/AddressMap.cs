@@ -14,6 +14,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
         public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.HasKey(I => I.Id);
+            builder.Property(I => I.Id).UseIdentityColumn();
             builder.Property(e => e.City)
                     .HasMaxLength(200)
                     .IsUnicode(false);

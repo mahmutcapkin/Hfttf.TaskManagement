@@ -14,9 +14,9 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
 
             builder.Property(e => e.Salary).HasColumnType("decimal(18, 0)");
 
-            //builder.HasOne(d => d.User)
-            //    .WithMany(p => p.UserSalaries)
-            //    .HasForeignKey(d => d.UserId);
+            builder.HasOne(d => d.ApplicationUser)
+                .WithMany(p => p.UserSalaries)
+                .HasForeignKey(d => d.ApplicationUserId);
         }
     }
 }

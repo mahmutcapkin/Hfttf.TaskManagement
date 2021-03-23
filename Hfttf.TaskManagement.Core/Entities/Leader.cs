@@ -2,12 +2,11 @@
 
 namespace Hfttf.TaskManagement.Core.Entities
 {
-    public class BankInformation : Entity
+    public class Leader : Entity
     {
-        public string BankName { get; set; }
-        public string AccountNo { get; set; }
-        public string IBANNo { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+        public int? ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

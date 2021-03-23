@@ -15,6 +15,7 @@ using Hfttf.TaskManagement.Service.Services.EducationInformations.Handlers;
 using Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Handlers;
 using Hfttf.TaskManagement.Service.Services.Experiences.Handlers;
 using Hfttf.TaskManagement.Service.Services.Holidays.Handlers;
+using Hfttf.TaskManagement.Service.Services.Leaders.Handlers;
 using Hfttf.TaskManagement.Service.Services.Projects.Handlers;
 using Hfttf.TaskManagement.Service.Services.TaskComments.Handlers;
 using Hfttf.TaskManagement.Service.Services.Tasks.Handlers;
@@ -67,6 +68,7 @@ namespace Hfttf.TaskManagement.Service.ServiceExtensions
             services.AddScoped(typeof(IBankInformationRepository), typeof(BankInformationRepositoryEf));
             services.AddScoped(typeof(IEducationInformationRepository), typeof(EducationInformationRepositoryEf));
             services.AddScoped(typeof(IExperienceRepository), typeof(ExperienceRepositoryEf));
+            services.AddScoped(typeof(ILeaderRepository), typeof(LeaderRepositoryEf));
 
             #endregion
         }
@@ -183,6 +185,13 @@ namespace Hfttf.TaskManagement.Service.ServiceExtensions
             services.AddMediatR(typeof(ExperienceDeleteHandler).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(ExperienceUpdateHandler).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(ExperienceListHandler).GetTypeInfo().Assembly);
+            #endregion
+
+            #region Leader Handlers
+            services.AddMediatR(typeof(LeaderInsertHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(LeaderDeleteHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(LeaderUpdateHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(LeaderListHandler).GetTypeInfo().Assembly);
             #endregion
 
         }
