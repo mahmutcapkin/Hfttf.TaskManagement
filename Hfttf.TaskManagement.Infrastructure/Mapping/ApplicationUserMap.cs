@@ -17,6 +17,10 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
+            builder.Property(e => e.LastName)
+                  .HasMaxLength(25)
+                  .IsUnicode(false);
+
             builder.HasOne(d => d.Department)
                      .WithMany(p => p.ApplicationUsers)
                      .HasForeignKey(d => d.DepartmentId);

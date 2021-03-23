@@ -30,6 +30,8 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
             modelBuilder.ApplyConfiguration(new BankInformationMap());
             modelBuilder.ApplyConfiguration(new EducationInformationMap());
 
+            modelBuilder.ApplyConfiguration(new ApplicationUserMap());
+
             modelBuilder.ApplyConfiguration(new LeaderMap());
 
             modelBuilder.Entity<Leader>()
