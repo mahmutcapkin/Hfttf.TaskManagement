@@ -1,4 +1,4 @@
-﻿using Hfttf.TaskManagement.Core.Entities;
+﻿using Hfttf.TaskManagement.Core.ResourceViewModel;
 
 namespace Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Responses
 {
@@ -9,6 +9,6 @@ namespace Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Responses
         public string RelationShip { get; set; }
         public string Phone { get; set; }
         public string ApplicationUserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public UserViewResponse ApplicationUser { get; set; }
     }
 }

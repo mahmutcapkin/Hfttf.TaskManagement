@@ -1,4 +1,4 @@
-﻿using Hfttf.TaskManagement.Core.Entities;
+﻿using Hfttf.TaskManagement.Core.ResourceViewModel;
 
 namespace Hfttf.TaskManagement.Service.Services.Experiences.Responses
 {
@@ -10,6 +10,6 @@ namespace Hfttf.TaskManagement.Service.Services.Experiences.Responses
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string ApplicationUserId { get; set; }
-        //public ApplicationUser ApplicationUser { get; set; }
+        public UserViewResponse ApplicationUser { get; set; }
     }
 }

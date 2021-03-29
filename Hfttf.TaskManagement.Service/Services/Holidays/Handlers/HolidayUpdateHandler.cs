@@ -25,7 +25,7 @@ namespace Hfttf.TaskManagement.Service.Services.Holidays.Handlers
             var holidayGetById = await _holidayRepository.GetByIdAsync(request.Id);
             holiday.CreatedDate = holidayGetById.CreatedDate;
             TimeSpan dayDifference = (holiday.EndDate - holiday.StartDate);
-            holiday.Day = dayDifference.TotalDays.ToString();
+            holiday.NumberOfDay = dayDifference.TotalDays.ToString();
             var response = await _holidayRepository.UpdateAsync(holiday);
             var holidayResponse = TaskManagementMapper.Mapper.Map<HolidayResponse>(response);
             var result = Response.Success(holidayResponse, 200);

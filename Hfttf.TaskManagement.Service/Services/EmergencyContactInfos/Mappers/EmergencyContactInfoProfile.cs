@@ -12,8 +12,7 @@ namespace Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Mappers
             CreateMap<EmergencyContactInfoDeleteCommand, EmergencyContactInfo>().ReverseMap();
             CreateMap<EmergencyContactInfoInsertCommand, EmergencyContactInfo>().ReverseMap();
             CreateMap<EmergencyContactInfoUpdateCommand, EmergencyContactInfo>().ReverseMap();
-            CreateMap<EmergencyContactInfo, EmergencyContactInfoResponse>().ReverseMap();
-            CreateMap<EmergencyContactInfo, EmergencyContactUserInfoResponse>().ReverseMap();
+            CreateMap<EmergencyContactInfo, EmergencyContactInfoResponse>().ReverseMap();       
         }
     }
 }

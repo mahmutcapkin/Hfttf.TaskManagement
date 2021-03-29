@@ -1,4 +1,4 @@
-﻿using Hfttf.TaskManagement.Core.Entities;
+﻿using Hfttf.TaskManagement.Core.ResourceViewModel;
 
 namespace Hfttf.TaskManagement.Service.Services.BankInformations.Responses
 {
@@ -9,6 +9,6 @@ namespace Hfttf.TaskManagement.Service.Services.BankInformations.Responses
         public string AccountNo { get; set; }
         public string IFSCNo { get; set; }
         public string ApplicationUserId { get; set; }
-        //public ApplicationUser ApplicationUser { get; set; }
+        public UserViewResponse ApplicationUser { get; set; }
     }
 }

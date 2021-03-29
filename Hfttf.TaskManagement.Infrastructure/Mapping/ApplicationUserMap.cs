@@ -9,7 +9,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
             builder.HasKey(I => I.Id);
-            builder.Property(I => I.Id).UseIdentityColumn();
 
             builder.Property(I => I.BirthDate).HasColumnType("smalldatetime").IsRequired(false);
 

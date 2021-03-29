@@ -1,6 +1,4 @@
-﻿using Hfttf.TaskManagement.Core.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Hfttf.TaskManagement.Service.Services.Departments.Responses
 {

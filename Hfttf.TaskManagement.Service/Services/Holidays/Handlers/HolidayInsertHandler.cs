@@ -22,7 +22,7 @@ namespace Hfttf.TaskManagement.Service.Services.Holidays.Handlers
             var holiday = TaskManagementMapper.Mapper.Map<Holiday>(request);
             holiday.CreatedDate = DateTime.Now;
             TimeSpan dayDifference = (holiday.EndDate - holiday.StartDate);
-            holiday.Day = dayDifference.TotalDays.ToString();
+            holiday.NumberOfDay = dayDifference.TotalDays.ToString();
             var response = await _holidayRepository.AddAsync(holiday);
             var holidayResponse = TaskManagementMapper.Mapper.Map<HolidayResponse>(response);
             var result = Response.Success(holidayResponse, 200);

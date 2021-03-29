@@ -21,8 +21,8 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Handlers
         {
             var leader = TaskManagementMapper.Mapper.Map<Leader>(request);
             var response = await _leaderRepository.AddAsync(leader);
-            var leaderwithProjectandUser = await _leaderRepository.GetLeaderWithUserandProject(response.Id);          
-            var leaderResponse = TaskManagementMapper.Mapper.Map<LeaderResponse>(leaderwithProjectandUser);
+            //var leaderwithProjectandUser = await _leaderRepository.GetLeaderWithUserandProject(response.Id);          
+            var leaderResponse = TaskManagementMapper.Mapper.Map<LeaderResponse>(response);
             var result = Response.Success(leaderResponse, 200);
             return result;
         }

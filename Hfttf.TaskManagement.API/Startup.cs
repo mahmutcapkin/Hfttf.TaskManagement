@@ -1,4 +1,7 @@
 using FluentValidation.AspNetCore;
+using Hfttf.TaskManagement.API.Domain.Services;
+using Hfttf.TaskManagement.API.Security.Token;
+using Hfttf.TaskManagement.API.Services;
 using Hfttf.TaskManagement.Core.Entities;
 using Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore;
 using Hfttf.TaskManagement.Service.ServiceExtensions;
@@ -6,13 +9,13 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
+using System;
+using TokenHandler = Hfttf.TaskManagement.API.Security.Token.TokenHandler;
 
 namespace Hfttf.TaskManagement.API
 {
@@ -28,18 +31,10 @@ namespace Hfttf.TaskManagement.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ITokenHandler, TokenHandler>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IUserService, UserService>();
 
-            #region DbContext
-
-            services.AddCustomDbContext(Configuration["ConnectionStrings:Default"]);
-            #endregion
-
-            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-            {
-                options.Password.RequireNonAlphanumeric = false; //buradaki optionslar loglamalar için imkan saðlýyor. 
-            })
-              .AddEntityFrameworkStores<TaskManagementContext>()
-              .AddDefaultTokenProviders();
 
             #region Dependency Injections
             services.AddContainerWithDependencies();
@@ -64,27 +59,64 @@ namespace Hfttf.TaskManagement.API
             #endregion
 
 
+            #region DbContext
+
+            services.AddCustomDbContext(Configuration["ConnectionStrings:Default"]);
+            #endregion
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(opts =>
+            {
+                opts.User.RequireUniqueEmail = true;
+                opts.User.AllowedUserNameCharacters = "abcçdefgðhýijklmnoçpqrsþtuüvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._";
+
+                opts.Password.RequiredLength = 4;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<TaskManagementContext>();
+
+            //services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            //{
+            //    options.Password.RequireNonAlphanumeric = false; //buradaki optionslar loglamalar için imkan saðlýyor. 
+            //})
+            //  .AddEntityFrameworkStores<TaskManagementContext>()
+            //  .AddDefaultTokenProviders();
+
+            services.Configure<CustomTokenOptions>(Configuration.GetSection("TokenOptions"));
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<CustomTokenOptions>();
+
             //Adding Authentication
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                // options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-
             //Adding Jwt Bearer
-            .AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["JWT:ValidAudience"],
-                    ValidIssuer = Configuration["JWT:ValidIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:Secret"])),
-                };
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+             {
+                 options.TokenValidationParameters = new TokenValidationParameters()
+                 {
+                     ValidateAudience = true,
+                     ValidateIssuer = true,
+                     ValidateLifetime = true,
+                     ValidateIssuerSigningKey = true,
+                     ValidIssuer = tokenOptions.Issuer,
+                     ValidAudience = tokenOptions.Audience,
+                     IssuerSigningKey = SignHandler.GetSecurityKey(tokenOptions.SecurityKey),
+                     ClockSkew = TimeSpan.Zero
+                 };
+                //options.SaveToken = true;
+                //options.RequireHttpsMetadata = false;
+                //options.TokenValidationParameters = new TokenValidationParameters()
+                //{
+                //    ValidateIssuer = true,
+                //    ValidateAudience = true,
+                //    ValidAudience = Configuration["JWT:ValidAudience"],
+                //    ValidIssuer = Configuration["JWT:ValidIssuer"],
+                //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:Secret"])),
+                //};
             });
 
 
@@ -94,12 +126,21 @@ namespace Hfttf.TaskManagement.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hfttf.TaskManagement.API", Version = "v1" });
             });
 
-            services.AddCors(options =>
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("CorsPolicy", builder =>
+            //    {
+            //        builder.WithOrigins("http://localhost:5005").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+
+            //    });
+            //});
+            services.AddCors(opts =>
             {
-                options.AddPolicy("CorsPolicy", builder =>
+
+                opts.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("http://localhost:5003").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-                                                         
+
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
 
@@ -112,20 +153,13 @@ namespace Hfttf.TaskManagement.API
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();                
+                app.UseDeveloperExceptionPage();
             }
-
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseCors("CorsPolicy");
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            else
             {
-                endpoints.MapControllers();
-            });
-
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
 
             app.UseSwagger(c =>
             {
@@ -138,6 +172,18 @@ namespace Hfttf.TaskManagement.API
                    c.SwaggerEndpoint("/task-management-swagger/v1/task-management-swagger.json", "Hfttf.TaskManagement.API v1");
                    c.RoutePrefix = "task-management-swagger";
                });
+
+            app.UseStaticFiles();
+            app.UseRouting();
+            //app.UseCors("CorsPolicy");
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
 
         }
     }
