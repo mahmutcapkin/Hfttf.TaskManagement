@@ -16,6 +16,8 @@ namespace Hfttf.TaskManagement.API.Domain.Services
 
         Task<ApplicationUser> GetUserByUserName(string userName);
 
+        Task<UserWithRolesResponse> ActiveUserInfo();
+
         //Task<BaseResponse<ApplicationUser>> UploadUserPicture(string picturePath, string userName);
 
         Task<Tuple<ApplicationUser, IList<Claim>>> GetUserByRefreshToken(string refreshToken);

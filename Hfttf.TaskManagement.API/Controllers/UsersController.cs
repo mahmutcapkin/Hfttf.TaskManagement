@@ -11,21 +11,29 @@ namespace Hfttf.TaskManagement.API.Controllers
     [Authorize(Roles = UserRoles.Admin)]
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUserService userService;
 
-        public UserController(IUserService userService)
+        public UsersController(IUserService userService)
         {
             this.userService = userService;
         }
 
         [HttpGet]
-
         public async Task<IActionResult> getUser()
         {
             ApplicationUser user = await userService.GetUserByUserName(User.Identity.Name);
             return Ok(user.Adapt<SignUpViewModelResource>());
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ActiveUser()
+        {
+           var response  = await userService.ActiveUserInfo();
+            return Ok(response);
+
         }
 
         [HttpPut]

@@ -57,6 +57,24 @@ namespace Hfttf.TaskManagement.API.Services
 
         }
 
+        public async Task<UserWithRolesResponse> ActiveUserInfo()
+        {
+            ApplicationUser user = await userManager.FindByNameAsync(User.Identity.Name);
+            var roles = await userManager.GetRolesAsync(user);
+            UserWithRolesResponse userWithRolesResponse = new UserWithRolesResponse();
+            userWithRolesResponse.Email = user.Email;
+            userWithRolesResponse.FirstName = user.FirstName;
+            userWithRolesResponse.LastName = user.LastName;
+            userWithRolesResponse.PhoneNumber = user.PhoneNumber;
+            userWithRolesResponse.UserName = user.UserName;
+            userWithRolesResponse.Gender = user.Gender;
+            userWithRolesResponse.BirthDate = user.BirthDate;
+            userWithRolesResponse.Roles = roles.ToList();
+
+            return userWithRolesResponse;
+
+        }
+
         public async Task<bool> RevokeRefrefreshToken(string refreshToken)
         {
 

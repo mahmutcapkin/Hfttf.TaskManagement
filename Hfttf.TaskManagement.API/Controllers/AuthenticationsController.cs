@@ -8,11 +8,11 @@ namespace Hfttf.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationsController : ControllerBase
     {
         private readonly IAuthenticationService authenticationService;
 
-        public AuthenticationController(IAuthenticationService service)
+        public AuthenticationsController(IAuthenticationService service)
         {
             this.authenticationService = service;
         }
