@@ -6,6 +6,7 @@ using Hfttf.TaskManagement.Service.Services.EducationInformations.Mappers;
 using Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Mappers;
 using Hfttf.TaskManagement.Service.Services.Experiences.Mappers;
 using Hfttf.TaskManagement.Service.Services.Holidays.Mappers;
+using Hfttf.TaskManagement.Service.Services.Jobs.Mappers;
 using Hfttf.TaskManagement.Service.Services.Leaders.Mappers;
 using Hfttf.TaskManagement.Service.Services.Projects.Mappers;
 using Hfttf.TaskManagement.Service.Services.TaskComments.Mappers;
@@ -34,6 +35,7 @@ namespace Hfttf.TaskManagement.Service.Mappers
                 configuration.AddProfile<UserSalaryProfile>();
                 configuration.AddProfile<DepartmentProfile>();
                 configuration.AddProfile<TaskStatusProfile>();
+                configuration.AddProfile<JobProfile>();
 
                 configuration.AddProfile<EmergencyContactInfoProfile>();
                 configuration.AddProfile<BankInformationProfile>();
