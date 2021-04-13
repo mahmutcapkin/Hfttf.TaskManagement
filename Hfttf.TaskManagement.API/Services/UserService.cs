@@ -62,6 +62,7 @@ namespace Hfttf.TaskManagement.API.Services
             ApplicationUser user = await userManager.FindByNameAsync(User.Identity.Name);
             var roles = await userManager.GetRolesAsync(user);
             UserWithRolesResponse userWithRolesResponse = new UserWithRolesResponse();
+            userWithRolesResponse.Id = user.Id;
             userWithRolesResponse.Email = user.Email;
             userWithRolesResponse.FirstName = user.FirstName;
             userWithRolesResponse.LastName = user.LastName;
