@@ -9,8 +9,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
         public void Configure(EntityTypeBuilder<Job> builder)
         {
             builder.HasKey(I => I.Id);
-            builder.Property(I => I.CreatedDate).HasColumnType("smalldatetime").IsRequired(false);
-            builder.Property(I => I.UpdatedDate).HasColumnType("smalldatetime").IsRequired(false);
 
             builder.Property(e => e.Name)
                 .IsRequired()

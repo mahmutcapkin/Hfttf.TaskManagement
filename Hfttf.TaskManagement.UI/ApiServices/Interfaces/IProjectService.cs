@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Hfttf.TaskManagement.UI.Models.Project;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
-    interface IProjectService
+    public interface IProjectService
     {
+        Task<List<ProjectList>> GetAllAsync();
+        Task<ProjectList> GetByIdAsync(int id);
+        Task AddAsync(ProjectAdd model);
+        Task UpdateAsync(ProjectUpdate model);
+        Task DeleteAsync(int id);
     }
 }

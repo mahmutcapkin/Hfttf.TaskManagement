@@ -15,7 +15,6 @@ namespace Hfttf.TaskManagement.Core.Entities
         public string CreateBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string UpdateBy { get; set; }
-        public byte IsActive { get; set; }
         public int? LeaderId { get; set; }
         public Leader Leader { get; set; }
         public IList<ApplicationUser> ApplicationUsers { get; set; }

@@ -7,7 +7,7 @@ namespace Hfttf.TaskManagement.Service.Services.BankInformations.Commands
     {
         public string BankName { get; set; }
         public string AccountNo { get; set; }
-        public string IFSCNo { get; set; }
+        public string IBANNo { get; set; }
         public string ApplicationUserId { get; set; }
     }
 }

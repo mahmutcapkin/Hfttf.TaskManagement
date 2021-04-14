@@ -15,8 +15,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            builder.Property(I => I.CreatedDate).HasColumnType("smalldatetime").IsRequired(false);
-            builder.Property(I => I.UpdatedDate).HasColumnType("smalldatetime").IsRequired(false);
         }
     }
 }

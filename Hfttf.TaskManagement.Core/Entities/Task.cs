@@ -9,7 +9,6 @@ namespace Hfttf.TaskManagement.Core.Entities
         public string Title { get; set; }
         public string Description { get; set; }
         public PriorityLevel Priority { get; set; }
-        public string ApprovedBy { get; set; }
         public DateTime DueDate { get; set; }
         public string CreateBy { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -21,7 +20,6 @@ namespace Hfttf.TaskManagement.Core.Entities
         public int TaskStatusId { get; set; }
         public virtual TaskStatus TaskStatus { get; set; }
         public IList<UserAssignment> UserAssignments { get; set; }
-        public IList<TaskComment> TaskComments { get; set; }
     }
 
 }

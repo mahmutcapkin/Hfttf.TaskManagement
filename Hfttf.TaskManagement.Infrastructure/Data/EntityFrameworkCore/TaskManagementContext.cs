@@ -21,7 +21,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
             modelBuilder.ApplyConfiguration(new HolidayMap());
             modelBuilder.ApplyConfiguration(new ProjectMap());
             modelBuilder.ApplyConfiguration(new UserAssignmentMap());
-            modelBuilder.ApplyConfiguration(new TaskCommentMap());
             modelBuilder.ApplyConfiguration(new TaskMap());
             modelBuilder.ApplyConfiguration(new TaskStatusMap());
 
@@ -56,7 +55,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<UserAssignment> UserAssignments { get; set; }
-        public DbSet<TaskComment> TaskComments { get; set; }
         public DbSet<TaskStatus> TaskStatuses { get; set; }
 
         public DbSet<EmergencyContactInfo> EmergencyContactInfos { get; set; }

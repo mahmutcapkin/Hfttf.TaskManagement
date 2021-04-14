@@ -20,7 +20,6 @@ namespace Hfttf.TaskManagement.Service.Services.Jobs.Handlers
         public async Task<Response> Handle(JobInsertCommand request, CancellationToken cancellationToken)
         {
             var job = TaskManagementMapper.Mapper.Map<Job>(request);
-            job.CreatedDate = DateTime.Now;
             var response = await _jobRepository.AddAsync(job);
             var jobResponse = TaskManagementMapper.Mapper.Map<JobResponse>(response);
             var result = Response.Success(jobResponse, 200);

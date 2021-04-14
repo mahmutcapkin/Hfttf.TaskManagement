@@ -12,17 +12,8 @@ namespace Hfttf.TaskManagement.Service.Services.Tasks.Validators
             RuleFor(x => x.Id).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.Id).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);
 
-            RuleFor(x => x.UpdateBy).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.UpdateBy).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-
-            RuleFor(x => x.ApprovedBy).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.ApprovedBy).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-
             RuleFor(x => x.Title).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.Title).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-
-            RuleFor(x => x.DueDate).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.DueDate).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
 
             RuleFor(x => x.DueDate).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.DueDate).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
@@ -30,9 +21,6 @@ namespace Hfttf.TaskManagement.Service.Services.Tasks.Validators
             RuleFor(x => x.ProjectId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.ProjectId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.ProjectId).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);
-
-            RuleFor(x => x.Status).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.Status).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
 
             RuleFor(x => x.TaskStatusId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.TaskStatusId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);

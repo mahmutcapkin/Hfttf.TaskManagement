@@ -17,7 +17,6 @@ using Hfttf.TaskManagement.Service.Services.Experiences.Handlers;
 using Hfttf.TaskManagement.Service.Services.Holidays.Handlers;
 using Hfttf.TaskManagement.Service.Services.Leaders.Handlers;
 using Hfttf.TaskManagement.Service.Services.Projects.Handlers;
-using Hfttf.TaskManagement.Service.Services.TaskComments.Handlers;
 using Hfttf.TaskManagement.Service.Services.Tasks.Handlers;
 using Hfttf.TaskManagement.Service.Services.UserAssignments.Handlers;
 using Hfttf.TaskManagement.Service.Services.UserSalaries.Handlers;
@@ -58,7 +57,6 @@ namespace Hfttf.TaskManagement.Service.ServiceExtensions
             services.AddScoped(typeof(IHolidayRepository), typeof(HolidayRepositoryEf));
             services.AddScoped(typeof(IProjectRepository), typeof(ProjectRepositoryEf));
             services.AddScoped(typeof(IUserAssignmentRepository), typeof(UserAssignmentRepositoryEf));
-            services.AddScoped(typeof(ITaskCommentRepository), typeof(TaskCommentRepositoryEf));
             services.AddScoped(typeof(ITaskRepository), typeof(TaskRepositoryEf));
             services.AddScoped(typeof(IUserSalaryRepository), typeof(UserSalaryRepositoryEf));
             services.AddScoped(typeof(ITaskStatusRepository), typeof(TaskStatusRepositoryEf));
@@ -144,13 +142,6 @@ namespace Hfttf.TaskManagement.Service.ServiceExtensions
 
             #endregion
 
-            #region TaskComment Validators
-            AssemblyScanner.FindValidatorsInAssembly(typeof(TaskCommentInsertHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
-            AssemblyScanner.FindValidatorsInAssembly(typeof(TaskCommentUpdateHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
-            AssemblyScanner.FindValidatorsInAssembly(typeof(TaskCommentDeleteHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
-            AssemblyScanner.FindValidatorsInAssembly(typeof(TaskCommentDetailHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
-
-            #endregion
 
             #region UserSalary Validators
             AssemblyScanner.FindValidatorsInAssembly(typeof(UserSalaryInsertHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));

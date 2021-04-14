@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Hfttf.TaskManagement.UI.Models.Holiday;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
-    interface IHolidayService
+    public interface IHolidayService
     {
+        Task<List<HolidayList>> GetAllAsync();
+        Task<HolidayList> GetByIdAsync(int id);
+        Task AddAsync(HolidayAdd model);
+        Task UpdateAsync(HolidayUpdate model);
+        Task DeleteAsync(int id);
     }
 }

@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Hfttf.TaskManagement.UI.Models.EducationInformation;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
-    public class IEducationInformationService
+    public interface IEducationInformationService
     {
+        Task<List<EducationInformationList>> GetAllAsync();
+        Task<EducationInformationList> GetByIdAsync(int id);
+        Task AddAsync(EducationInformationAdd model);
+        Task UpdateAsync(EducationInformationUpdate model);
+        Task DeleteAsync(int id);
     }
 }

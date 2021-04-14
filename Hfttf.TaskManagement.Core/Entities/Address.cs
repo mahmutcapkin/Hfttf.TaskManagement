@@ -13,7 +13,6 @@ namespace Hfttf.TaskManagement.Core.Entities
         public string CreateBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string UpdateBy { get; set; }
-        public bool IsActive { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

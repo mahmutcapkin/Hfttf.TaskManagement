@@ -9,7 +9,6 @@ using Hfttf.TaskManagement.Service.Services.Holidays.Mappers;
 using Hfttf.TaskManagement.Service.Services.Jobs.Mappers;
 using Hfttf.TaskManagement.Service.Services.Leaders.Mappers;
 using Hfttf.TaskManagement.Service.Services.Projects.Mappers;
-using Hfttf.TaskManagement.Service.Services.TaskComments.Mappers;
 using Hfttf.TaskManagement.Service.Services.Tasks.Mappers;
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Mappers;
 using Hfttf.TaskManagement.Service.Services.UserAssignments.Mappers;
@@ -29,7 +28,6 @@ namespace Hfttf.TaskManagement.Service.Mappers
                 configuration.AddProfile<AddressProfile>();
                 configuration.AddProfile<TaskProfile>();
                 configuration.AddProfile<UserAssignmentProfile>();
-                configuration.AddProfile<TaskCommentProfile>();
                 configuration.AddProfile<ProjectProfile>();
                 configuration.AddProfile<HolidayProfile>();
                 configuration.AddProfile<UserSalaryProfile>();

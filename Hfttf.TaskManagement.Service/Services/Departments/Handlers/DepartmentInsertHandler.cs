@@ -20,9 +20,7 @@ namespace Hfttf.TaskManagement.Service.Services.Departments.Handlers
         public async Task<Response> Handle(DepartmentInsertCommand request, CancellationToken cancellationToken)
         {
             var department = TaskManagementMapper.Mapper.Map<Department>(request);
-            department.CreatedDate = DateTime.Now;
             var response = await _departmentRepository.AddAsync(department);
-
             var departmentResponse = TaskManagementMapper.Mapper.Map<DepartmentResponse>(response);
             var result = Response.Success(departmentResponse, 200);
             return result;

@@ -12,8 +12,8 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Validators
             RuleFor(x => x.Id).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.Id).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);
 
-            RuleFor(x => x.UserId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.UserId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
+            RuleFor(x => x.ApplicationUserId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
+            RuleFor(x => x.ApplicationUserId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
 
             RuleFor(x => x.ProjectId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.ProjectId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);

@@ -1,5 +1,5 @@
 using Hfttf.TaskManagement.UI.Builders.Concrete;
-using Hfttf.TaskManagement.UI.Models;
+using Hfttf.TaskManagement.UI.Models.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

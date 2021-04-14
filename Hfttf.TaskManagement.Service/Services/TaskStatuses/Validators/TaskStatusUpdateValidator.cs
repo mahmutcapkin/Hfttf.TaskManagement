@@ -11,12 +11,10 @@ namespace Hfttf.TaskManagement.Service.Services.TaskStatuses.Validators
             RuleFor(x => x.Id).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.Id).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.Id).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);
-            RuleFor(x => x.Name).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.Name).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
 
-            RuleFor(x => x.StatusNameId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.StatusNameId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-            RuleFor(x => x.StatusNameId).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);
+            RuleFor(x => x.Status).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
+            RuleFor(x => x.Status).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
+            RuleFor(x => x.Status).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);
         }
     }
 }

@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Hfttf.TaskManagement.UI.Models.BankInformation;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
-    interface IBankInformationService
+    public interface IBankInformationService
     {
+        Task<List<BankInformationList>> GetAllAsync();
+        Task<BankInformationList> GetByIdAsync(int id);
+        Task AddAsync(BankInformationAdd model);
+        Task UpdateAsync(BankInformationUpdate model);
+        Task DeleteAsync(int id);
     }
 }

@@ -1,5 +1,6 @@
 using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
 using Hfttf.TaskManagement.UI.Models;
+using Hfttf.TaskManagement.UI.Models.Authentication;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
-    public class AuthApiManager : IAuthApiService
+    public class AuthApiManager : IAuthService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly HttpClient _httpClient;

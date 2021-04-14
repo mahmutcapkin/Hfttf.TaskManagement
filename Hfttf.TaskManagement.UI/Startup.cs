@@ -1,3 +1,5 @@
+using Hfttf.TaskManagement.UI.ApiServices.Concrete;
+using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -12,16 +14,39 @@ namespace Hfttf.TaskManagement.UI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        //public Startup(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
+
+            services.AddScoped<IProjectService, ProjectApiManager>();
+            services.AddScoped<IAuthService, AuthApiManager>();
+            services.AddScoped<IAddressService, AddressApiManager>();
+
+            services.AddScoped<IBankInformationService, BankInformationApiManager>();
+            services.AddScoped<IDepartmentService, DepartmentApiManager>();
+            services.AddScoped<IEducationInformationService, EducationInformationApiManager>();
+            services.AddScoped<IEmergencyContactInfoService, EmergencyContactInfoApiManager>();
+            services.AddScoped<IExperienceService, ExperienceApiManager>();
+            services.AddScoped<IHolidayService, HolidayApiManager>();
+            services.AddScoped<IJobService, JobApiManager>();
+            services.AddScoped<ILeaderService, LeaderApiManager>();
+            services.AddScoped<IProjectService, ProjectApiManager>();
+            services.AddScoped<ITaskService, TaskApiManager>();
+            services.AddScoped<ITaskStatusService, TaskStatusApiManager>();
+            services.AddScoped<IUserAssignmentService, UserAssignmentApiManager>();
+            services.AddScoped<IUserSalaryService, UserSalaryApiManager>();
+            services.AddScoped<IUserService, UserApiManager>();
+
             services.AddControllersWithViews();
         }
 
@@ -34,12 +59,13 @@ namespace Hfttf.TaskManagement.UI
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Privacy");
             }
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
+            app.UseStaticFiles();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

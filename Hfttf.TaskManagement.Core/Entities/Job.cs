@@ -8,11 +8,6 @@ namespace Hfttf.TaskManagement.Core.Entities
     {
         public string Name { get; set; }
         public string CreateBy { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public string UpdateBy { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public bool IsActive { get; set; }
-
         public IList<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

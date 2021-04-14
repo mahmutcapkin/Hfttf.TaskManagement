@@ -9,8 +9,8 @@ namespace Hfttf.TaskManagement.Service.Services.UserAssignments.Validators
     {
         public UserAssignmentInsertValidator()
         {
-            RuleFor(x => x.UserId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.UserId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
+            RuleFor(x => x.ApplicationUserId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
+            RuleFor(x => x.ApplicationUserId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.TaskId).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.TaskId).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.TaskId).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);

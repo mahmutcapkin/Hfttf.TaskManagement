@@ -1,5 +1,5 @@
 using Hfttf.TaskManagement.UI.Builders.Concrete;
-using Hfttf.TaskManagement.UI.Models;
+using Hfttf.TaskManagement.UI.Models.Authentication;
 
 namespace Hfttf.TaskManagement.UI.Builders.Abstract
 {

@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Hfttf.TaskManagement.UI.Models.EmergencyContactInfo;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
-    public class IEmergencyContactInfoService
+    public interface IEmergencyContactInfoService
     {
+        Task<List<EmergencyContactInfoList>> GetAllAsync();
+        Task<EmergencyContactInfoList> GetByIdAsync(int id);
+        Task AddAsync(EmergencyContactInfoAdd model);
+        Task UpdateAsync(EmergencyContactInfoUpdate model);
+        Task DeleteAsync(int id);
     }
 }
