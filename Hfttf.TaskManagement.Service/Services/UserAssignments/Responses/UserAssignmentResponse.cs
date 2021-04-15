@@ -1,5 +1,6 @@
 ﻿using Hfttf.TaskManagement.Core.Entities;
 using Hfttf.TaskManagement.Core.ResourceViewModel;
+using Hfttf.TaskManagement.Service.Services.Tasks.Responses;
 using System;
 
 namespace Hfttf.TaskManagement.Service.Services.UserAssignments.Responses
@@ -11,9 +12,8 @@ namespace Hfttf.TaskManagement.Service.Services.UserAssignments.Responses
         public DateTime CreatedDate { get; set; }
         public string UpdateBy { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public bool IsActive { get; set; }
         public UserViewResponse ApplicationUser { get; set; }
         public int TaskId { get; set; }
-        public virtual Task Task { get; set; }
+        public TaskResponse Task { get; set; }
     }
 }

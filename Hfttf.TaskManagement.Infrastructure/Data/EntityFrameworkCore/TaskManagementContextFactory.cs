@@ -12,7 +12,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
 
             // var configuration = _serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
             // var connectionString = configuration.GetConnectionString("Default");
-            builder.UseSqlServer("Data Source=DESKTOP-T9LQCB1;Database=HfttfTaskManagementDb;Integrated Security=True;",                     
+            builder.UseSqlServer("Data Source=DESKTOP-T9LQCB1;Database=TaskManagement;Integrated Security=True;",                     
                 optionsBuilder =>
                 {
                     optionsBuilder.MigrationsAssembly(typeof(TaskManagementContext).GetTypeInfo().Assembly.GetName().Name);

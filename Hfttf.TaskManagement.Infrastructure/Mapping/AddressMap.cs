@@ -1,11 +1,6 @@
 ﻿using Hfttf.TaskManagement.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.Infrastructure.Mapping
 {
@@ -28,9 +23,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
             builder.Property(e => e.ZipCode)
                 .HasMaxLength(25)
                 .IsUnicode(false);
-
-            builder.Property(I => I.CreatedDate).HasColumnType("smalldatetime").IsRequired(false);
-            builder.Property(I => I.UpdatedDate).HasColumnType("smalldatetime").IsRequired(false);
 
             builder.HasOne(I => I.ApplicationUser)
                     .WithMany(I => I.Addresses)

@@ -21,7 +21,6 @@ namespace Hfttf.TaskManagement.Service.Services.Jobs.Handlers
         {
             var job = TaskManagementMapper.Mapper.Map<Job>(request);
             var jobGetById = await _jobRepository.GetByIdAsync(request.Id);
-            job.CreateBy = jobGetById.CreateBy;
             var response = await _jobRepository.UpdateAsync(job);
             var jobResponse = TaskManagementMapper.Mapper.Map<JobResponse>(response);
             var result = Response.Success(jobResponse, 200);

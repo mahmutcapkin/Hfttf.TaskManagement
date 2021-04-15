@@ -20,8 +20,6 @@ namespace Hfttf.TaskManagement.Service.Services.Departments.Handlers
         public async Task<Response> Handle(DepartmentUpdateCommand request, CancellationToken cancellationToken)
         {
             var department = TaskManagementMapper.Mapper.Map<Department>(request);
-            var departmentGetById = await _departmentRepository.GetByIdAsync(request.Id);
-            department.CreateBy = departmentGetById.CreateBy;
             var response = await _departmentRepository.UpdateAsync(department);
             var departmentResponse = TaskManagementMapper.Mapper.Map<DepartmentResponse>(response);
             var result = Response.Success(departmentResponse, 200);

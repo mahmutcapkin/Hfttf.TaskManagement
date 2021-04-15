@@ -7,6 +7,6 @@ namespace Hfttf.TaskManagement.Service.Services.TaskStatuses.Responses
     {
         public int Id { get; set; }
         public int Status { get; set; }
-        public List<TaskForTaskStatusResponse> Tasks { get; set; }
+        public IList<TaskForTaskStatusResponse> Tasks { get; set; }
     }
 }

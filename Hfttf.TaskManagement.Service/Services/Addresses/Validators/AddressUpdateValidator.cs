@@ -18,8 +18,6 @@ namespace Hfttf.TaskManagement.Service.Services.Addresses.Validators
 
             RuleFor(x => x.ZipCode).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.ZipCode).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-            RuleFor(x => x.UpdateBy).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.UpdateBy).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
         }
     }
 }

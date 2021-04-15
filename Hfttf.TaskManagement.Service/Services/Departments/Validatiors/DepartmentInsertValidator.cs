@@ -9,9 +9,7 @@ namespace Hfttf.TaskManagement.Service.Services.Departments.Validatiors
         public DepartmentInsertValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.Name).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-            RuleFor(x => x.CreateBy).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.CreateBy).NotNull().WithMessage(ValidatorMessages.NotNullMessage);           
+            RuleFor(x => x.Name).NotNull().WithMessage(ValidatorMessages.NotNullMessage);      
         }
     }
 }

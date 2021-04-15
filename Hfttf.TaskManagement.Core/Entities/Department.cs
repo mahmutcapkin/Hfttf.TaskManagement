@@ -6,7 +6,6 @@ namespace Hfttf.TaskManagement.Core.Entities
     public class Department : Entity
     {
         public string Name { get; set; }
-        public string CreateBy { get; set; }
         public IList<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

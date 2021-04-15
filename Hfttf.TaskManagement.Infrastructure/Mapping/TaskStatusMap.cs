@@ -1,5 +1,4 @@
-﻿
-using Hfttf.TaskManagement.Core.Entities;
+﻿using Hfttf.TaskManagement.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

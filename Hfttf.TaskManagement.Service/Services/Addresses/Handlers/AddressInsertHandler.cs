@@ -20,7 +20,6 @@ namespace Hfttf.TaskManagement.Service.Services.Addresses.Handlers
         public async Task<Response> Handle(AddressInsertCommand request, CancellationToken cancellationToken)
         {
             var address = TaskManagementMapper.Mapper.Map<Address>(request);
-            address.CreatedDate = DateTime.Now;
             var response = await _addressRepository.AddAsync(address);
             var addressceResponse = TaskManagementMapper.Mapper.Map<AddressResponse>(response);
             var result = Response.Success(addressceResponse, 200);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hfttf.TaskManagement.Core.ResourceViewModel;
+using System.Collections.Generic;
 
 namespace Hfttf.TaskManagement.Service.Services.Departments.Responses
 {
@@ -6,7 +7,6 @@ namespace Hfttf.TaskManagement.Service.Services.Departments.Responses
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string CreateBy { get; set; }
-        public bool IsActive { get; set; }
+        public IList<UserViewResponse> ApplicationUsers { get; set; }
     }
 }

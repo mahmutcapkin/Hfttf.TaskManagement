@@ -13,8 +13,7 @@ namespace Hfttf.TaskManagement.Service.Services.Departments.Validatiors
             RuleFor(x => x.Id).NotEqual(0).WithMessage(ValidatorMessages.IdNotEqualToZero);
             RuleFor(x => x.Name).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.Name).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-            RuleFor(x => x.UpdateBy).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.UpdateBy).NotNull().WithMessage(ValidatorMessages.NotNullMessage);          
+     
         }
     }
 }

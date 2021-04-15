@@ -23,6 +23,10 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
             builder.HasOne(d => d.Department)
                      .WithMany(p => p.ApplicationUsers)
                      .HasForeignKey(d => d.DepartmentId);
+
+            builder.HasOne(d => d.Job)
+                   .WithMany(p => p.ApplicationUsers)
+                   .HasForeignKey(d => d.JobId);
         }
     }
 }

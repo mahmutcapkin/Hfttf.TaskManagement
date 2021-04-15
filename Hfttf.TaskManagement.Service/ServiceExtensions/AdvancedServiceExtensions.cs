@@ -14,8 +14,8 @@ using Hfttf.TaskManagement.Service.Services.Departments.Handlers;
 using Hfttf.TaskManagement.Service.Services.EducationInformations.Handlers;
 using Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Handlers;
 using Hfttf.TaskManagement.Service.Services.Experiences.Handlers;
-using Hfttf.TaskManagement.Service.Services.Holidays.Handlers;
 using Hfttf.TaskManagement.Service.Services.Leaders.Handlers;
+using Hfttf.TaskManagement.Service.Services.Leaves.Handlers;
 using Hfttf.TaskManagement.Service.Services.Projects.Handlers;
 using Hfttf.TaskManagement.Service.Services.Tasks.Handlers;
 using Hfttf.TaskManagement.Service.Services.UserAssignments.Handlers;
@@ -54,7 +54,7 @@ namespace Hfttf.TaskManagement.Service.ServiceExtensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IAddressRepository), typeof(AddressRepositoryEf));
             services.AddScoped(typeof(IDepartmentRepository), typeof(DepartmentRepositoryEf));
-            services.AddScoped(typeof(IHolidayRepository), typeof(HolidayRepositoryEf));
+            services.AddScoped(typeof(ILeaveRepository), typeof(LeaveRepositoryEf));
             services.AddScoped(typeof(IProjectRepository), typeof(ProjectRepositoryEf));
             services.AddScoped(typeof(IUserAssignmentRepository), typeof(UserAssignmentRepositoryEf));
             services.AddScoped(typeof(ITaskRepository), typeof(TaskRepositoryEf));
@@ -126,11 +126,11 @@ namespace Hfttf.TaskManagement.Service.ServiceExtensions
             #endregion
 
 
-            #region Holiday Validators
-            AssemblyScanner.FindValidatorsInAssembly(typeof(HolidayInsertHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
-            AssemblyScanner.FindValidatorsInAssembly(typeof(HolidayUpdateHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
-            AssemblyScanner.FindValidatorsInAssembly(typeof(HolidayDeleteHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
-            AssemblyScanner.FindValidatorsInAssembly(typeof(HolidayDetailHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
+            #region Leave Validators
+            AssemblyScanner.FindValidatorsInAssembly(typeof(LeaveInsertHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
+            AssemblyScanner.FindValidatorsInAssembly(typeof(LeaveUpdateHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
+            AssemblyScanner.FindValidatorsInAssembly(typeof(LeaveDeleteHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
+            AssemblyScanner.FindValidatorsInAssembly(typeof(LeaveDetailHandler).Assembly).ForEach(item => services.AddScoped(item.InterfaceType, item.ValidatorType));
 
             #endregion
 

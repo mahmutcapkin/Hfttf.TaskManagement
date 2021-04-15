@@ -1,6 +1,5 @@
 ﻿using Hfttf.TaskManagement.Core.Models;
 using MediatR;
-using System;
 
 namespace Hfttf.TaskManagement.Service.Services.Departments.Commands
 {
@@ -8,8 +7,6 @@ namespace Hfttf.TaskManagement.Service.Services.Departments.Commands
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string UpdateBy { get; set; }
-        public bool IsActive { get; set; }
 
     }
 }

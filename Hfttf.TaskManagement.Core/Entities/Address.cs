@@ -9,10 +9,6 @@ namespace Hfttf.TaskManagement.Core.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public string ZipCode { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public string CreateBy { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public string UpdateBy { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

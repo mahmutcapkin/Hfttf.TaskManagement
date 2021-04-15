@@ -19,6 +19,21 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
+            modelBuilder.Entity("ApplicationUserProject", b =>
+                {
+                    b.Property<string>("ApplicationUsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProjectsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationUsersId", "ProjectsId");
+
+                    b.HasIndex("ProjectsId");
+
+                    b.ToTable("ApplicationUserProject");
+                });
+
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Address", b =>
                 {
                     b.Property<int>("Id")
@@ -39,26 +54,11 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("smalldatetime");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
                         .IsUnicode(false)
                         .HasColumnType("varchar(500)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("ZipCode")
                         .HasMaxLength(25)
@@ -163,9 +163,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -189,8 +186,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -234,26 +229,11 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
-
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("smalldatetime");
 
                     b.HasKey("Id");
 
@@ -358,41 +338,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.ToTable("Experiences");
                 });
 
-            modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Holiday", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("NumberOfDay")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Holidays");
-                });
-
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Job", b =>
                 {
                     b.Property<int>("Id")
@@ -400,26 +345,11 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("smalldatetime");
 
                     b.HasKey("Id");
 
@@ -450,6 +380,49 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.ToTable("Leaders");
                 });
 
+            modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Leave", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("smalldatetime");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("smalldatetime");
+
+                    b.Property<string>("NumberOfDay")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("smalldatetime");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("smalldatetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Leaves");
+                });
+
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -468,9 +441,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("smalldatetime");
-
-                    b.Property<byte>("IsActive")
-                        .HasColumnType("tinyint");
 
                     b.Property<int?>("LeaderId")
                         .HasColumnType("int");
@@ -504,9 +474,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("ApprovedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CreateBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -520,9 +487,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Priority")
                         .HasColumnType("int");
@@ -551,43 +515,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.HasIndex("TaskStatusId");
 
                     b.ToTable("Tasks");
-                });
-
-            modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.TaskComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("TaskComments");
                 });
 
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.TaskStatus", b =>
@@ -621,10 +548,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("smalldatetime");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TaskId")
+                    b.Property<int?>("TaskId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdateBy")
@@ -657,9 +581,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,0)");
@@ -781,6 +702,21 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ApplicationUserProject", b =>
+                {
+                    b.HasOne("Hfttf.TaskManagement.Core.Entities.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("ApplicationUsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hfttf.TaskManagement.Core.Entities.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Address", b =>
                 {
                     b.HasOne("Hfttf.TaskManagement.Core.Entities.ApplicationUser", "ApplicationUser")
@@ -796,15 +732,13 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .WithMany("ApplicationUsers")
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("Hfttf.TaskManagement.Core.Entities.Job", null)
+                    b.HasOne("Hfttf.TaskManagement.Core.Entities.Job", "Job")
                         .WithMany("ApplicationUsers")
                         .HasForeignKey("JobId");
 
-                    b.HasOne("Hfttf.TaskManagement.Core.Entities.Project", null)
-                        .WithMany("ApplicationUsers")
-                        .HasForeignKey("ProjectId");
-
                     b.Navigation("Department");
+
+                    b.Navigation("Job");
                 });
 
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.BankInformation", b =>
@@ -858,6 +792,15 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.Navigation("Project");
                 });
 
+            modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Leave", b =>
+                {
+                    b.HasOne("Hfttf.TaskManagement.Core.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("Leaves")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
+                });
+
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Task", b =>
                 {
                     b.HasOne("Hfttf.TaskManagement.Core.Entities.Project", "Project")
@@ -875,17 +818,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     b.Navigation("TaskStatus");
                 });
 
-            modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.TaskComment", b =>
-                {
-                    b.HasOne("Hfttf.TaskManagement.Core.Entities.Task", "Task")
-                        .WithMany("TaskComments")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Task");
-                });
-
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.UserAssignment", b =>
                 {
                     b.HasOne("Hfttf.TaskManagement.Core.Entities.ApplicationUser", "ApplicationUser")
@@ -894,9 +826,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
 
                     b.HasOne("Hfttf.TaskManagement.Core.Entities.Task", "Task")
                         .WithMany("UserAssignments")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TaskId");
 
                     b.Navigation("ApplicationUser");
 
@@ -977,6 +907,8 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
 
                     b.Navigation("Leaders");
 
+                    b.Navigation("Leaves");
+
                     b.Navigation("UserAssignments");
 
                     b.Navigation("UserSalaries");
@@ -994,8 +926,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Project", b =>
                 {
-                    b.Navigation("ApplicationUsers");
-
                     b.Navigation("Leader");
 
                     b.Navigation("Tasks");
@@ -1003,8 +933,6 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("Hfttf.TaskManagement.Core.Entities.Task", b =>
                 {
-                    b.Navigation("TaskComments");
-
                     b.Navigation("UserAssignments");
                 });
 

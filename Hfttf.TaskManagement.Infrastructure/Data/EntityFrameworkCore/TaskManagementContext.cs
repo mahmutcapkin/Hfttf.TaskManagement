@@ -18,7 +18,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
             modelBuilder.ApplyConfiguration(new DepartmentMap());
             modelBuilder.ApplyConfiguration(new JobMap());
             modelBuilder.ApplyConfiguration(new UserSalaryMap());
-            modelBuilder.ApplyConfiguration(new HolidayMap());
+            modelBuilder.ApplyConfiguration(new LeaveMap());
             modelBuilder.ApplyConfiguration(new ProjectMap());
             modelBuilder.ApplyConfiguration(new UserAssignmentMap());
             modelBuilder.ApplyConfiguration(new TaskMap());
@@ -30,6 +30,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
             modelBuilder.ApplyConfiguration(new EducationInformationMap());
 
             modelBuilder.ApplyConfiguration(new ApplicationUserMap());
+            modelBuilder.ApplyConfiguration(new ApplicationRoleMap());
 
             modelBuilder.ApplyConfiguration(new LeaderMap());
 
@@ -51,7 +52,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore
         public DbSet<Department> Departments { get; set; }
         public DbSet<Job> Jobs { get; set; }     
         public DbSet<UserSalary> UserSalaries { get; set; }
-        public DbSet<Holiday> Holidays { get; set; }
+        public DbSet<Leave> Leaves { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<UserAssignment> UserAssignments { get; set; }

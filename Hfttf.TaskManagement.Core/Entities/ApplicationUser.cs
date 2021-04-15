@@ -12,6 +12,8 @@ namespace Hfttf.TaskManagement.Core.Entities
         public Gender Gender { get; set; }
         public int? DepartmentId { get; set; }
         public Department Department { get; set; }
+        public int? JobId { get; set; }
+        public Job Job { get; set; }
         public IList<Leader> Leaders { get; set; }
         public IList<Address> Addresses { get; set; }
         public IList<Experience> Experiences { get; set; }
@@ -20,6 +22,8 @@ namespace Hfttf.TaskManagement.Core.Entities
         public IList<BankInformation> BankInformations { get; set; }
         public IList<UserAssignment> UserAssignments { get; set; }
         public IList<UserSalary> UserSalaries { get; set; }
+        public IList<Leave> Leaves { get; set; }
+        public IList<Project> Projects { get; set; }
     }
 
     public enum Gender

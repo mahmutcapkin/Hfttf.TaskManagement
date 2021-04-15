@@ -20,10 +20,6 @@ namespace Hfttf.TaskManagement.Service.Services.Addresses.Handlers
         public async Task<Response> Handle(AddressUpdateCommand request, CancellationToken cancellationToken)
         {
             var address = TaskManagementMapper.Mapper.Map<Address>(request);
-            var AddressGetById = await _addressRepository.GetByIdAsync(request.Id);
-            address.CreatedDate = AddressGetById.CreatedDate;
-            address.CreateBy = AddressGetById.CreateBy;
-            address.UpdatedDate = DateTime.Now;
             var response = await _addressRepository.UpdateAsync(address);
             var addressResponse = TaskManagementMapper.Mapper.Map<AddressResponse>(response);
             var result = Response.Success(addressResponse, 200);

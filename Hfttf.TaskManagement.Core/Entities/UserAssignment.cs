@@ -11,7 +11,7 @@ namespace Hfttf.TaskManagement.Core.Entities
         public DateTime? UpdatedDate { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-        public int TaskId { get; set; }
+        public int? TaskId { get; set; }
         public virtual Task Task { get; set; }
     }
 }
