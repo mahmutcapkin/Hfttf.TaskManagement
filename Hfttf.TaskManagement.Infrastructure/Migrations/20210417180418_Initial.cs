@@ -319,8 +319,8 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BankName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
-                    AccountNo = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
-                    IBANNo = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
+                    AccountNo = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    IBANNo = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -365,7 +365,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     RelationShip = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
-                    Phone = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
+                    Phone = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

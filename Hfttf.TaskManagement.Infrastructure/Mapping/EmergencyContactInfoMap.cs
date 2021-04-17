@@ -21,7 +21,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
                    .IsUnicode(false);
 
             builder.Property(e => e.Phone)
-                     .HasMaxLength(20)
+                     .HasMaxLength(30)
                      .IsUnicode(false);
 
             builder.HasOne(d => d.ApplicationUser)

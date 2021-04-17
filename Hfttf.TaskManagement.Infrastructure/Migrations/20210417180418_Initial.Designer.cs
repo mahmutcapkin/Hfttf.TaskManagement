@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hfttf.TaskManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(TaskManagementContext))]
-    [Migration("20210415163729_Initial")]
+    [Migration("20210417180418_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -200,9 +200,9 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("AccountNo")
-                        .HasMaxLength(20)
+                        .HasMaxLength(100)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
@@ -213,9 +213,9 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("IBANNo")
-                        .HasMaxLength(20)
+                        .HasMaxLength(100)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -291,9 +291,9 @@ namespace Hfttf.TaskManagement.Infrastructure.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
-                        .HasMaxLength(20)
+                        .HasMaxLength(30)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("RelationShip")
                         .HasMaxLength(20)

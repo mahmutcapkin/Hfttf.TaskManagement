@@ -15,10 +15,10 @@ namespace Hfttf.TaskManagement.Infrastructure.Mapping
                   .HasMaxLength(50)
                   .IsUnicode(false);
             builder.Property(e => e.IBANNo)
-                 .HasMaxLength(20)
+                 .HasMaxLength(100)
                  .IsUnicode(false);
             builder.Property(e => e.AccountNo)
-               .HasMaxLength(20)
+               .HasMaxLength(100)
                .IsUnicode(false);
 
             builder.HasOne(d => d.ApplicationUser)
