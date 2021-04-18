@@ -73,7 +73,7 @@ namespace Hfttf.TaskManagement.UI.CustomFilters
             using var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            return httpClient.GetAsync("http://localhost:53308/api/Auth/ActiveUser").Result;
+            return httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Users/ActiveUser").Result;
 
         }
     }

@@ -14,19 +14,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
     public class AuthApiManager : IAuthService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly HttpClient _httpClient;
-        public AuthApiManager(IHttpContextAccessor httpContextAccessor, HttpClient httpClient)
+        public AuthApiManager(IHttpContextAccessor httpContextAccessor)
         {
-            _httpClient = httpClient;
             _httpContextAccessor = httpContextAccessor;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/Authentications/");
         }
 
         public async Task<bool> SignIn(SignInViewModel signInViewModel)
         {
             var jsonData = JsonConvert.SerializeObject(signInViewModel);
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await _httpClient.PostAsync("SignIn", content);
+            using var httpClient = new HttpClient();
+            var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Authentications/SignIn", content);
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -44,13 +42,13 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
         {
             var jsonData = JsonConvert.SerializeObject(signUpViewModel);
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await _httpClient.PostAsync("SignUp", content);
+            using var httpClient = new HttpClient();
+            var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Authentications/SignUp", content);
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                //var accessToken = JsonConvert.DeserializeObject<AccessToken>(await responseMessage.Content.ReadAsStringAsync());
-
-                //_httpContextAccessor.HttpContext.Session.SetString("token", accessToken.Token);
+                var accessToken = JsonConvert.DeserializeObject<AccessToken>(await responseMessage.Content.ReadAsStringAsync());
+                _httpContextAccessor.HttpContext.Session.SetString("token", accessToken.Token);
 
                 return true;
             }
@@ -61,7 +59,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
         {
             using var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            return await httpClient.GetAsync("http://localhost:61411/api/TaskManagementApi/Users/ActiveUser");
+            return await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Users/ActiveUser");
         }
 
         public void LogOut()

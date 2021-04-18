@@ -18,7 +18,7 @@ namespace Hfttf.TaskManagement.Service.Services.Addresses.Handlers
         }
         public async Task<Response> Handle(AddressListQuery request, CancellationToken cancellationToken)
         {
-            var addresses = await _addressRepository.GetAllAsync();
+            var addresses = await _addressRepository.GetListWithUser();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<AddressResponse>>(addresses);
             var result = Response.Success(response, 200);
             return result;

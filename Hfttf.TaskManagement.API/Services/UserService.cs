@@ -57,9 +57,9 @@ namespace Hfttf.TaskManagement.API.Services
 
         }
 
-        public async Task<UserWithRolesResponse> ActiveUserInfo()
+        public async Task<UserWithRolesResponse> ActiveUserInfo(string userName)
         {
-            ApplicationUser user = await userManager.FindByNameAsync(User.Identity.Name);
+            ApplicationUser user = await GetUserByUserName(userName);
             var roles = await userManager.GetRolesAsync(user);
             UserWithRolesResponse userWithRolesResponse = new UserWithRolesResponse();
             userWithRolesResponse.Id = user.Id;

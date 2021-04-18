@@ -10,14 +10,12 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class JobApiManager:IJobService
     {
-        private readonly HttpClient _httpClient;
+
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public JobApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public JobApiManager( IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/Jobs/");
         }
 
         public async Task AddAsync(JobAdd model)

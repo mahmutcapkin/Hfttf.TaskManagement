@@ -10,14 +10,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class EmergencyContactInfoApiManager:IEmergencyContactInfoService
     {
-        private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EmergencyContactInfoApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public EmergencyContactInfoApiManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/EmergencyContactInfos/");
         }
 
         public async Task AddAsync(EmergencyContactInfoAdd model)

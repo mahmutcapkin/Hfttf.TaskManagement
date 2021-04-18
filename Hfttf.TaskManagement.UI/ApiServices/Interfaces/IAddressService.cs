@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.UI.Models.Address;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface IAddressService
     {
-        Task<List<AddressList>> GetAllAsync();
+        Task<List<AddressResponse>> GetAllAsync();
         Task<AddressList> GetByIdAsync(int id);
         Task AddAsync(AddressAdd model);
         Task UpdateAsync(AddressUpdate model);

@@ -10,14 +10,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class DepartmentApiManager:IDepartmentService
     {
-        private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public DepartmentApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public DepartmentApiManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/Departments/");
         }
 
         public async Task AddAsync(DepartmentAdd model)

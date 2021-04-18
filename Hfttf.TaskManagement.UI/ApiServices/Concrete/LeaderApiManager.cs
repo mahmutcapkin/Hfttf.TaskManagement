@@ -10,14 +10,12 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class LeaderApiManager:ILeaderService
     {
-        private readonly HttpClient _httpClient;
+
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public LeaderApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public LeaderApiManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/Leaders/");
         }
 
         public async Task AddAsync(LeaderAdd model)

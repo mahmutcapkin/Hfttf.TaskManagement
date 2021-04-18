@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.API.Controllers
 {
-    [Authorize(Roles = UserRoles.Admin)]
+    
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -29,9 +29,10 @@ namespace Hfttf.TaskManagement.API.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ActiveUser()
         {
-           var response  = await userService.ActiveUserInfo();
+           var response  = await userService.ActiveUserInfo(User.Identity.Name);
             return Ok(response);
 
         }

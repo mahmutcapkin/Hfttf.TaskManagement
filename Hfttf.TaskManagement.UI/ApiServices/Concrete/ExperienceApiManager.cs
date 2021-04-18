@@ -10,14 +10,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class ExperienceApiManager:IExperienceService
     {
-        private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ExperienceApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public ExperienceApiManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/Experiences/");
         }
 
         public async Task AddAsync(ExperienceAdd model)

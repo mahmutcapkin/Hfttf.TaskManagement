@@ -10,14 +10,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class EducationInformationApiManager:IEducationInformationService
     {
-        private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EducationInformationApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public EducationInformationApiManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/EducationInformations/");
         }
 
         public async Task AddAsync(EducationInformationAdd model)

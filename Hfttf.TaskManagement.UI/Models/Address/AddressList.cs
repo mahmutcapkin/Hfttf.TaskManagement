@@ -7,8 +7,6 @@
         public string City { get; set; }
         public string Country { get; set; }
         public string ZipCode { get; set; }
-        public string UpdateBy { get; set; }
-        public bool IsActive { get; set; }
         public string ApplicationUserId { get; set; }
     }
 }

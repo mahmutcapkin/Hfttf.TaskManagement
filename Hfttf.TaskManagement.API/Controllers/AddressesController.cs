@@ -1,8 +1,10 @@
 ﻿using Hfttf.TaskManagement.Core.Models;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Addresses.Commands;
 using Hfttf.TaskManagement.Service.Services.Addresses.Queries;
 using Hfttf.TaskManagement.Service.Services.Addresses.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,7 +19,6 @@ namespace Hfttf.TaskManagement.API.Controllers
     /// </summary>
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    // [Authorize]
     public class AddressesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -73,13 +74,12 @@ namespace Hfttf.TaskManagement.API.Controllers
         /// <summary>
         /// You can use it to delete a Address
         /// </summary>
-        /// <param name="addressDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(AddressDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] AddressDeleteCommand addressDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(addressDeleteCommand);
+            var result = await _mediator.Send(new AddressDeleteCommand() { Id=id });
             return Ok(result);
         }
 
@@ -103,6 +103,7 @@ namespace Hfttf.TaskManagement.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response>> GetList()
         {

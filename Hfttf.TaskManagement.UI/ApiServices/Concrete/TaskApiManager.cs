@@ -10,14 +10,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class TaskApiManager:ITaskService
     {
-        private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TaskApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public TaskApiManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/Tasks/");
         }
 
         public async Task AddAsync(TaskAdd model)

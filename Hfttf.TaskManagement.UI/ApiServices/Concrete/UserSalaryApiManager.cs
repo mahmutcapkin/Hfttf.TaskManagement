@@ -10,14 +10,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
     public class UserSalaryApiManager:IUserSalaryService
     {
-        private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserSalaryApiManager(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public UserSalaryApiManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:61411/api/TaskManagementApi/UserSalaries/");
         }
 
         public async Task AddAsync(UserSalaryAdd model)
