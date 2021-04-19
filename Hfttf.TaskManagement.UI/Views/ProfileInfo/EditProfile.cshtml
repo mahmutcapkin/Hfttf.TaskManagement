@@ -1,4 +1,8 @@
-﻿@model List<AddressResponse>
+﻿
+@{
+    ViewData["Title"] = "EditProfile";
+}
+@model List<AddressResponse>
 @{
     Layout = "_Layout";
 }
@@ -46,33 +50,60 @@
                         <p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
                         <div class="profile-info">
                             <h5 class="mb-20 h5 text-blue">Kişisel Bilgiler <a href="/ProfileInfo/EditProfile" class="edit-avatar"><i class="fa fa-pencil"></i></a></h5>
-                            
-                            <ul>
-                                <li>
-                                    <span>Email:</span>
-                                    FerdinandMChilds@test.com
-                                </li>
-                                <li>
-                                    <span>Telefon Numarası:</span>
-                                    619-229-0054
-                                </li>
-                                <li>
-                                    <span>Cinsiyet:</span>
-                                    Erkek
-                                </li>
-                                <li>
-                                    <span>Departman:</span>
-                                    Yazılım
-                                </li>
-                                <li>
-                                    <span>Meslek:</span>
-                                    Yazılım Mühendisi
-                                </li>
-                                <li>
-                                    <span>Doğum Tarihi:</span>
-                                    10.05.1994
+                            <ul class="profile-edit-list row">
+                                <li class="weight-500 col-md-6">
+                                    <h4 class="text-blue h5 mb-20">Bilgilerim</h4>
+                                    <div class="form-group">
+                                        <label>Şehir</label>
+                                        <input class="form-control form-control-lg" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ülke</label>
+                                        <select class="selectpicker form-control form-control-lg" data-style="btn-outline-secondary btn-lg" title="Not Chosen">
+                                            <option>Türkiye</option>
+                                            <option>İngiltere</option>
+                                            <option>ABD</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Posta Kodu</label>
+                                        <input class="form-control form-control-lg" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Adres</label>
+                                        <textarea class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <input type="submit" class="btn btn-primary" value="Save & Update">
+                                    </div>
                                 </li>
                             </ul>
+                            @*<ul>
+            <li>
+                <span>Email:</span>
+                FerdinandMChilds@test.com
+            </li>
+            <li>
+                <span>Telefon Numarası:</span>
+                619-229-0054
+            </li>
+            <li>
+                <span>Cinsiyet:</span>
+                Erkek
+            </li>
+            <li>
+                <span>Departman:</span>
+                Yazılım
+            </li>
+            <li>
+                <span>Meslek:</span>
+                Yazılım Mühendisi
+            </li>
+            <li>
+                <span>Doğum Tarihi:</span>
+                10.05.1994
+            </li>
+        </ul>*@
                         </div>
                     </div>
                 </div>
