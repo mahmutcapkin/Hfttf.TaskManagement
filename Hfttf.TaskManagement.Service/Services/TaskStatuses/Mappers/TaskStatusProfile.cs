@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hfttf.TaskManagement.Core.Entities;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Commands;
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Responses;
 
@@ -13,6 +14,8 @@ namespace Hfttf.TaskManagement.Service.Services.TaskStatuses.Mappers
             CreateMap<TaskStatusDeleteCommand, TaskStatus>().ReverseMap();
             CreateMap<TaskStatusUpdateCommand, TaskStatus>().ReverseMap();
             CreateMap<TaskStatus, TaskStatusResponse>().ReverseMap();
+            CreateMap<TaskStatus, TaskStatusForTaskResponse>().ReverseMap();
+            CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Hfttf.TaskManagement.Service.Mappers
                 configuration.AddProfile<DepartmentProfile>();
                 configuration.AddProfile<TaskStatusProfile>();
                 configuration.AddProfile<JobProfile>();
+                configuration.AddProfile<DepartmentProfile>();
 
                 configuration.AddProfile<EmergencyContactInfoProfile>();
                 configuration.AddProfile<BankInformationProfile>();

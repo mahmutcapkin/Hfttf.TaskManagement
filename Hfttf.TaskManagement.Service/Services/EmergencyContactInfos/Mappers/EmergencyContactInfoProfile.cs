@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hfttf.TaskManagement.Core.Entities;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Commands;
 using Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Responses;
 
@@ -13,6 +14,8 @@ namespace Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Mappers
             CreateMap<EmergencyContactInfoInsertCommand, EmergencyContactInfo>().ReverseMap();
             CreateMap<EmergencyContactInfoUpdateCommand, EmergencyContactInfo>().ReverseMap();
             CreateMap<EmergencyContactInfo, EmergencyContactInfoResponse>().ReverseMap();       
+            CreateMap<EmergencyContactInfo, EmergencyContactUserInfoResponse>().ReverseMap();
+            CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
         }
     }
 }

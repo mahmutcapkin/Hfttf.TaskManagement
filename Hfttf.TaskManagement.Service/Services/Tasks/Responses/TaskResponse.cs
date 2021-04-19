@@ -19,9 +19,9 @@ namespace Hfttf.TaskManagement.Service.Services.Tasks.Responses
         public string UpdateBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public int? ProjectId { get; set; }
-        public ProjectResponse Project { get; set; }
+        public ProjectForTaskResponse Project { get; set; }
         public int TaskStatusId { get; set; }
-        public TaskStatusResponse TaskStatus { get; set; }
+        public TaskStatusForTaskResponse TaskStatus { get; set; }
         public IList<UserAssignmentForTaskResponse> UserAssignments { get; set; }
     }
 

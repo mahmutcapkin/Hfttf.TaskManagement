@@ -105,12 +105,16 @@ namespace Hfttf.TaskManagement.API.Services
 
             }
 
-            //user.BirthDay = userViewModel.BirthDay;
-            //user.City = userViewModel.City;
-            //user.Gender = (int)userViewModel.Gender;
+            user.FirstName = userViewModel.FirstName;
+            user.LastName = userViewModel.LastName;
+            user.BirthDate = userViewModel.BirthDate;
+            user.DepartmentId = userViewModel.DepartmentId;
+            user.JobId = userViewModel.JobId;
+            user.Gender = userViewModel.Gender;
             user.Email = userViewModel.Email;
             user.UserName = userViewModel.UserName;
             user.PhoneNumber = userViewModel.PhoneNumber;
+            
 
             IdentityResult result = await userManager.UpdateAsync(user);
 

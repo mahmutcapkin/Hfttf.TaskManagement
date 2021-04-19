@@ -61,6 +61,7 @@ namespace Hfttf.TaskManagement.Service.ServiceExtensions
             services.AddScoped(typeof(IUserSalaryRepository), typeof(UserSalaryRepositoryEf));
             services.AddScoped(typeof(ITaskStatusRepository), typeof(TaskStatusRepositoryEf));
             services.AddScoped(typeof(IJobRepository), typeof(JobRepositoryEf));
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepositoryEf));
             services.AddScoped(typeof(ICreateMinioClient), typeof(CreateMinioClient));
 
             services.AddScoped(typeof(IEmergencyContactInfoRepository), typeof(EmergencyContactInfoRepositoryEf));

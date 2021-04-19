@@ -15,6 +15,7 @@ namespace Hfttf.TaskManagement.Service.Services.Addresses.Mappers
             CreateMap<AddressDeleteCommand, Address>().ReverseMap();
             CreateMap<Address, AddressResponse>().ReverseMap();
             CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
+            CreateMap<Address, AddressForUserInfoResponse>().ReverseMap();
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Hfttf.TaskManagement.Core.ResourceViewModel
     public class UserViewResponse
     {
         //[Required(ErrorMessage = "Kullanıcı ismi gerekldir.")]
+        public string Id { get; set; }
         public string UserName { get; set; }
 
         //[RegularExpression(@"^(0(\d{3}) (\d{3}) (\d{2}) (\d{2}))$", ErrorMessage = "Telefon numarası uygun formatta değil")]
@@ -19,6 +20,7 @@ namespace Hfttf.TaskManagement.Core.ResourceViewModel
         public DateTime? BirthDate { get; set; }
         public Gender Gender { get; set; }
         public int? DepartmentId { get; set; }
+        public int? JobId { get; set; }
         //public Department Department { get; set; }
         //public IList<Leader> Leaders { get; set; }
         //public IList<Address> Addresses { get; set; }

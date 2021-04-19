@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hfttf.TaskManagement.Core.Entities;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Leaders.Commands;
 using Hfttf.TaskManagement.Service.Services.Leaders.Responses;
 
@@ -13,6 +14,8 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Mappers
             CreateMap<LeaderUpdateCommand, Leader>().ReverseMap();
             CreateMap<LeaderDeleteCommand, Leader>().ReverseMap();
             CreateMap<Leader, LeaderResponse>().ReverseMap();
+            CreateMap<Leader, LeaderForUserResponse>().ReverseMap();
+            CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
         }
     }
 }
