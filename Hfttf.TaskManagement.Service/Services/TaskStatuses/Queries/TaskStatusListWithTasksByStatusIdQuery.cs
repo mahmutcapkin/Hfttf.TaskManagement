@@ -4,8 +4,8 @@ using MediatR;
 
 namespace Hfttf.TaskManagement.Service.Services.TaskStatuses.Queries
 {
-    public class TaskStatusGetTasksWithTaskStatusByIdListQuery : IRequest<Response>
+    public class TaskStatusListWithTasksByStatusIdQuery : IRequest<Response>
     {
-        public int StatusNameId { get; set; }
+        public StatusLevel Status { get; set; }
     }
 }

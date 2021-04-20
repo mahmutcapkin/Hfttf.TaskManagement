@@ -65,13 +65,13 @@ namespace Izersoft.TaskManagement.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="taskStatusGetTasksWithTaskStatusByIdListQuery"></param>
+        /// <param name="taskStatusListWithTasksByStatusIdQuery"></param>
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> GetTaskStatusWithTasksByStatusNameId([FromQuery] TaskStatusGetTasksWithTaskStatusByIdListQuery taskStatusGetTasksWithTaskStatusByIdListQuery)
+        public async Task<ActionResult<Response>> GetTaskStatusWithTasksByStatusId([FromQuery] TaskStatusListWithTasksByStatusIdQuery  taskStatusListWithTasksByStatusIdQuery)
         {
-            var response = await _mediator.Send(taskStatusGetTasksWithTaskStatusByIdListQuery);
+            var response = await _mediator.Send(taskStatusListWithTasksByStatusIdQuery);
             return Ok(response);
         }
     }

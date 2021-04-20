@@ -20,7 +20,7 @@ namespace Hfttf.TaskManagement.Service.Services.UserAssignments.Handlers
 
         public async Task<Response> Handle(UserAssignmentListQuery request, CancellationToken cancellationToken)
         {
-            var UserAssignment = await _UserAssignmentRepository.GetAllAsync();
+            var UserAssignment = await _UserAssignmentRepository.GetListWithUserandTask();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<UserAssignmentResponse>>(UserAssignment);
             var result = Response.Success(response, 200);
             return result;

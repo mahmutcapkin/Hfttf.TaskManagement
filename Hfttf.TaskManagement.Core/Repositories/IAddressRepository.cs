@@ -8,5 +8,8 @@ namespace Hfttf.TaskManagement.Core.Repositories
     public interface IAddressRepository : IRepository<Address>
     {
         Task<IReadOnlyList<Address>> GetListWithUser();
+        Task<IReadOnlyList<Address>> GetListWithUserByUserId(string userId);
+        Task<Address> GetAddressWithUserById(int id);
+
     }
 }

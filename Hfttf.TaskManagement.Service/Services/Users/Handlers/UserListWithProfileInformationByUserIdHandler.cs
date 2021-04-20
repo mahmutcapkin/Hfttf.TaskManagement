@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
 {
-    public class UserGetUsersWithProfileInformationByUserIdHandler : BaseUserHandler, IRequestHandler<UserGetUsersWithProfileInformationByUserIdQuery, Response>
+    public class UserListWithProfileInformationByUserIdHandler : BaseUserHandler, IRequestHandler<UserGetUsersWithProfileInformationByUserIdQuery, Response>
     {
-        public UserGetUsersWithProfileInformationByUserIdHandler(UserManager<ApplicationUser> userManager, IUserRepository userRepository) : base(userManager, userRepository)
+        public UserListWithProfileInformationByUserIdHandler(UserManager<ApplicationUser> userManager, IUserRepository userRepository) : base(userManager, userRepository)
         {
         }
 

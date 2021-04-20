@@ -1,4 +1,5 @@
-﻿using Hfttf.TaskManagement.Core.Models;
+﻿using Hfttf.TaskManagement.Core.Entities;
+using Hfttf.TaskManagement.Core.Models;
 using Hfttf.TaskManagement.Core.Repositories;
 using Hfttf.TaskManagement.Service.Mappers;
 using Hfttf.TaskManagement.Service.Services.BankInformations.Handlers.Base;
@@ -19,7 +20,15 @@ namespace Hfttf.TaskManagement.Service.Services.BankInformations.Handlers
         }
         public async Task<Response> Handle(BankInformationListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var bankInformation = await _bankInformationRepository.GetAsync(x => x.ApplicationUserId == request.UserId);
+            IReadOnlyList<BankInformation> bankInformation;
+            if (request.UserId == null)
+            {
+                bankInformation = await _bankInformationRepository.GetListWithUser();
+            }
+            else
+            {
+                bankInformation = await _bankInformationRepository.GetListWithUserByUserId(request.UserId);
+            } 
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<BankInformationResponse>>(bankInformation);
             var result = Response.Success(response, 200);
             return result;

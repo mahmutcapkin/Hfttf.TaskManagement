@@ -17,7 +17,7 @@ namespace Hfttf.TaskManagement.Service.Services.Addresses.Handlers
         }
         public async Task<Response> Handle(AddressDetailQuery request, CancellationToken cancellationToken)
         {
-            var attendance = await _addressRepository.FindAsync(x => x.Id == request.Id);
+            var attendance = await _addressRepository.GetAddressWithUserById(request.Id);
             var response = TaskManagementMapper.Mapper.Map<AddressResponse>(attendance);
             var result = Response.Success(response, 200);
             return result;

@@ -60,6 +60,18 @@ namespace Hfttf.TaskManagement.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="educationInformationDetailQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetById([FromQuery] EducationInformationDetailQuery  educationInformationDetailQuery)
+        {
+            var response = await _mediator.Send(educationInformationDetailQuery);
+            return Ok(response);
+        }
 
         /// <summary>
         /// You can call it to the whole EducationInformation list.

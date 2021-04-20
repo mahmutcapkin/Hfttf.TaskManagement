@@ -82,6 +82,19 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="departmentDetailWithUserQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetDepartmentWithUsersById([FromQuery] DepartmentDetailWithUserQuery  departmentDetailWithUserQuery)
+        {
+            var response = await _mediator.Send(departmentDetailWithUserQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
         /// You can call it to the whole Department list.
         /// </summary>
         /// <returns></returns>

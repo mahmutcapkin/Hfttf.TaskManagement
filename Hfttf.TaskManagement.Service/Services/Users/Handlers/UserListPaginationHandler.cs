@@ -14,15 +14,15 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
 {
-    public class UserGetListPaginationHandler : BaseUserHandler, IRequestHandler<UserGetListPaginationQuery, PagedResponse<IEnumerable<UserResponse>>>
+    public class UserListPaginationHandler : BaseUserHandler, IRequestHandler<UserListPaginationQuery, PagedResponse<IEnumerable<UserResponse>>>
     {
         private readonly IUriService _uriService;
-        public UserGetListPaginationHandler(UserManager<ApplicationUser> userManager, IUserRepository userRepository, IUriService uriService) : base(userManager, userRepository)
+        public UserListPaginationHandler(UserManager<ApplicationUser> userManager, IUserRepository userRepository, IUriService uriService) : base(userManager, userRepository)
         {
             _uriService = uriService;
         }
 
-        public async Task<PagedResponse<IEnumerable<UserResponse>>> Handle(UserGetListPaginationQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResponse<IEnumerable<UserResponse>>> Handle(UserListPaginationQuery request, CancellationToken cancellationToken)
         {
             var validPageNumber = request.PageNumber < 1 ? 1 : request.PageNumber;
             var validPageSize = request.PageSize > 10 ? request.PageSize : 10;

@@ -18,7 +18,7 @@ namespace Hfttf.TaskManagement.Service.Services.Departments.Handlers
         }
         public async Task<Response> Handle(DepartmentListQuery request, CancellationToken cancellationToken)
         {
-            var department = await _departmentRepository.GetAllAsync();
+            var department = await _departmentRepository.GetListWithUsers();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<DepartmentResponse>>(department);
             var result = Response.Success(response, 200);
             return result;

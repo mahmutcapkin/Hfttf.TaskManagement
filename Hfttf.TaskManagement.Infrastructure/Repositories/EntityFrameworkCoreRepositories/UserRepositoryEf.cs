@@ -30,5 +30,41 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
                 return user;
             }
         }
+
+        public async Task<IReadOnlyList<ApplicationUser>> GetUserList()
+        {
+            var data = await _taskManagementContext.Users
+                .Include(x => x.UserSalaries)
+                .Include(x => x.UserAssignments)
+                .Include(x => x.Leaves)
+                .Include(x => x.Leaders)
+                .Include(x => x.Job)
+                .Include(x => x.Experiences)
+                .Include(x => x.EmergencyContactInfos)
+                .Include(x => x.EducationInformations)
+                .Include(x => x.Department)
+                .Include(x => x.BankInformations)
+                .Include(x => x.Addresses)
+                .ToListAsync();
+            return data;
+        }
+
+        public async Task<ApplicationUser> GetUserDetailById(string userId)
+        {
+            var data = await _taskManagementContext.Users
+                .Include(x => x.UserSalaries)
+                .Include(x => x.UserAssignments)
+                .Include(x => x.Leaves)
+                .Include(x => x.Leaders)
+                .Include(x => x.Job)
+                .Include(x => x.Experiences)
+                .Include(x => x.EmergencyContactInfos)
+                .Include(x => x.EducationInformations)
+                .Include(x => x.Department)
+                .Include(x => x.BankInformations)
+                .Include(x => x.Addresses)
+                .FirstOrDefaultAsync(x=>x.Id==userId);
+            return data;
+        }
     }
 }

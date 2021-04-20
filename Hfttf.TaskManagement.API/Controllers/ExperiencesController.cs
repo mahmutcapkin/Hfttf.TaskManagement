@@ -61,6 +61,19 @@ namespace Hfttf.TaskManagement.API.Controllers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="experienceDetailQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetById([FromQuery] ExperienceDetailQuery  experienceDetailQuery)
+        {
+            var response = await _mediator.Send(experienceDetailQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
         /// You can call it to the whole Experience list.
         /// </summary>
         /// <returns></returns>

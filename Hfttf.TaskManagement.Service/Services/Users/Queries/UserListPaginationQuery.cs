@@ -1,13 +1,12 @@
 ﻿using Hfttf.TaskManagement.Core.Models.Pagination;
-using Hfttf.TaskManagement.Service.Services.Projects.Responses;
+using Hfttf.TaskManagement.Service.Services.Users.Responses;
 using MediatR;
 using System.Collections.Generic;
 
-namespace Hfttf.TaskManagement.Service.Services.Projects.Queries
+namespace Hfttf.TaskManagement.Service.Services.Users.Queries
 {
-    public class ProjectListPaginationByUserIdQuery : PaginationQuery, IRequest<PagedResponse<IEnumerable<ProjectResponse>>>
+    public class UserListPaginationQuery : PaginationQuery, IRequest<PagedResponse<IEnumerable<UserResponse>>>
     {
-        public string UserId { get; set; }
         private string Route { get; set; }
         public void SetRoute(string route)
         {

@@ -124,5 +124,18 @@ namespace Hfttf.TaskManagement.API.Controllers
             var addressResponses = await _mediator.Send(addressListPaginationQuery);
             return Ok(addressResponses);
         }
+
+        /// <summary>
+        /// You can call it to the whole  Address list by User Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByUserId([FromQuery] AddressListByUserIdQuery  addressListByUserIdQuery)
+        {
+            var response = await _mediator.Send(addressListByUserIdQuery);
+            return Ok(response);
+        }
+
     }
 }

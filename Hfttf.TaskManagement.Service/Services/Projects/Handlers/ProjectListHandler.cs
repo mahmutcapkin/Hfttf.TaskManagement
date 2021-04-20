@@ -19,7 +19,7 @@ namespace Hfttf.TaskManagement.Service.Services.Projects.Handlers
 
         public async Task<Response> Handle(ProjectListQuery request, CancellationToken cancellationToken)
         {
-            var projects = await _projectRepository.GetAllAsync();
+            var projects = await _projectRepository.GetListWithUsersAndTasks();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<ProjectResponse>>(projects);
             var result = Response.Success(response, 200);
             return result;

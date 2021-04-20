@@ -19,7 +19,7 @@ namespace Hfttf.TaskManagement.Service.Services.TaskStatuses.Handlers
 
         public async Task<Response> Handle(TaskStatusListQuery request, CancellationToken cancellationToken)
         {
-            var taskStatuses = await _taskStatusRepository.GetAllAsync();
+            var taskStatuses = await _taskStatusRepository.GetTaskStatusesWithTasks();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<TaskStatusResponse>>(taskStatuses);
             var result = Response.Success(response, 200);
             return result;

@@ -104,5 +104,17 @@ namespace Izersoft.TaskManagement.API.Controllers
             return Ok(userSalaryResponses);
         }
 
+        /// <summary>
+        /// You can call it to the whole   User Salary list by User Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByUserId([FromQuery] UserSalaryListByUserIdQuery  userSalaryListByUserIdQuery)
+        {
+            var response = await _mediator.Send(userSalaryListByUserIdQuery);
+            return Ok(response);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hfttf.TaskManagement.Core.Models;
+﻿using Hfttf.TaskManagement.Core.Entities;
+using Hfttf.TaskManagement.Core.Models;
 using Hfttf.TaskManagement.Core.Repositories;
 using Hfttf.TaskManagement.Service.Mappers;
 using Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Handlers.Base;
@@ -19,7 +20,15 @@ namespace Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Handlers
         }
         public async Task<Response> Handle(EmergencyContactInfoListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var emergencyContactInfo = await _emergencyContactInfoRepository.GetAsync(x => x.ApplicationUserId == request.UserId);
+            IReadOnlyList<EmergencyContactInfo> emergencyContactInfo;
+            if (request.UserId == null)
+            {
+                emergencyContactInfo = await _emergencyContactInfoRepository.GetListWithUser();
+            }
+            else
+            {
+                emergencyContactInfo = await _emergencyContactInfoRepository.GetListWithUserByUserId(request.UserId);
+            }
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<EmergencyContactInfoResponse>>(emergencyContactInfo);
             var result = Response.Success(response, 200);
             return result;

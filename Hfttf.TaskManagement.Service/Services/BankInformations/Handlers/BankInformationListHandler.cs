@@ -19,7 +19,7 @@ namespace Hfttf.TaskManagement.Service.Services.BankInformations.Handlers
         }
         public async Task<Response> Handle(BankInformationListQuery request, CancellationToken cancellationToken)
         {
-            var bankInformation = await _bankInformationRepository.GetAllAsync();
+            var bankInformation = await _bankInformationRepository.GetListWithUser();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<BankInformationResponse>>(bankInformation);
             var result = Response.Success(response, 200);
             return result;

@@ -19,7 +19,7 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Handlers
 
         public async Task<Response> Handle(LeaderListQuery request, CancellationToken cancellationToken)
         {
-            var leader = await _leaderRepository.GetAllAsync();
+            var leader = await _leaderRepository.GetListWithUserAndProject();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<LeaderResponse>>(leader);
             var result = Response.Success(response, 200);
             return result;

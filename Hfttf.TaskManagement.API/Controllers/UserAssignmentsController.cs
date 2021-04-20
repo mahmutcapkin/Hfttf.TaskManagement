@@ -87,7 +87,7 @@ namespace Izersoft.TaskManagement.API.Controllers
 
 
         /// <summary>
-        /// You can call it to the whole Task Assign list.
+        /// You can call it to the whole User Assign list.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -100,7 +100,7 @@ namespace Izersoft.TaskManagement.API.Controllers
 
 
         /// <summary>
-        /// You can call it to the whole Task Assign  pagination list.
+        /// You can call it to the whole User Assign  pagination list.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -110,6 +110,18 @@ namespace Izersoft.TaskManagement.API.Controllers
             userAssignmentListPaginationQuery.SetRoute(Request.Path.Value);
             var userAssignmentResponses = await _mediator.Send(userAssignmentListPaginationQuery);
             return Ok(userAssignmentResponses);
+        }
+
+        /// <summary>
+        /// You can call it to the whole   User Assign list by User Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByUserId([FromQuery] UserAssignmentListByUserIdQuery  userAssignmentListByUserIdQuery)
+        {
+            var response = await _mediator.Send(userAssignmentListByUserIdQuery);
+            return Ok(response);
         }
     }
 }

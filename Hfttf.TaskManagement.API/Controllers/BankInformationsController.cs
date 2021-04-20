@@ -62,6 +62,19 @@ namespace Hfttf.TaskManagement.API.Controllers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bankInformationDetailQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetById([FromQuery] BankInformationDetailQuery  bankInformationDetailQuery)
+        {
+            var response = await _mediator.Send(bankInformationDetailQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
         /// You can call it to the whole BankInformation list.
         /// </summary>
         /// <returns></returns>

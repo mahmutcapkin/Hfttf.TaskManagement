@@ -19,7 +19,7 @@ namespace Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Handlers
         }
         public async Task<Response> Handle(EmergencyContactInfoListQuery request, CancellationToken cancellationToken)
         {
-            var emergencyContactInfo = await _emergencyContactInfoRepository.GetAllAsync();
+            var emergencyContactInfo = await _emergencyContactInfoRepository.GetListWithUser();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<EmergencyContactInfoResponse>>(emergencyContactInfo);
             var result = Response.Success(response, 200);
             return result;

@@ -103,5 +103,17 @@ namespace Izersoft.TaskManagement.API.Controllers
             return Ok(LeaveResponses);
         }
 
+        /// <summary>
+        /// You can call it to the whole  Leave list by User Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByUserId([FromQuery] LeaveListByUserIdQuery  leaveListByUserIdQuery)
+        {
+            var response = await _mediator.Send(leaveListByUserIdQuery);
+            return Ok(response);
+        }
+
     }
 }

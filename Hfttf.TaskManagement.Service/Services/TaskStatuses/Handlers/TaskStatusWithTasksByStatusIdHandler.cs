@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.Service.Services.TaskStatuses.Handlers
 {
-    public class TaskStatusGetTaskStatusWithTasksByStatusNameIdHandler : BaseTaskStatusHandler, IRequestHandler<TaskStatusGetTasksWithTaskStatusByIdListQuery, Response>
+    public class TaskStatusWithTasksByStatusIdHandler : BaseTaskStatusHandler, IRequestHandler<TaskStatusListWithTasksByStatusIdQuery, Response>
     {
 
-        public TaskStatusGetTaskStatusWithTasksByStatusNameIdHandler(ITaskStatusRepository taskStatusRepository) : base(taskStatusRepository)
+        public TaskStatusWithTasksByStatusIdHandler(ITaskStatusRepository taskStatusRepository) : base(taskStatusRepository)
         {
         }
-        public async Task<Response> Handle(TaskStatusGetTasksWithTaskStatusByIdListQuery request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(TaskStatusListWithTasksByStatusIdQuery request, CancellationToken cancellationToken)
         {
-            var taskStatus = await _taskStatusRepository.GetTaskStatusWithTasksByStatusNameId(request.StatusNameId);
+            var taskStatus = await _taskStatusRepository.GetTaskStatusWithTasksByStatusId(request.Status);
             var response = TaskManagementMapper.Mapper.Map<TaskStatusResponse>(taskStatus);
             var result = Response.Success(response, 200);
             return result;

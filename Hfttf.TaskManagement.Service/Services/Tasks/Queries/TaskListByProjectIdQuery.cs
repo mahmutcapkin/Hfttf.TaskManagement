@@ -5,6 +5,6 @@ namespace Hfttf.TaskManagement.Service.Services.Tasks.Queries
 {
     public class TaskListByProjectIdQuery : IRequest<Response>
     {
-        public int Id { get; set; }
+        public int? ProjectId { get; set; }
     }
 }

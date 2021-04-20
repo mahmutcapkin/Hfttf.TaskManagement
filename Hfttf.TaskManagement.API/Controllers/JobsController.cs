@@ -81,7 +81,6 @@ namespace Izersoft.IdentityServer.API.Controllers
         }
 
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -92,6 +91,19 @@ namespace Izersoft.IdentityServer.API.Controllers
         public async Task<ActionResult<Response>> GetById([FromQuery] JobDetailQuery jobDetailQuery)
         {
             var response = await _mediator.Send(jobDetailQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jobDetailWithUsersQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetJobWithUsersById([FromQuery] JobDetailWithUsersQuery  jobDetailWithUsersQuery)
+        {
+            var response = await _mediator.Send(jobDetailWithUsersQuery);
             return Ok(response);
         }
 

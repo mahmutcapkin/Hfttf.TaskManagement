@@ -19,7 +19,7 @@ namespace Hfttf.TaskManagement.Service.Services.Leaves.Handlers
 
         public async Task<Response> Handle(LeaveListQuery request, CancellationToken cancellationToken)
         {
-            var leave = await _leaveRepository.GetAllAsync();
+            var leave = await _leaveRepository.GetListWithUser();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<LeaveResponse>>(leave);
             var result = Response.Success(response, 200);
             return result;

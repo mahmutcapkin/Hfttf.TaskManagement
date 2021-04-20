@@ -4,6 +4,7 @@ using Hfttf.TaskManagement.Infrastructure.Data.EntityFrameworkCore;
 using Hfttf.TaskManagement.Infrastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TaskStatus = Hfttf.TaskManagement.Core.Entities.TaskStatus;
 
@@ -15,9 +16,16 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
         {
         }
 
-        public async Task<IReadOnlyList<Core.Entities.TaskStatus>> GetTaskByProjectId()
+        public async Task<IReadOnlyList<Core.Entities.TaskStatus>> GetTaskStatusesWithTasks()
         {
-            return await _taskManagementContext.Set<TaskStatus>().AsNoTracking().Include(x => x.Tasks).ToListAsync();
+            var data = await _taskManagementContext.TaskStatuses.Include(x => x.Tasks).AsNoTracking().ToListAsync();
+            return data;
+            
+        }
+        public async Task<IReadOnlyList<Core.Entities.TaskStatus>> GetTaskStatusWithTasksByStatusId(StatusLevel statusLevel)
+        {
+            var data = await _taskManagementContext.TaskStatuses.Where(x => x.Status == statusLevel).Include(x => x.Tasks).AsNoTracking().ToListAsync();
+            return data;
         }
 
         public async Task<TaskStatus> GetTaskStatusWithTasksByStatusNameId(int statusnameid)
