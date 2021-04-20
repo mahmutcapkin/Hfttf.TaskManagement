@@ -113,7 +113,7 @@ namespace Izersoft.TaskManagement.API.Controllers
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response>> GetProjectsByUserId(string id)
         {
-            var response = await _mediator.Send(new ProjectListByUserIdQuery() { Id = id });
+            var response = await _mediator.Send(new ProjectListByUserIdQuery() { UserId = id });
             return Ok(response);
         }
 
@@ -131,29 +131,29 @@ namespace Izersoft.TaskManagement.API.Controllers
             return Ok(response);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="projectListPaginationByUserIdQuery"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> ListPaginationByUserId([FromQuery] ProjectListPaginationByUserIdQuery projectListPaginationByUserIdQuery)
-        {
-            var response = await _mediator.Send(projectListPaginationByUserIdQuery);
-            return Ok(response);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="projectGetProjectDetailByIdQuery"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> GetProjectDetailById([FromQuery] ProjectGetProjectDetailByIdQuery projectGetProjectDetailByIdQuery)
-        {
-            var response = await _mediator.Send(projectGetProjectDetailByIdQuery);
-            return Ok(response);
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="projectListPaginationByUserIdQuery"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //[ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult> ListPaginationByUserId([FromQuery] ProjectListPaginationByUserIdQuery projectListPaginationByUserIdQuery)
+        //{
+        //    var response = await _mediator.Send(projectListPaginationByUserIdQuery);
+        //    return Ok(response);
+        //}
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="projectGetProjectDetailByIdQuery"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //[ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult> GetProjectDetailById([FromQuery] ProjectGetProjectDetailByIdQuery projectGetProjectDetailByIdQuery)
+        //{
+        //    var response = await _mediator.Send(projectGetProjectDetailByIdQuery);
+        //    return Ok(response);
+        //}
     }
 }
