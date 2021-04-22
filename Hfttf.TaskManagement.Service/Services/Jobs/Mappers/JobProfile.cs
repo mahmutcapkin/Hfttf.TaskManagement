@@ -14,6 +14,7 @@ namespace Hfttf.TaskManagement.Service.Services.Jobs.Mappers
             CreateMap<JobUpdateCommand, Job>().ReverseMap();
             CreateMap<JobDeleteCommand, Job>().ReverseMap();
             CreateMap<Job, JobResponse>().ReverseMap();
+            CreateMap<Job, JobForUserResponse>().ReverseMap();
             CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
         }
     }

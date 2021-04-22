@@ -11,6 +11,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Mappings
         public UserProfile()
         {
             CreateMap<UserInsertCommand, ApplicationUser>().ReverseMap();
+            CreateMap<UserDeleteCommand, ApplicationUser>().ReverseMap();
             CreateMap<UserUpdateCommand, ApplicationUser>().ReverseMap();
             CreateMap<ApplicationUser, UserResponse>().ReverseMap();
             CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();

@@ -104,7 +104,12 @@ namespace Hfttf.TaskManagement.API.Services
                 return new BaseResponse<UserViewResponse>("Bu telefon numarası başka bir üyeye ait");
 
             }
+            if ((userManager.Users.Count(u => u.UserName == userViewModel.UserName) > 1))
+            {
+                return new BaseResponse<UserViewResponse>("Bu kullanıcı adı başka bir üyeye ait");
 
+            }
+            user.UserName = userViewModel.FirstName;
             user.FirstName = userViewModel.FirstName;
             user.LastName = userViewModel.LastName;
             user.BirthDate = userViewModel.BirthDate;

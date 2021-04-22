@@ -77,6 +77,7 @@ namespace Izersoft.TaskManagement.API.Controllers
             return Ok(response);
         }
 
+
         /// <summary>
         /// You can call it to the whole Leader list.
         /// </summary>
@@ -101,6 +102,68 @@ namespace Izersoft.TaskManagement.API.Controllers
             leaderListPaginationQuery.SetRoute(Request.Path.Value);
             var LeaderResponses = await _mediator.Send(leaderListPaginationQuery);
             return Ok(LeaderResponses);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leaderDetailWithProjectAndUserQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetByIdWithProjectAndUser([FromQuery] LeaderDetailWithProjectAndUserQuery  leaderDetailWithProjectAndUserQuery)
+        {
+            var response = await _mediator.Send(leaderDetailWithProjectAndUserQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leaderDetailByProjectandUserIdQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetByProjectIdandUserId([FromQuery] LeaderDetailByProjectandUserIdQuery  leaderDetailByProjectandUserIdQuery)
+        {
+            var response = await _mediator.Send(leaderDetailByProjectandUserIdQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// You can call it to the whole  Leader list by User Id and Project Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByProjectIdandUserId([FromQuery] LeaderListByProjectandUserIdQuery  leaderListByProjectandUserIdQuery)
+        {
+            var response = await _mediator.Send(leaderListByProjectandUserIdQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// You can call it to the whole  Leader list by User Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByUserId([FromQuery] LeaderListByUserIdQuery  leaderListByUserIdQuery)
+        {
+            var response = await _mediator.Send(leaderListByUserIdQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// You can call it to the whole  Leader list by Project Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByProjectId([FromQuery]  LeaderListByProjectIdQuery  leaderListByProjectIdQuery)
+        {
+            var response = await _mediator.Send(leaderListByProjectIdQuery);
+            return Ok(response);
         }
 
     }

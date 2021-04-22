@@ -14,7 +14,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
 {
     public class UserDetailHandler : BaseUserHandler, IRequestHandler<UserDetailQuery, Response>
     {
-        public UserDetailHandler(UserManager<ApplicationUser> userManager, IUserRepository userRepository) : base(userManager, userRepository)
+        public UserDetailHandler(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IUserRepository userRepository) : base(userManager, roleManager, userRepository)
         {
         }
 

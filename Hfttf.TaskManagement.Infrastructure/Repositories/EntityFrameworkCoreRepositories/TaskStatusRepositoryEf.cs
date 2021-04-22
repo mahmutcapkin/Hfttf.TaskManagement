@@ -22,9 +22,9 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
             return data;
             
         }
-        public async Task<IReadOnlyList<Core.Entities.TaskStatus>> GetTaskStatusWithTasksByStatusId(StatusLevel statusLevel)
+        public async Task<Core.Entities.TaskStatus> GetTaskStatusWithTasksByStatusId(int statusLevel)
         {
-            var data = await _taskManagementContext.TaskStatuses.Where(x => x.Status == statusLevel).Include(x => x.Tasks).AsNoTracking().ToListAsync();
+            var data = await _taskManagementContext.TaskStatuses.Include(x => x.Tasks).AsNoTracking().FirstOrDefaultAsync(x=>x.Id==statusLevel);
             return data;
         }
 

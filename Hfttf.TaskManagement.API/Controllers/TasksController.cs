@@ -106,19 +106,8 @@ namespace Izersoft.TaskManagement.API.Controllers
             var taskResponses = await _mediator.Send(taskListPaginationQuery);
             return Ok(taskResponses);
         }
-        /// <summary>
-        /// You can call it to the whole task list by projectId.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> GetListByProjectId(int id)
-        {
-            var response = await _mediator.Send(new TaskListByProjectIdQuery() { Id = id });
-            return Ok(response);
-        }
 
-
+      
         /// <summary>
         /// You can call it to the whole task pagination list.
         /// </summary>
@@ -132,6 +121,55 @@ namespace Izersoft.TaskManagement.API.Controllers
             var taskResponses = await _mediator.Send(taskListByProjectIdPaginationQuery);
             return Ok(taskResponses);
         }
+
+        /// <summary>
+        /// You can call it to the whole  Task list by Project Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByProjectId([FromQuery] TaskListByProjectIdQuery taskListByProjectIdQuery)
+        {
+            var response = await _mediator.Send(taskListByProjectIdQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// You can call it to the whole  Task list by Status Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByStatusId([FromQuery] TaskListByStatusIdQuery taskListByStatusIdQuery)
+        {
+            var response = await _mediator.Send(taskListByStatusIdQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="taskDetailWithProjectAndStatusQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetByIdWithProjectandStatus([FromQuery] TaskDetailWithProjectAndStatusQuery  taskDetailWithProjectAndStatusQuery)
+        {
+            var response = await _mediator.Send(taskDetailWithProjectAndStatusQuery);
+            return Ok(response);
+        }
+
+        ///// <summary>
+        ///// You can call it to the whole task list by projectId.
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //[ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult<Response>> GetListByProjectId(int id)
+        //{
+        //    var response = await _mediator.Send(new TaskListByProjectIdQuery() { ProjectId = id });
+        //    return Ok(response);
+        //}
     }
 }
 

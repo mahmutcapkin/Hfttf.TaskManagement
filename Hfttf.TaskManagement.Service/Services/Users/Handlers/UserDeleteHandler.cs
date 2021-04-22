@@ -14,18 +14,25 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
 {
     public class UserDeleteHandler : BaseUserHandler, IRequestHandler<UserDeleteCommand, Response>
     {
-        public UserDeleteHandler(UserManager<ApplicationUser> userManager, IUserRepository userRepository) : base(userManager, userRepository)
+        public UserDeleteHandler(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IUserRepository userRepository) : base(userManager,roleManager, userRepository)
         {
         }
 
         public async Task<Response> Handle(UserDeleteCommand request, CancellationToken cancellationToken)
         {
-            var getUser = await _userRepository.FindAsync(x => x.Id == request.Id);
-            var user = TaskManagementMapper.Mapper.Map<ApplicationUser>(getUser);
-            var result = await _userRepository.UpdateAsync(user);
-            var userResponse = TaskManagementMapper.Mapper.Map<UserResponse>(result);
-            var response = Response.Success(userResponse, 200);
-            return response;
+            var user = TaskManagementMapper.Mapper.Map<ApplicationUser>(request);
+            IdentityResult result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                var userResponse = TaskManagementMapper.Mapper.Map<UserResponse>(user);
+                var response = Response.Success(userResponse, 200);
+                return response;
+            }
+            else
+            {
+                return Response.UnSuccess("Kullanıcı Silinemedi", 404, true);
+            }      
+
         }
     }
 }

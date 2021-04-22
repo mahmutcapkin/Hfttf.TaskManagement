@@ -3,6 +3,7 @@ using Hfttf.TaskManagement.Core.Entities;
 using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Leaders.Commands;
 using Hfttf.TaskManagement.Service.Services.Leaders.Responses;
+using Hfttf.TaskManagement.Service.Services.Projects.Responses;
 
 namespace Hfttf.TaskManagement.Service.Services.Leaders.Mappers
 {
@@ -16,6 +17,7 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Mappers
             CreateMap<Leader, LeaderResponse>().ReverseMap();
             CreateMap<Leader, LeaderForUserResponse>().ReverseMap();
             CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
+            CreateMap<Project, ProjectResponse>().ReverseMap();
         }
     }
 }

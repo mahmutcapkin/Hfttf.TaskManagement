@@ -17,7 +17,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
     public class UserListPaginationHandler : BaseUserHandler, IRequestHandler<UserListPaginationQuery, PagedResponse<IEnumerable<UserResponse>>>
     {
         private readonly IUriService _uriService;
-        public UserListPaginationHandler(UserManager<ApplicationUser> userManager, IUserRepository userRepository, IUriService uriService) : base(userManager, userRepository)
+        public UserListPaginationHandler(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IUserRepository userRepository, IUriService uriService) : base(userManager, roleManager, userRepository)
         {
             _uriService = uriService;
         }

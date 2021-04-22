@@ -106,30 +106,55 @@ namespace Izersoft.TaskManagement.API.Controllers
 
 
         /// <summary>
-        /// You can call it to the whole project list.
+        /// You can call it to the whole  Project list by User Id.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> GetProjectsByUserId(string id)
+        public async Task<ActionResult<Response>> GetListByUserId([FromQuery] ProjectListByUserIdQuery  projectListByUserIdQuery)
         {
-            var response = await _mediator.Send(new ProjectListByUserIdQuery() { UserId = id });
+            var response = await _mediator.Send(projectListByUserIdQuery);
             return Ok(response);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="projectFileUploadCommand"></param>
+        /// <param name="projectDetailWithTaskandUserQuery"></param>
         /// <returns></returns>
-        /// 
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> UploadProjectProfile([FromQuery] ProjectFileUploadCommand projectFileUploadCommand)
+        public async Task<ActionResult<Response>> GetProjectWithUserandTaskById([FromQuery] ProjectDetailWithTaskandUserQuery  projectDetailWithTaskandUserQuery)
         {
-            var response = await _mediator.Send(projectFileUploadCommand);
+            var response = await _mediator.Send(projectDetailWithTaskandUserQuery);
             return Ok(response);
         }
+
+        ///// <summary>
+        ///// You can call it to the whole project list.
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //[ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult<Response>> GetListByUserId(string id)
+        //{
+        //    var response = await _mediator.Send(new ProjectListByUserIdQuery() { UserId = id });
+        //    return Ok(response);
+        //}
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="projectFileUploadCommand"></param>
+        ///// <returns></returns>
+        ///// 
+        //[HttpPost]
+        //[ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult<Response>> UploadProjectProfile([FromQuery] ProjectFileUploadCommand projectFileUploadCommand)
+        //{
+        //    var response = await _mediator.Send(projectFileUploadCommand);
+        //    return Ok(response);
+        //}
 
         ///// <summary>
         ///// 

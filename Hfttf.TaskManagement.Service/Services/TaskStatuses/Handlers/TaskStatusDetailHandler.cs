@@ -5,25 +5,26 @@ using Hfttf.TaskManagement.Service.Services.TaskStatuses.Handlers.Base;
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Queries;
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Responses;
 using MediatR;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.Service.Services.TaskStatuses.Handlers
 {
-    public class TaskStatusWithTasksByStatusIdHandler : BaseTaskStatusHandler, IRequestHandler<TaskStatusWithTasksByStatusIdQuery, Response>
+    public class TaskStatusDetailHandler : BaseTaskStatusHandler, IRequestHandler<TaskStatusDetailQuery, Response>
     {
-
-        public TaskStatusWithTasksByStatusIdHandler(ITaskStatusRepository taskStatusRepository) : base(taskStatusRepository)
+        public TaskStatusDetailHandler(ITaskStatusRepository taskRepository) : base(taskRepository)
         {
         }
-        public async Task<Response> Handle(TaskStatusWithTasksByStatusIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(TaskStatusDetailQuery request, CancellationToken cancellationToken)
         {
-            var taskStatus = await _taskStatusRepository.GetTaskStatusWithTasksByStatusId(request.Status);
+            var taskStatus = await _taskStatusRepository.FindAsync(x=>x.Id==request.Id);
             var response = TaskManagementMapper.Mapper.Map<TaskStatusResponse>(taskStatus);
             var result = Response.Success(response, 200);
             return result;
         }
-
     }
 }
