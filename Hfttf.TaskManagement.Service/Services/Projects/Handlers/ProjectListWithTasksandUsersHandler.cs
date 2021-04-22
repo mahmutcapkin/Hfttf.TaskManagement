@@ -5,21 +5,24 @@ using Hfttf.TaskManagement.Service.Services.Projects.Handlers.Base;
 using Hfttf.TaskManagement.Service.Services.Projects.Queries;
 using Hfttf.TaskManagement.Service.Services.Projects.Responses;
 using MediatR;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.Service.Services.Projects.Handlers
 {
-    public class ProjectListHandler : BaseProjectHandler, IRequestHandler<ProjectListQuery,Response>
+    public class ProjectListWithTasksandUsersHandler : BaseProjectHandler, IRequestHandler<ProjectListWithTasksandUsersQuery, Response>
     {
-        public ProjectListHandler(IProjectRepository projectRepository):base(projectRepository)
+        public ProjectListWithTasksandUsersHandler(IProjectRepository projectRepository) : base(projectRepository)
         {
         }
 
-        public async Task<Response> Handle(ProjectListQuery request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(ProjectListWithTasksandUsersQuery request, CancellationToken cancellationToken)
         {
-            var projects = await _projectRepository.GetAllAsync();
+            var projects = await _projectRepository.GetListWithUsersAndTasks();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<ProjectResponse>>(projects);
             var result = Response.Success(response, 200);
             return result;

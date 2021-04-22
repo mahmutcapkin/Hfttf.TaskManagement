@@ -119,6 +119,18 @@ namespace Izersoft.IdentityServer.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// You can call it to the whole Job list.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListWithUsers()
+        {
+            var response = await _mediator.Send(new JobListWithUsersQuery());
+            return Ok(response);
+        }
+        
 
         /// <summary>
         /// You can call it to the whole Job  pagination list.

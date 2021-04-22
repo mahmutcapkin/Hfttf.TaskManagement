@@ -106,6 +106,18 @@ namespace Izersoft.TaskManagement.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// You can call it to the whole Department list.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListWithUsers()
+        {
+            var response = await _mediator.Send(new DepartmentListWithUsersQuery());
+            return Ok(response);
+        }
+
 
         /// <summary>
         /// You can call it to the whole Department  pagination list.

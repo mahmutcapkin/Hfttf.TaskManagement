@@ -5,20 +5,23 @@ using Hfttf.TaskManagement.Service.Services.Departments.Handlers.Base;
 using Hfttf.TaskManagement.Service.Services.Departments.Queries;
 using Hfttf.TaskManagement.Service.Services.Departments.Responses;
 using MediatR;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.Service.Services.Departments.Handlers
 {
-    public class DepartmentListHandler : BaseDepartmentHandler, IRequestHandler<DepartmentListQuery, Response>
+    public class DepartmentListWithUsersHandler : BaseDepartmentHandler, IRequestHandler<DepartmentListWithUsersQuery, Response>
     {
-        public DepartmentListHandler(IDepartmentRepository departmentRepository) : base(departmentRepository)
+        public DepartmentListWithUsersHandler(IDepartmentRepository departmentRepository) : base(departmentRepository)
         {
         }
-        public async Task<Response> Handle(DepartmentListQuery request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(DepartmentListWithUsersQuery request, CancellationToken cancellationToken)
         {
-            var department = await _departmentRepository.GetAllAsync();
+            var department = await _departmentRepository.GetListWithUsers();
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<DepartmentResponse>>(department);
             var result = Response.Success(response, 200);
             return result;

@@ -95,6 +95,18 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
+        /// You can call it to the whole Task Status list.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListWithTasks()
+        {
+            var response = await _mediator.Send(new TaskStatusListWithTasksQuery());
+            return Ok(response);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="taskStatusWithTasksByStatusIdQuery"></param>

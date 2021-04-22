@@ -90,6 +90,18 @@ namespace Izersoft.TaskManagement.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// You can call it to the whole project list.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListWithTasksandUsers()
+        {
+            var response = await _mediator.Send(new ProjectListWithTasksandUsersQuery());
+            return Ok(response);
+        }
+
 
         /// <summary>
         /// You can call it to the whole project pagination list.
