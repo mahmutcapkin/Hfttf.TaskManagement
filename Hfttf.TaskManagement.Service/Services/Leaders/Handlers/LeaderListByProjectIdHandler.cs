@@ -23,15 +23,8 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Handlers
 
         public async Task<Response> Handle(LeaderListByProjectIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<Leader> leader;
-            if (request.ProjectId == null)
-            {
-                leader = await _leaderRepository.GetListWithUserAndProject();
-            }
-            else
-            {
-                leader = await _leaderRepository.GetListByProjectId(request.ProjectId);
-            }
+
+            var leader = await _leaderRepository.GetListByProjectId(request.ProjectId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<LeaderResponse>>(leader);
             var result = Response.Success(response, 200);
             return result;

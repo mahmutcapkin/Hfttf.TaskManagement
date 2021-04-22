@@ -9,7 +9,7 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Responses
         public string ApplicationUserId { get; set; }
         public int? ProjectId { get; set; }
         public UserViewResponse ApplicationUser { get; set; }
-        public ProjectResponse Project { get; set; }
+        public ProjectForLeaderResponse Project { get; set; }
 
     }
 }

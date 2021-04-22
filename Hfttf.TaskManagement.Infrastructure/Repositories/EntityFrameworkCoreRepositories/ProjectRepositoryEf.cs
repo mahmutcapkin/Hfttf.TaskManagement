@@ -86,18 +86,23 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
 
         public async Task<IReadOnlyList<Project>> GetListWithUsersAndTasksByUserId(string userId)
         {
-            //var projects = await _taskManagementContext.Projects.Include(x => x.Leaders).ThenInclude(x => x.User).Include(x => x.ProjectTeams).ThenInclude(x => x.User).Include(x => x.Tasks).ToListAsync();
+            var projects = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).Include(x => x.Leader).ToListAsync();
+            var newProjects = new List<Project>();
+            foreach (var project in projects)
+            {
+                if (project.ApplicationUsers.Any(x => x.Id == userId) || project.Leader.ApplicationUserId==userId)
+                {
+                    newProjects.Add(project);
+                }
+            }
+            return newProjects;
+            //var data = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers.Where(x=>x.Id==userId)).Include(x => x.Tasks).Include(x => x.Leader).ToListAsync();
             //var newProjects = new List<Project>();
-            //foreach (var project in projects)
+            //foreach (var item in data)
             //{
-            //    if (project.ProjectTeams.Any(x => x.UserId == userId) || project.Leaders.Any(x => x.UserId == userId))
-            //    {
-            //        newProjects.Add(project);
-            //    }
+            //    if(data.ApplicationUsers)
             //}
-            //return newProjects;
-            var data = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers.Where(x=>x.Id==userId)).Include(x => x.Tasks).Include(x => x.Leader).ToListAsync();
-            return data;
+           // return data;
         }
 
 

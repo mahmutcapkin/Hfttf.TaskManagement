@@ -16,6 +16,7 @@ namespace Hfttf.TaskManagement.Service.Services.Projects.Mappers
             CreateMap<Project, ProjectResponse>().ReverseMap();
             CreateMap<Project, ProjectForUserResponse>().ReverseMap();
             CreateMap<Project, ProjectForTaskResponse>().ReverseMap();
+            CreateMap<Project, ProjectForLeaderResponse>().ReverseMap();
             CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
         }
     }

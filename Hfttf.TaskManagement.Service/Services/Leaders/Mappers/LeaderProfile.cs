@@ -16,6 +16,7 @@ namespace Hfttf.TaskManagement.Service.Services.Leaders.Mappers
             CreateMap<LeaderDeleteCommand, Leader>().ReverseMap();
             CreateMap<Leader, LeaderResponse>().ReverseMap();
             CreateMap<Leader, LeaderForUserResponse>().ReverseMap();
+            CreateMap<Leader, LeaderForProjectResponse>().ReverseMap();
             CreateMap<ApplicationUser, UserViewResponse>().ReverseMap();
             CreateMap<Project, ProjectResponse>().ReverseMap();
         }
