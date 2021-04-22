@@ -66,6 +66,20 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
+        /// You can use it to adding user in project.
+        /// </summary>
+        /// <param name="projectAddUserCommand">Hello World</param>
+        /// <returns></returns>
+        [HttpPut]
+        [ProducesResponseType(typeof(ProjectAddUserCommand), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> ProjectAddUser([FromBody] ProjectAddUserCommand  projectAddUserCommand)
+        {
+            var result = await _mediator.Send(projectAddUserCommand);
+            return Ok(result);
+        }
+
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="projectDetailQuery"></param>
