@@ -53,6 +53,13 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
             return null;
         }
 
+        public async Task<Project> GetProjectWithUsersById(int id)
+        {
+            var projects = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).FirstOrDefaultAsync(x => x.Id == id);
+            return projects;
+
+        }
+
         public async Task<IReadOnlyList<Project>> GetListWithUsersAndTasks()
         {
             //var projects = await _taskManagementContext.Projects.Include(x => x.Leaders).ThenInclude(x => x.User).Include(x => x.ProjectTeams).ThenInclude(x => x.User).Include(x => x.Tasks).ToListAsync();

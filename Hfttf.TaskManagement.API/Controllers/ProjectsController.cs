@@ -78,6 +78,19 @@ namespace Izersoft.TaskManagement.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// You can use it to deleting user in project.
+        /// </summary>
+        /// <param name="projectDeleteUserCommand">Hello World</param>
+        /// <returns></returns>
+        [HttpPut]
+        [ProducesResponseType(typeof(ProjectDeleteUserCommand), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> ProjectDeleteUser([FromBody] ProjectDeleteUserCommand  projectDeleteUserCommand)
+        {
+            var result = await _mediator.Send(projectDeleteUserCommand);
+            return Ok(result);
+        }
+
 
         /// <summary>
         /// 
