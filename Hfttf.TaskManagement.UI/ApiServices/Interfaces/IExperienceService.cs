@@ -11,5 +11,6 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task AddAsync(ExperienceAdd model);
         Task UpdateAsync(ExperienceUpdate model);
         Task DeleteAsync(int id);
+        Task<List<ExperienceList>> GetListByUserId(string id);
     }
 }

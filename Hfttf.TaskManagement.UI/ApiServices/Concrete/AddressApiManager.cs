@@ -97,7 +97,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             }
             return null;
         }
-
+      
         public async Task UpdateAsync(AddressUpdate model)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
@@ -109,6 +109,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Addresses", stringContent);
             }
+        }
+
+        public Task<List<AddressResponse>> GetListByUserId(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

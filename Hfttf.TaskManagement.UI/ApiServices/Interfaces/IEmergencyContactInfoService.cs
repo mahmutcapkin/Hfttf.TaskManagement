@@ -11,5 +11,6 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task AddAsync(EmergencyContactInfoAdd model);
         Task UpdateAsync(EmergencyContactInfoUpdate model);
         Task DeleteAsync(int id);
+        Task<List<EmergencyContactInfoList>> GetListByUserId(string id);
     }
 }

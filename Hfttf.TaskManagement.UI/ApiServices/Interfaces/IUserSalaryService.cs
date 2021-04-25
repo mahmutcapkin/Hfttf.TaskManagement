@@ -11,5 +11,6 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task AddAsync(UserSalaryAdd model);
         Task UpdateAsync(UserSalaryUpdate model);
         Task DeleteAsync(int id);
+        Task<List<UserSalaryList>> GetListByUserId(string id);
     }
 }

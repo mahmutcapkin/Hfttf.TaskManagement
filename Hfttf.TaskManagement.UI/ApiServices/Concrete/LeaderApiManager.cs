@@ -38,6 +38,31 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
+        public Task<LeaderList> GetByIdWithProjectAndUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<LeaderList> GetByProjectIdandUserId(int projectId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<LeaderList>> GetListByProjectId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<LeaderList>> GetListByProjectIdandUserId(int projectId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<LeaderList>> GetListByUserId(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateAsync(LeaderUpdate model)
         {
             throw new NotImplementedException();

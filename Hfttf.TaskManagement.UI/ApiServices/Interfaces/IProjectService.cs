@@ -11,5 +11,8 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task AddAsync(ProjectAdd model);
         Task UpdateAsync(ProjectUpdate model);
         Task DeleteAsync(int id);
+        Task<List<ProjectList>> GetListWithTasksandUsers();
+        Task<List<ProjectList>> GetListByUserId(string id);
+        Task<ProjectList> GetProjectWithUserandTaskById(int id);
     }
 }

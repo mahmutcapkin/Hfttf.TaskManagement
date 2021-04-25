@@ -9,6 +9,7 @@ using Hfttf.TaskManagement.Service.Services.Jobs.Mappers;
 using Hfttf.TaskManagement.Service.Services.Leaders.Mappers;
 using Hfttf.TaskManagement.Service.Services.Leaves.Mappers;
 using Hfttf.TaskManagement.Service.Services.Projects.Mappers;
+using Hfttf.TaskManagement.Service.Services.Roles.Mappers;
 using Hfttf.TaskManagement.Service.Services.Tasks.Mappers;
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Mappers;
 using Hfttf.TaskManagement.Service.Services.UserAssignments.Mappers;
@@ -43,6 +44,7 @@ namespace Hfttf.TaskManagement.Service.Mappers
                 configuration.AddProfile<ExperienceProfile>();
                 configuration.AddProfile<LeaderProfile>();
                 configuration.AddProfile<UserProfile>();
+                configuration.AddProfile<RoleProfile>();
 
             });
             var mapper = config.CreateMapper();

@@ -2,7 +2,7 @@
 
 namespace Hfttf.TaskManagement.UI.Models.Holiday
 {
-    public class HolidayList
+    public class LeaveList
     {
         public int Id { get; set; }
         public string Title { get; set; }

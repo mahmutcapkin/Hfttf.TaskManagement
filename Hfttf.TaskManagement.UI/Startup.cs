@@ -37,7 +37,7 @@ namespace Hfttf.TaskManagement.UI
             services.AddScoped<IEducationInformationService, EducationInformationApiManager>();
             services.AddScoped<IEmergencyContactInfoService, EmergencyContactInfoApiManager>();
             services.AddScoped<IExperienceService, ExperienceApiManager>();
-            services.AddScoped<IHolidayService, HolidayApiManager>();
+            services.AddScoped<ILeaveService, LeaveApiManager>();
             services.AddScoped<IJobService, JobApiManager>();
             services.AddScoped<ILeaderService, LeaderApiManager>();
             services.AddScoped<IProjectService, ProjectApiManager>();

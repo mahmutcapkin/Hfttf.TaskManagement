@@ -38,6 +38,16 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
+        public Task<JobList> GetJobWithUsersById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<JobList>> GetListWithUsers()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateAsync(JobUpdate model)
         {
             throw new NotImplementedException();

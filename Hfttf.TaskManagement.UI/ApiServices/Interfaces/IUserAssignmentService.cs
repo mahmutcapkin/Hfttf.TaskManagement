@@ -11,5 +11,6 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task AddAsync(UserAssignmentAdd model);
         Task UpdateAsync(UserAssignmentUpdate model);
         Task DeleteAsync(int id);
+        Task<List<UserAssignmentList>> GetListByUserId(string id);
     }
 }

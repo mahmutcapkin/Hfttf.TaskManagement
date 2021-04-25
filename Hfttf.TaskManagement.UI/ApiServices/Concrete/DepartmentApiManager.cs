@@ -37,6 +37,16 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
+        public Task<DepartmentResponse> GetDepartmentWithUsersById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<DepartmentList>> GetListWithUsers()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateAsync(DepartmentUpdate model)
         {
             throw new NotImplementedException();

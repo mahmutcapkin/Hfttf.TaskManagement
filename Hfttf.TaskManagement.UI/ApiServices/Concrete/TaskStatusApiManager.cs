@@ -37,6 +37,16 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
+        public Task<List<TaskStatusList>> GetListWithTasks()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TaskStatusList> GetTaskStatusWithTasksByStatusId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateAsync(TaskStatusUpdate model)
         {
             throw new NotImplementedException();

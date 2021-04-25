@@ -37,6 +37,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
+        public Task<List<UserAssignmentList>> GetListByUserId(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateAsync(UserAssignmentUpdate model)
         {
             throw new NotImplementedException();

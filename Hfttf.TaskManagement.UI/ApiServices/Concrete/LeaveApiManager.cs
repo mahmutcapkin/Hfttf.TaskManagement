@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
-    public class HolidayApiManager:IHolidayService
+    public class LeaveApiManager:ILeaveService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HolidayApiManager( IHttpContextAccessor httpContextAccessor)
+        public LeaveApiManager( IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;;
         }
 
-        public async Task AddAsync(HolidayAdd model)
+        public async Task AddAsync(LeaveAdd model)
         {
             throw new NotImplementedException();
         }
@@ -27,17 +27,22 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<List<HolidayList>> GetAllAsync()
+        public async Task<List<LeaveList>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<HolidayList> GetByIdAsync(int id)
+        public async Task<LeaveList> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(HolidayUpdate model)
+        public Task<List<LeaveList>> GetListByUserId(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task UpdateAsync(LeaveUpdate model)
         {
             throw new NotImplementedException();
         }
