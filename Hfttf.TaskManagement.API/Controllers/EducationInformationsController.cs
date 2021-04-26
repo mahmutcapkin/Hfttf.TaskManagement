@@ -48,15 +48,14 @@ namespace Hfttf.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a EducationInformation Assign.
+        /// You can use it to delete a EducationInformation
         /// </summary>
-        /// <param name="educationInformationDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(EducationInformationDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] EducationInformationDeleteCommand educationInformationDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(educationInformationDeleteCommand);
+            var result = await _mediator.Send(new EducationInformationDeleteCommand() { Id = id });
             return Ok(result);
         }
 

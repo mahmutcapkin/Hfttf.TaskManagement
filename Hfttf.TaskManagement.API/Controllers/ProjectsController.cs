@@ -53,15 +53,14 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a project.
+        /// You can use it to delete a Project
         /// </summary>
-        /// <param name="projectDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ProjectDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] ProjectDeleteCommand projectDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(projectDeleteCommand);
+            var result = await _mediator.Send(new ProjectDeleteCommand() { Id = id });
             return Ok(result);
         }
 

@@ -91,9 +91,8 @@ namespace Hfttf.TaskManagement.API.Controllers
         /// <summary>
         /// You can use it to delete a User
         /// </summary>
-        /// <param name="userDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(UserDeleteCommand), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response>> Delete(string id)
         {

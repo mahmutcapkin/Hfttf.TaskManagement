@@ -51,15 +51,14 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a Leave Assign.
+        /// You can use it to delete a Leave
         /// </summary>
-        /// <param name="leaveDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(LeaveDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] LeaveDeleteCommand leaveDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(leaveDeleteCommand);
+            var result = await _mediator.Send(new LeaveDeleteCommand() { Id = id });
             return Ok(result);
         }
 

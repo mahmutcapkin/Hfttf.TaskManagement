@@ -48,15 +48,14 @@ namespace Hfttf.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a Experience Assign.
+        /// You can use it to delete a Experience
         /// </summary>
-        /// <param name="experienceDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ExperienceDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] ExperienceDeleteCommand experienceDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(experienceDeleteCommand);
+            var result = await _mediator.Send(new ExperienceDeleteCommand() { Id = id });
             return Ok(result);
         }
 

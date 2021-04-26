@@ -51,15 +51,14 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a Leader.
+        /// You can use it to delete a Leader
         /// </summary>
-        /// <param name="leaderDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(LeaderDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] LeaderDeleteCommand leaderDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(leaderDeleteCommand);
+            var result = await _mediator.Send(new LeaderDeleteCommand() { Id = id });
             return Ok(result);
         }
 

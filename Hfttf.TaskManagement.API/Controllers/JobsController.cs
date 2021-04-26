@@ -70,13 +70,12 @@ namespace Izersoft.IdentityServer.API.Controllers
         /// <summary>
         /// You can use it to delete a Job
         /// </summary>
-        /// <param name="jobDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(JobDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] JobDeleteCommand jobDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(jobDeleteCommand);
+            var result = await _mediator.Send(new JobDeleteCommand() { Id = id });
             return Ok(result);
         }
 

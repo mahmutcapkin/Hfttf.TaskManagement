@@ -1,9 +1,13 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
+using Hfttf.TaskManagement.UI.Models;
 using Hfttf.TaskManagement.UI.Models.User;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
@@ -17,39 +21,140 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public Task AddAsync(UserAdd model)
+        public async Task AddAsync(UserAdd model)
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var jsonData = JsonConvert.SerializeObject(model);
+
+                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Users/", stringContent);
+            }
         }
 
-        public Task DeleteAsync(string id)
+        public async Task DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Users/{id}");
+
+            }
         }
 
-        public Task<List<UserList>> GetAllAsync()
+        public async Task UpdateAsync(UserUpdate model)
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonData = JsonConvert.SerializeObject(model);
+                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Users", stringContent);
+            }
         }
 
-        public Task<UserList> GetByIdAsync(string id)
+        public async Task<List<UserResponse>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Users/GetList");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var veri = await responseMessage.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<BaseResponse<List<UserResponse>>>(veri);
+                    List<UserResponse> userResponses = data.Data;
+                    return userResponses;
+
+                }
+            }
+            return null;
         }
 
-        public Task<UserList> GetByIdWithInfo(string id)
+        public async Task<UserResponse> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Users/GetById?Id={id}");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var userResponse = JsonConvert.DeserializeObject<BaseResponse<UserResponse>>(await responseMessage.Content.ReadAsStringAsync());
+                    UserResponse user = userResponse.Data;
+                    return user;
+                }
+
+            }
+            return null;
         }
 
-        public Task<List<UserList>> GetListWithInfo(string id)
+        public async Task<UserResponse> GetByIdWithInfo(string id)
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Users/GetByIdWithInfo?Id={id}");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var userResponse = JsonConvert.DeserializeObject<BaseResponse<UserResponse>>(await responseMessage.Content.ReadAsStringAsync());
+                    UserResponse user = userResponse.Data;
+                    return user;
+                }
+
+            }
+            return null;
         }
 
-        public Task UpdateAsync(UserUpdate model)
+        public async Task<List<UserResponse>> GetListWithInfo(string id)
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Users/GetListWithInfo");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var veri = await responseMessage.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<BaseResponse<List<UserResponse>>>(veri);
+                    List<UserResponse> userResponses = data.Data;
+                    return userResponses;
+
+                }
+            }
+            return null;
         }
+
+
     }
 }

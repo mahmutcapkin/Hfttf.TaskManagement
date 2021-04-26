@@ -58,13 +58,12 @@ namespace Izersoft.TaskManagement.API.Controllers
         /// <summary>
         /// You can use it to delete a Department
         /// </summary>
-        /// <param name="departmentDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(DepartmentDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] DepartmentDeleteCommand departmentDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(departmentDeleteCommand);
+            var result = await _mediator.Send(new DepartmentDeleteCommand() { Id = id });
             return Ok(result);
         }
 

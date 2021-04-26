@@ -46,6 +46,7 @@ namespace Hfttf.TaskManagement.UI
             services.AddScoped<IUserAssignmentService, UserAssignmentApiManager>();
             services.AddScoped<IUserSalaryService, UserSalaryApiManager>();
             services.AddScoped<IUserService, UserApiManager>();
+            services.AddScoped<IRoleService, RoleApiManager>();
 
             services.AddControllersWithViews();
         }

@@ -56,15 +56,14 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a task status.
+        /// You can use it to delete a TaskStatus
         /// </summary>
-        /// <param name="taskStatusDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(TaskStatusDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] TaskStatusDeleteCommand taskStatusDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(taskStatusDeleteCommand);
+            var result = await _mediator.Send(new TaskStatusDeleteCommand() { Id = id });
             return Ok(result);
         }
 

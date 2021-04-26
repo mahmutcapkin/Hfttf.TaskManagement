@@ -49,15 +49,14 @@ namespace Hfttf.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a EmergencyContactInfo Assign.
+        /// You can use it to delete a EmergencyContactInfo
         /// </summary>
-        /// <param name="emergencyContactInfoDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(EmergencyContactInfoDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] EmergencyContactInfoDeleteCommand emergencyContactInfoDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(emergencyContactInfoDeleteCommand);
+            var result = await _mediator.Send(new EmergencyContactInfoDeleteCommand() { Id = id });
             return Ok(result);
         }
 

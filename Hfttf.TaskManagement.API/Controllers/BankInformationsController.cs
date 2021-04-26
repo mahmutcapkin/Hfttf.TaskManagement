@@ -49,15 +49,14 @@ namespace Hfttf.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a BankInformation Assign.
+        /// You can use it to delete a BankInformation
         /// </summary>
-        /// <param name="bankInformationDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(BankInformationDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] BankInformationDeleteCommand bankInformationDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(bankInformationDeleteCommand);
+            var result = await _mediator.Send(new BankInformationDeleteCommand() { Id = id });
             return Ok(result);
         }
 

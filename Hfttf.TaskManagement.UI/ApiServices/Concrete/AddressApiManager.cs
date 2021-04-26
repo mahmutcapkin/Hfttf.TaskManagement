@@ -76,7 +76,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return null;
         }
 
-        public async Task<AddressForUserInfoResponse> GetByIdAsync(int id)
+        public async Task<AddressResponse> GetByIdAsync(int id)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -89,8 +89,8 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    var addressResponse = JsonConvert.DeserializeObject<BaseResponse<AddressForUserInfoResponse>>(await responseMessage.Content.ReadAsStringAsync());
-                AddressForUserInfoResponse address = addressResponse.Data;
+                    var addressResponse = JsonConvert.DeserializeObject<BaseResponse<AddressResponse>>(await responseMessage.Content.ReadAsStringAsync());
+                    AddressResponse address = addressResponse.Data;
                     return address;
                 }
 
@@ -111,9 +111,26 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             }
         }
 
-        public Task<List<AddressResponse>> GetListByUserId(string id)
+        public async Task<List<AddressResponse>> GetListByUserId(string id)
         {
-            throw new NotImplementedException();
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Addresses/GetListByUserId?UserId={id}");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var veri = await responseMessage.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<BaseResponse<List<AddressResponse>>>(veri);
+                    List<AddressResponse> addressResponses = data.Data;
+                    return addressResponses;
+                }
+            }
+            return null;
         }
     }
 }

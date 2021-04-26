@@ -90,13 +90,12 @@ namespace Hfttf.TaskManagement.API.Controllers
         /// <summary>
         /// You can use it to delete a role
         /// </summary>
-        /// <param name="roleDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(RoleDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] RoleDeleteCommand roleDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(string id)
         {
-            var result = await _mediator.Send(roleDeleteCommand);
+            var result = await _mediator.Send(new RoleDeleteCommand() { Id = id });
             return Ok(result);
         }
 

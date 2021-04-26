@@ -51,18 +51,16 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to delete a User Salary.
+        /// You can use it to delete a UserSalary
         /// </summary>
-        /// <param name="userSalaryDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(UserSalaryDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] UserSalaryDeleteCommand deleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(deleteCommand);
+            var result = await _mediator.Send(new UserSalaryDeleteCommand() { Id = id });
             return Ok(result);
         }
-
 
         /// <summary>
         /// 

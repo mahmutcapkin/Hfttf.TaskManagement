@@ -59,18 +59,16 @@ namespace Izersoft.TaskManagement.API.Controllers
         }
 
         /// <summary>
-        /// You can use it to update a Task Assign.
+        /// You can use it to delete a UserAssignment
         /// </summary>
-        /// <param name="userAssignmentDeleteCommand">Hello World</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(UserAssignmentDeleteCommand), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> Delete([FromBody] UserAssignmentDeleteCommand userAssignmentDeleteCommand)
+        public async Task<ActionResult<Response>> Delete(int id)
         {
-            var result = await _mediator.Send(userAssignmentDeleteCommand);
+            var result = await _mediator.Send(new UserAssignmentDeleteCommand() { Id = id });
             return Ok(result);
         }
-
 
         /// <summary>
         /// 

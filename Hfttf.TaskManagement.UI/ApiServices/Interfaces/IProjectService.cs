@@ -14,5 +14,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<List<ProjectResponse>> GetListWithTasksandUsers();
         Task<List<ProjectResponse>> GetListByUserId(string id);
         Task<ProjectResponse> GetProjectWithUserandTaskById(int id);
+        Task ProjectDeleteUser(ProjectAssignUser model);
+        Task ProjectAddUser(ProjectAssignUser model);
     }
 }
