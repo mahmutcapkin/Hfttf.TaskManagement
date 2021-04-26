@@ -120,7 +120,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetById?Id={id}");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetByIdWithProjectAndUser?Id={id}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -142,7 +142,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetByProjectIdandUserId?Id={id}");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetByProjectIdandUserId?ProjectId={projectId}&UserId={userId}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -164,7 +164,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetListByUserId?Id={id}");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetListByProjectId?ProjectId={id}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -186,7 +186,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetListByUserId?Id={id}");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetListByProjectIdandUserId?ProjectId={projectId}&UserId={userId}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -208,7 +208,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetListByUserId?Id={id}");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Leaders/GetListByUserId?UserId={id}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {

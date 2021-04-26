@@ -97,7 +97,15 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
             var newProjects = new List<Project>();
             foreach (var project in projects)
             {
-                if (project.ApplicationUsers.Any(x => x.Id == userId) || project.Leader.ApplicationUserId==userId)
+                if (project.Leader != null)
+                {
+                   
+                    if (project.Leader.ApplicationUserId == userId)
+                    {
+                        newProjects.Add(project);
+                    }
+                }
+                if (project.ApplicationUsers.Any(x => x.Id == userId))
                 {
                     newProjects.Add(project);
                 }

@@ -140,7 +140,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Projects/GetList");
+                var responseMessage = await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Projects/GetListWithTasksandUsers");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -163,7 +163,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Projects/GetById?Id={id}");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Projects/GetProjectWithUserandTaskById?Id={id}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {

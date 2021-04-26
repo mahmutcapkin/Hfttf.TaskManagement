@@ -142,7 +142,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/TaskStatuses/GetTaskStatusWithTasksByStatusId?Id={id}");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/TaskStatuses/GetTaskStatusWithTasksByStatusId?Status={id}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
