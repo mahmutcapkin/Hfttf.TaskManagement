@@ -27,17 +27,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<List<BankInformationList>> GetAllAsync()
+        public async Task<List<BankInformationResponse>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<BankInformationList> GetByIdAsync(int id)
+        public async Task<BankInformationResponse> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<BankInformationList>> GetListByUserId(string id)
+        public Task<List<BankInformationResponse>> GetListByUserId(string id)
         {
             throw new NotImplementedException();
         }

@@ -1,12 +1,10 @@
 ﻿using Hfttf.TaskManagement.UI.Models.Project;
 using Hfttf.TaskManagement.UI.Models.TaskStatus;
-using Hfttf.TaskManagement.UI.Models.UserAssignment;
 using System;
-using System.Collections.Generic;
 
 namespace Hfttf.TaskManagement.UI.Models.Task
 {
-    public class TaskResponse
+    public class TaskForUserAssignmentResponse
     {
         public string Id { get; set; }
         public string Title { get; set; }
@@ -21,6 +19,5 @@ namespace Hfttf.TaskManagement.UI.Models.Task
         public ProjectForTaskResponse Project { get; set; }
         public int TaskStatusId { get; set; }
         public TaskStatusForTaskResponse TaskStatus { get; set; }
-        public List<UserAssignmentForTaskResponse> UserAssignments { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Hfttf.TaskManagement.UI.Models.EmergencyContactInfo
+﻿using Hfttf.TaskManagement.UI.Models.User;
+
+namespace Hfttf.TaskManagement.UI.Models.EmergencyContactInfo
 {
     public class EmergencyContactInfoResponse
     {
@@ -7,5 +9,6 @@
         public string RelationShip { get; set; }
         public string Phone { get; set; }
         public string ApplicationUserId { get; set; }
+        public UserResponse ApplicationUser { get; set; }
     }
 }

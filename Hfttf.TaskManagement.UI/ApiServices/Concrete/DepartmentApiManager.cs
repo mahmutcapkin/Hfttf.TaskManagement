@@ -27,12 +27,12 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<List<DepartmentList>> GetAllAsync()
+        public async Task<List<DepartmentForUserResponse>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<DepartmentList> GetByIdAsync(int id)
+        public async Task<DepartmentForUserResponse> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -42,7 +42,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<List<DepartmentList>> GetListWithUsers()
+        public Task<List<DepartmentForUserResponse>> GetListWithUsers()
         {
             throw new NotImplementedException();
         }

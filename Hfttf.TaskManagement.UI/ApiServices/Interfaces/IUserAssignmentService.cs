@@ -6,11 +6,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface IUserAssignmentService
     {
-        Task<List<UserAssignmentList>> GetAllAsync();
-        Task<UserAssignmentList> GetByIdAsync(int id);
+        Task<List<UserAssignmentResponse>> GetAllAsync();
+        Task<UserAssignmentResponse> GetByIdAsync(int id);
         Task AddAsync(UserAssignmentAdd model);
         Task UpdateAsync(UserAssignmentUpdate model);
         Task DeleteAsync(int id);
-        Task<List<UserAssignmentList>> GetListByUserId(string id);
+        Task<List<UserAssignmentResponse>> GetListByUserId(string id);
     }
 }

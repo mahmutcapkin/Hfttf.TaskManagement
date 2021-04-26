@@ -6,11 +6,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface IEmergencyContactInfoService
     {
-        Task<List<EmergencyContactInfoList>> GetAllAsync();
-        Task<EmergencyContactInfoList> GetByIdAsync(int id);
+        Task<List<EmergencyContactInfoResponse>> GetAllAsync();
+        Task<EmergencyContactInfoResponse> GetByIdAsync(int id);
         Task AddAsync(EmergencyContactInfoAdd model);
         Task UpdateAsync(EmergencyContactInfoUpdate model);
         Task DeleteAsync(int id);
-        Task<List<EmergencyContactInfoList>> GetListByUserId(string id);
+        Task<List<EmergencyContactInfoResponse>> GetListByUserId(string id);
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Hfttf.TaskManagement.UI.Models.Authentication;
+using Hfttf.TaskManagement.UI.Models.User;
 
 namespace Hfttf.TaskManagement.UI.Models.EducationInformation
 {
@@ -13,5 +11,6 @@ namespace Hfttf.TaskManagement.UI.Models.EducationInformation
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string ApplicationUserId { get; set; }
+        public UserResponse ApplicationUser { get; set; }
     }
 }

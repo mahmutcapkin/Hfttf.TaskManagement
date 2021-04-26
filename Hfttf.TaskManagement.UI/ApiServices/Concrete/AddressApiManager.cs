@@ -76,7 +76,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return null;
         }
 
-        public async Task<AddressList> GetByIdAsync(int id)
+        public async Task<AddressForUserInfoResponse> GetByIdAsync(int id)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -89,8 +89,8 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    var addressResponse = JsonConvert.DeserializeObject<BaseResponse<AddressList>>(await responseMessage.Content.ReadAsStringAsync());
-                AddressList address = addressResponse.Data;
+                    var addressResponse = JsonConvert.DeserializeObject<BaseResponse<AddressForUserInfoResponse>>(await responseMessage.Content.ReadAsStringAsync());
+                AddressForUserInfoResponse address = addressResponse.Data;
                     return address;
                 }
 

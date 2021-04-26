@@ -1,6 +1,6 @@
 ﻿namespace Hfttf.TaskManagement.UI.Models.Experience
 {
-    public class ExperienceList
+    public class ExperienceForUserInfoResponse
     {
         public int Id { get; set; }
         public string Job { get; set; }

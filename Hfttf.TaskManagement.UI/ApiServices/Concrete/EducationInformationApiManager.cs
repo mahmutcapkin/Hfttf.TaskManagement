@@ -27,17 +27,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<List<EducationInformationList>> GetAllAsync()
+        public async Task<List<EducationInformationForUserInfoResponse>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<EducationInformationList> GetByIdAsync(int id)
+        public async Task<EducationInformationForUserInfoResponse> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<EducationInformationList>> GetListByUserId(string id)
+        public Task<List<EducationInformationForUserInfoResponse>> GetListByUserId(string id)
         {
             throw new NotImplementedException();
         }

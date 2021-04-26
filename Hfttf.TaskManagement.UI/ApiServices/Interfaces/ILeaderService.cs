@@ -6,15 +6,15 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface ILeaderService
     {
-        Task<List<LeaderList>> GetAllAsync();
-        Task<LeaderList> GetByIdAsync(int id);
+        Task<List<LeaderResponse>> GetAllAsync();
+        Task<LeaderResponse> GetByIdAsync(int id);
         Task AddAsync(LeaderAdd model);
         Task UpdateAsync(LeaderUpdate model);
         Task DeleteAsync(int id);
-        Task<LeaderList> GetByIdWithProjectAndUser(int id);
-        Task<LeaderList> GetByProjectIdandUserId(int projectId,string userId);
-        Task<List<LeaderList>> GetListByProjectIdandUserId(int projectId, string userId);
-        Task<List<LeaderList>> GetListByUserId(string id);
-        Task<List<LeaderList>> GetListByProjectId(int id);
+        Task<LeaderResponse> GetByIdWithProjectAndUser(int id);
+        Task<LeaderResponse> GetByProjectIdandUserId(int projectId,string userId);
+        Task<List<LeaderResponse>> GetListByProjectIdandUserId(int projectId, string userId);
+        Task<List<LeaderResponse>> GetListByUserId(string id);
+        Task<List<LeaderResponse>> GetListByProjectId(int id);
     }
 }

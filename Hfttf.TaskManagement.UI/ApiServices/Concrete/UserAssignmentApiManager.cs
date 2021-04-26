@@ -27,17 +27,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<List<UserAssignmentList>> GetAllAsync()
+        public async Task<List<UserAssignmentForUserResponse>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<UserAssignmentList> GetByIdAsync(int id)
+        public async Task<UserAssignmentForUserResponse> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<UserAssignmentList>> GetListByUserId(string id)
+        public Task<List<UserAssignmentForUserResponse>> GetListByUserId(string id)
         {
             throw new NotImplementedException();
         }

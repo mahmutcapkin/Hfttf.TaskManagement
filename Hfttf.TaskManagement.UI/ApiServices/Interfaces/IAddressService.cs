@@ -7,7 +7,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
     public interface IAddressService
     {
         Task<List<AddressResponse>> GetAllAsync();
-        Task<AddressList> GetByIdAsync(int id);
+        Task<AddressForUserInfoResponse> GetByIdAsync(int id);
         Task AddAsync(AddressAdd model);
         Task UpdateAsync(AddressUpdate model);
         Task DeleteAsync(int id);

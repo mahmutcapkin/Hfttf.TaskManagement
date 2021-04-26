@@ -1,6 +1,6 @@
 ﻿namespace Hfttf.TaskManagement.UI.Models.BankInformation
 {
-    public class BankInformationList
+    public class BankInformationForUserInfoResponse
     {
         public int Id { get; set; }
         public string BankName { get; set; }

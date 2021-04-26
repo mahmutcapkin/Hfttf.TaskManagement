@@ -28,22 +28,22 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<List<JobList>> GetAllAsync()
+        public async Task<List<JobForUserResponse>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<JobList> GetByIdAsync(int id)
+        public async Task<JobForUserResponse> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<JobList> GetJobWithUsersById(int id)
+        public Task<JobForUserResponse> GetJobWithUsersById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<JobList>> GetListWithUsers()
+        public Task<List<JobForUserResponse>> GetListWithUsers()
         {
             throw new NotImplementedException();
         }

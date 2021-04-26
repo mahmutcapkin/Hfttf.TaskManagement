@@ -6,12 +6,12 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface IJobService
     {
-        Task<List<JobList>> GetAllAsync();
-        Task<JobList> GetByIdAsync(int id);
+        Task<List<JobResponse>> GetAllAsync();
+        Task<JobResponse> GetByIdAsync(int id);
         Task AddAsync(JobAdd model);
         Task UpdateAsync(JobUpdate model);
         Task DeleteAsync(int id);
-        Task<JobList> GetJobWithUsersById(int id);
-        Task<List<JobList>> GetListWithUsers();
+        Task<JobResponse> GetJobWithUsersById(int id);
+        Task<List<JobResponse>> GetListWithUsers();
     }
 }

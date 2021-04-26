@@ -6,8 +6,8 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface IRoleService
     {
-        Task<List<RoleList>> GetAllAsync();
-        Task<RoleList> GetByIdAsync(string id);
+        Task<List<RoleResponse>> GetAllAsync();
+        Task<RoleResponse> GetByIdAsync(string id);
         Task AddAsync(RoleAdd model);
         Task UpdateAsync(RoleUpdate model);
         Task DeleteAsync(string id);

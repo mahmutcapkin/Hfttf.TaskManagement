@@ -1,6 +1,6 @@
 ﻿namespace Hfttf.TaskManagement.UI.Models.Address
 {
-    public class AddressList
+    public class AddressForUserInfoResponse
     {
         public int Id { get; set; }
         public string Description { get; set; }

@@ -6,12 +6,12 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface ITaskStatusService
     {
-        Task<List<TaskStatusList>> GetAllAsync();
-        Task<TaskStatusList> GetByIdAsync(int id);
+        Task<List<TaskStatusResponse>> GetAllAsync();
+        Task<TaskStatusResponse> GetByIdAsync(int id);
         Task AddAsync(TaskStatusAdd model);
         Task UpdateAsync(TaskStatusUpdate model);
         Task DeleteAsync(int id);
-        Task<List<TaskStatusList>> GetListWithTasks();
-        Task<TaskStatusList> GetTaskStatusWithTasksByStatusId(int id);
+        Task<List<TaskStatusResponse>> GetListWithTasks();
+        Task<TaskStatusResponse> GetTaskStatusWithTasksByStatusId(int id);
     }
 }

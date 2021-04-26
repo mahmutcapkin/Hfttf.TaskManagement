@@ -6,11 +6,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface IEducationInformationService
     {
-        Task<List<EducationInformationList>> GetAllAsync();
-        Task<EducationInformationList> GetByIdAsync(int id);
+        Task<List<EducationInformationResponse>> GetAllAsync();
+        Task<EducationInformationResponse> GetByIdAsync(int id);
         Task AddAsync(EducationInformationAdd model);
         Task UpdateAsync(EducationInformationUpdate model);
         Task DeleteAsync(int id);
-        Task<List<EducationInformationList>> GetListByUserId(string id);
+        Task<List<EducationInformationResponse>> GetListByUserId(string id);
     }
 }

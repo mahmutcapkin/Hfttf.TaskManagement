@@ -8,7 +8,7 @@ namespace Hfttf.TaskManagement.UI.Models.Holiday
         public string Title { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Day { get; set; }
-        public bool IsActive { get; set; }
+        public string UpdateBy { get; set; }
+        public string ApplicationUserId { get; set; }
     }
 }

@@ -6,11 +6,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
 {
     public interface IUserSalaryService
     {
-        Task<List<UserSalaryList>> GetAllAsync();
-        Task<UserSalaryList> GetByIdAsync(int id);
+        Task<List<UserSalaryResponse>> GetAllAsync();
+        Task<UserSalaryResponse> GetByIdAsync(int id);
         Task AddAsync(UserSalaryAdd model);
         Task UpdateAsync(UserSalaryUpdate model);
         Task DeleteAsync(int id);
-        Task<List<UserSalaryList>> GetListByUserId(string id);
+        Task<List<UserSalaryResponse>> GetListByUserId(string id);
     }
 }

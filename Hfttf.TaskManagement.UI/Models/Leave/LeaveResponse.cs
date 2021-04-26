@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hfttf.TaskManagement.UI.Models.Authentication;
+using Hfttf.TaskManagement.UI.Models.User;
+using System;
 
 namespace Hfttf.TaskManagement.UI.Models.Holiday
 {
@@ -8,7 +10,12 @@ namespace Hfttf.TaskManagement.UI.Models.Holiday
         public string Title { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Day { get; set; }
-        public bool IsActive { get; set; }
+        public string NumberOfDay { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public string CreateBy { get; set; }
+        public string UpdateBy { get; set; }
+        public string ApplicationUserId { get; set; }
+        public UserResponse ApplicationUser { get; set; }
     }
 }

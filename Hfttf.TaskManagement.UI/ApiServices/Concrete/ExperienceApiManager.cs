@@ -27,17 +27,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<List<ExperienceList>> GetAllAsync()
+        public async Task<List<ExperienceForUserInfoResponse>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<ExperienceList> GetByIdAsync(int id)
+        public async Task<ExperienceForUserInfoResponse> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ExperienceList>> GetListByUserId(string id)
+        public Task<List<ExperienceForUserInfoResponse>> GetListByUserId(string id)
         {
             throw new NotImplementedException();
         }

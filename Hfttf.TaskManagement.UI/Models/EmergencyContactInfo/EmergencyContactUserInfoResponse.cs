@@ -1,6 +1,6 @@
 ﻿namespace Hfttf.TaskManagement.UI.Models.EmergencyContactInfo
 {
-    public class EmergencyContactInfoList
+    public class EmergencyContactUserInfoResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }
