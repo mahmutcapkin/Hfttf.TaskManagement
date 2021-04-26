@@ -3,6 +3,7 @@ using Hfttf.TaskManagement.Core.Models;
 using Hfttf.TaskManagement.Service.Services.Roles.Commands;
 using Hfttf.TaskManagement.Service.Services.Roles.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,6 +17,7 @@ namespace Hfttf.TaskManagement.API.Controllers
     /// </summary>
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
+    //[Authorize]
     public class RolesController : ControllerBase
     {
         private readonly RoleManager<ApplicationRole> _roleManager;

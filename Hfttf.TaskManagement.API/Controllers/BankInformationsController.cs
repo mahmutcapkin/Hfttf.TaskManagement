@@ -2,6 +2,7 @@
 using Hfttf.TaskManagement.Service.Services.BankInformations.Commands;
 using Hfttf.TaskManagement.Service.Services.BankInformations.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Net;
@@ -11,6 +12,7 @@ namespace Hfttf.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
+    //[Authorize]
     public class BankInformationsController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -2,6 +2,7 @@
 using Hfttf.TaskManagement.Service.Services.Experiences.Commands;
 using Hfttf.TaskManagement.Service.Services.Experiences.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Net;
@@ -11,6 +12,7 @@ namespace Hfttf.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
+    //[Authorize]
     public class ExperiencesController : ControllerBase
     {
         private readonly IMediator _mediator;

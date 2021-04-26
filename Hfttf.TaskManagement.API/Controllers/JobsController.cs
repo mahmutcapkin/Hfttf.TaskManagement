@@ -3,6 +3,7 @@ using Hfttf.TaskManagement.Service.Services.Jobs.Commands;
 using Hfttf.TaskManagement.Service.Services.Jobs.Queries;
 using Hfttf.TaskManagement.Service.Services.Jobs.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,6 +16,7 @@ namespace Izersoft.IdentityServer.API.Controllers
 
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
+    //[Authorize]
     public class JobsController : ControllerBase
     {
         private readonly IMediator _mediator;

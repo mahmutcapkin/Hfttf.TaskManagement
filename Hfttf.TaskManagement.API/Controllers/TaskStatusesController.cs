@@ -2,6 +2,7 @@
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Commands;
 using Hfttf.TaskManagement.Service.Services.TaskStatuses.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,6 +13,7 @@ namespace Izersoft.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
+    //[Authorize]
     public class TaskStatusesController : ControllerBase
     {
         private readonly IMediator _mediator;

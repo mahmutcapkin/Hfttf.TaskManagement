@@ -3,6 +3,7 @@ using Hfttf.TaskManagement.Service.Services.Leaves.Commands;
 using Hfttf.TaskManagement.Service.Services.Leaves.Queries;
 using Hfttf.TaskManagement.Service.Services.Leaves.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Izersoft.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
+    //[Authorize]
     public class LeavesController : ControllerBase
     {
         private readonly IMediator _mediator;

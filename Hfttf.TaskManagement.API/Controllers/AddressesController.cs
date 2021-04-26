@@ -19,6 +19,7 @@ namespace Hfttf.TaskManagement.API.Controllers
     /// </summary>
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
+    [Authorize(Roles = UserRoles.User + "," + UserRoles.Admin)]
     public class AddressesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -103,7 +104,7 @@ namespace Hfttf.TaskManagement.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = UserRoles.User)]
+        [Authorize(Roles = UserRoles.User + "," + UserRoles.Admin)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response>> GetList()
         {
