@@ -11,7 +11,7 @@ namespace Hfttf.TaskManagement.UI.Models.Authentication
 
         [DisplayName("Kullanıcı Adı"), Required(ErrorMessage = "{0} alanı boş geçilemez..."),
             StringLength(25, ErrorMessage = "{0} max. {1} karakter olmalı")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [DisplayName("Email"), Required(ErrorMessage = "{0} alanı boş geçilemez..."),
             StringLength(35, ErrorMessage = "{0} max. {1} karakter olmalı"),

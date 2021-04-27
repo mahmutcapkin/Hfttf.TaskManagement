@@ -77,17 +77,14 @@ window.dataLayer = window.dataLayer || [];
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group mb-0">
-                                        <!--
-                                            use code for form submit
-                                            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
-                                        -->
                                         <button class="btn btn-primary btn-lg btn-block" type="submit">Giriş Yap</button>
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        </div>
+                                        <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
+                                        <div class="input-group mb-0">
+                                            <a class="btn btn-outline-primary btn-lg btn-block" href="/Account/Register">Hesap Oluşturmak için Kaydolun</a>
+                                        </div>
                                     </div>
-                                    <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
-                                    <div class="input-group mb-0">
-                                        <a class="btn btn-outline-primary btn-lg btn-block" href="/Account/Register">Hesap Oluşturmak için Kaydolun</a>
-                                    </div>
-                                </div>
                             </div>
                         </form>
                     </div>

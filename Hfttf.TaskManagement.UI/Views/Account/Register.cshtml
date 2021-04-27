@@ -1,4 +1,4 @@
-﻿
+﻿@model SignUpViewModel
 @{
     Layout = null;
 }
@@ -30,7 +30,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
@@ -63,40 +63,42 @@
                         <div class="login-title">
                             <h2 class="text-center text-primary">Kaydol</h2>
                         </div>
-                        <form>
+                        <form asp-action="Register" method="post">                      
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Email Address</label>
+                                <label class="col-sm-4 col-form-label" asp-for="Email"></label>
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control">
+                                    <input type="email" class="form-control" asp-for="Email">
                                 </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Username</label>
+                                <label class="col-sm-4 col-form-label" asp-for="UserName"></label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" asp-for="UserName">
                                 </div>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Password</label>
+                                <label class="col-sm-4 col-form-label" asp-for="Password"></label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control">
+                                    <input type="password" class="form-control" asp-for="Password">
                                 </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Re-Password</label>
+                                <label class="col-sm-4 col-form-label" asp-for="RePassword"></label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control">
+                                    <input type="password" class="form-control" asp-for="RePassword">
                                 </div>
+                                <span asp-validation-for="RePassword" class="text-danger"></span>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group mb-0">
-                                        <!--
-                                            use code for form submit
-                                            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
-                                        -->
-                                        <button class="btn btn-primary btn-lg btn-block" href="/Account/Login">Kaydol</button>
+                                        @*<button class="btn btn-primary btn-lg btn-block" href="/Account/Login">Kaydol</button>*@
+                                        <input type="submit" value="Kaydol" class="btn btn-primary  btn-lg btn-block" href="/Account/Login" />
                                     </div>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 </div>
                             </div>
                         </form>
