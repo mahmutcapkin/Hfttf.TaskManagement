@@ -1,5 +1,6 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
 using Hfttf.TaskManagement.UI.Models.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -28,7 +29,8 @@ namespace Hfttf.TaskManagement.UI.Controllers
                     {
                         return Redirect(TempData["returnUrl"].ToString());
                     }
-                    return RedirectToAction("Index", "ProfileInfo");
+                    var token = HttpContext.Session.GetString("token");
+                    return RedirectToAction("MyProfile", "ProfileInfo");
                 }
                 ModelState.AddModelError("", "kullanıcı adı veya şifre hatalı");
             }

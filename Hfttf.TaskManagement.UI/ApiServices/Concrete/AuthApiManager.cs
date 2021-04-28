@@ -1,4 +1,5 @@
 using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
+using Hfttf.TaskManagement.UI.Extensions;
 using Hfttf.TaskManagement.UI.Models;
 using Hfttf.TaskManagement.UI.Models.Authentication;
 using Microsoft.AspNetCore.Http;
@@ -48,7 +49,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             if (responseMessage.IsSuccessStatusCode)
             {
                 var accessToken = JsonConvert.DeserializeObject<AccessToken>(await responseMessage.Content.ReadAsStringAsync());
-                _httpContextAccessor.HttpContext.Session.SetString("token", accessToken.Token);
+               // _httpContextAccessor.HttpContext.Session.SetString("token", accessToken.Token);
 
                 return true;
             }
@@ -65,6 +66,21 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
         public void LogOut()
         {
             _httpContextAccessor.HttpContext.Session.Remove("token");
+            _httpContextAccessor.HttpContext.Session.Remove("activeUser");
+        }
+
+        public async Task<AppUser> ActiveUser(string token)
+        {
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var responseMessage = await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Users/ActiveUser");
+            AppUser activeUser = new AppUser();
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                activeUser = JsonConvert.DeserializeObject<AppUser>(await responseMessage.Content.ReadAsStringAsync());
+               // _httpContextAccessor.HttpContext.Session.SetObject("activeUser", activeUser);
+            }
+            return activeUser;
         }
     }
 }

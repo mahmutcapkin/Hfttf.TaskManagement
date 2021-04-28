@@ -9,6 +9,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<bool> SignIn(SignInViewModel signInViewModel);
         Task<bool> SignUp(SignUpViewModel signUpViewModel);
         Task<HttpResponseMessage> GetActiveUser(string token);
+        Task<AppUser> ActiveUser(string token);
         void LogOut();
     }
 }

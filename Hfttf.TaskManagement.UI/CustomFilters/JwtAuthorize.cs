@@ -1,3 +1,4 @@
+using Hfttf.TaskManagement.UI.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
@@ -17,7 +18,7 @@ namespace Hfttf.TaskManagement.UI.CustomFilters
                 if (responseMessage.StatusCode == HttpStatusCode.OK)
                 {
                     JwtAuthorizeHelper.CheckUserRole(JwtAuthorizeHelper.GetActiveUser(responseMessage), Roles, context);
-
+                    context.HttpContext.Session.SetObject("activeUser", JwtAuthorizeHelper.GetActiveUser(responseMessage));
                 }
                 else if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
                 {

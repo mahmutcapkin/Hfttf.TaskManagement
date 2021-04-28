@@ -1,5 +1,9 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
 using Hfttf.TaskManagement.UI.CustomFilters;
+using Hfttf.TaskManagement.UI.Extensions;
+using Hfttf.TaskManagement.UI.Models;
+using Hfttf.TaskManagement.UI.Models.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,10 +19,13 @@ namespace Hfttf.TaskManagement.UI.Controllers
         {
             _addressService = addressService;
         }
-
-        //[JwtAuthorize(Roles = "Admin,User")]
-        public async Task<IActionResult> Index()
+        //protected AppUser CurrentUser => userManager.FindByNameAsync(User.Identity.Name).Result;
+        [JwtAuthorize(Roles = "Admin,User")]
+        public async Task<IActionResult> MyProfile()
         {
+           var token = HttpContext.Session.GetString("token");
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var user = User.Identity.Name;
             //var data = await _addressService.GetAllAsync();
             return View();
         }
