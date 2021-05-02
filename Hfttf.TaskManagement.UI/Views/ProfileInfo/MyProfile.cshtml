@@ -105,73 +105,10 @@
                                     <!-- Timeline Tab start -->
                                     <div class="tab-pane fade show active height-100-p" id="address" role="tabpanel">
                                         @await Html.PartialAsync("_ViewAllAddress", Model)
-
-                                        <div class="loaderbody" id="loaderbody">
-                                            <div class="loader"></div>
-                                        </div>
-
-                                        <div class="modal" tabindex="-1" role="dialog" id="address-modal">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"></h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                     <div class="tab-pane fade height-100-p" id="emergencycontact" role="tabpanel">
-                                        <div class="profile-setting">
-                                            <a href="/ProfileInfo/InsertEmergencyContact" class="edit-avatar"><i class="icon-copy fa fa-plus" aria-hidden="true">Ekle</i></a>
-                                            @foreach (var emergency in Model.EmergencyContactInfos)
-                                            {<a href="/ProfileInfo/EditEmergencyContact" class="edit-avatar"><i class="icon-copy fa fa-pencil" aria-hidden="true">Düzenle</i></a>
-                                                <ul class="mb-10 mt-15">
-                                                    <li>
-                                                        <span>Ad Soyad: </span>
-                                                        @emergency.Name
-                                                    </li>
-                                                    <li>
-                                                        <span>Telefon Numarası: </span>
-                                                        @emergency.Phone
-                                                    </li>
-                                                    <li>
-                                                        <span>Yakınlık Durumu: </span>
-                                                        @emergency.RelationShip
-                                                    </li>
-                                                </ul>
-                                                <hr />
-                                            }
-                                            @*<form>
-                                                    <ul class="profile-edit-list row">
-                                                        <li class="weight-500 col-md-6">
-                                                            <h4 class="text-blue h5 mb-20">Acil İletişim Bilgileri</h4>
-                                                            <div class="form-group">
-                                                                <label>Yakınlık</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Ad Soyad</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Telefon</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary" value="Save & Update">
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </form>*@
-                                        </div>
+                                        @await Html.PartialAsync("_ViewAllEmergencyContact", Model)
+
                                     </div>
                                     <div class="tab-pane fade height-100-p" id="educationinfo" role="tabpanel">
                                         <div class="profile-setting">
@@ -666,7 +603,39 @@
         </div>
     </div>
 </div>
+<div class="modal" tabindex="-1" role="dialog" id="address-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="emergency-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 <script src="~/src/scripts/jquery.min.js"></script>
@@ -675,33 +644,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-@*<script>
-
-        $(function () {
-
-            var placeholderElement = $('#Placeholderhere');
-            $('button[data-toggle="ajax-modal"]').click(function (event) {
-
-
-                var url = $(this).data('url');
-                $.get(url).done(function (data) {
-                    placeholderElement.html(data);
-                    placeholderElement.find('.modal').modal('show');
-                })
-            })
-
-            placeholderElement.on('click', '[data-save="modal"]', function (event) {
-
-                var form = $(this).parents('.modal').find('form');
-                var actionUrl = form.attr('action');
-                var sendData = form.serialize();
-                $.post(actionUrl, sendData).done(function (data) {
-                    placeholderElement.find('modal').modal('hide');
-                })
-
-            })
-
-        })
-    </script>*@
 

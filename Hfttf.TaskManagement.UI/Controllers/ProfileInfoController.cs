@@ -93,7 +93,54 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditAddress", addressUpdate) });
         }
 
-     
+        //GET : ProfileInfo/AddOrEditEmergencyContact
+        //GET : ProfileInfo/AddOrEditEmergencyContact/4
+        public async Task<IActionResult> AddOrEditEmergencyContact(int id = 0)
+        {
+            if (id == 0)
+                return View(new EmergencyContactInfoUpdate());
+            else
+            {
+                var emergencyContact = await _emergencyContactInfoService.GetByIdAsync(id);
+                if (emergencyContact == null)
+                {
+                    return NotFound();
+                }
+                return View(emergencyContact.Adapt<EmergencyContactInfoUpdate>());
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddOrEditEmergencyContact(int id, EmergencyContactInfoUpdate emergencyContactInfoUpdate)
+        {
+            if (ModelState.IsValid)
+            {
+                var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+                emergencyContactInfoUpdate.ApplicationUserId = activeUser.Id;
+                //Insert
+                if (id == 0)
+                {
+                    await _emergencyContactInfoService.AddAsync(emergencyContactInfoUpdate.Adapt<EmergencyContactInfoAdd>());
+                }
+                //Update
+                else
+                {
+                    await _emergencyContactInfoService.UpdateAsync(emergencyContactInfoUpdate);
+                }
+                var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
+                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAllEmergencyContact", myProfile) });
+            }
+            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditEmergencyContact", emergencyContactInfoUpdate) });
+        }
+
+
+
+
+
+
+
         public async Task<IActionResult> GetById(int id)
         {
             if (id == 0)
