@@ -5,6 +5,7 @@ using Hfttf.TaskManagement.UI.Extensions;
 using Hfttf.TaskManagement.UI.Models;
 using Hfttf.TaskManagement.UI.Models.Address;
 using Hfttf.TaskManagement.UI.Models.Authentication;
+using Hfttf.TaskManagement.UI.Models.EmergencyContactInfo;
 using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,24 +50,6 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return View(myProfile);
         }
 
-        [HttpGet]
-        public IActionResult InsertAddress()
-        {
-            AddressAdd address = new AddressAdd();
-            return PartialView("_InsertAddressPartial", address);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> InsertAddress(AddressAdd addressAdd)
-        {
-            if (ModelState.IsValid)
-            {
-                await _addressService.AddAsync(addressAdd);
-                return RedirectToAction("MyProfile");
-            }
-            return PartialView("_InsertAddressPartial", addressAdd);
-           
-        }
 
         //GET : ProfileInfo/AddOrEditAddress
         //GET : ProfileInfo/AddOrEditAddress/4
@@ -110,6 +93,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditAddress", addressUpdate) });
         }
 
+     
         public async Task<IActionResult> GetById(int id)
         {
             if (id == 0)
@@ -118,8 +102,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
                 return View();
             }
             var data = await _addressService.GetByIdAsync(id);         
-            return View(data);
-           
+            return View(data);           
         }
     }
 }

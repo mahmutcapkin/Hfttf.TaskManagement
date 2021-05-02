@@ -34,7 +34,19 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/EducationInformations/", stringContent);
+                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/EducationInformations/Insert", stringContent);
+            }
+        }
+        public async Task UpdateAsync(EducationInformationUpdate model)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonData = JsonConvert.SerializeObject(model);
+                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var responseMessage= await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/EducationInformations/Update", stringContent);
             }
         }
 
@@ -52,18 +64,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             }
         }
 
-        public async Task UpdateAsync(EducationInformationUpdate model)
-        {
-            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
-            if (!string.IsNullOrWhiteSpace(token))
-            {
-                using var httpClient = new HttpClient();
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var jsonData = JsonConvert.SerializeObject(model);
-                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/EducationInformations", stringContent);
-            }
-        }
+
 
         public async Task<List<EducationInformationResponse>> GetAllAsync()
         {
