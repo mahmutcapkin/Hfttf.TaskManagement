@@ -20,15 +20,7 @@ namespace Hfttf.TaskManagement.Service.Services.EmergencyContactInfos.Handlers
         }
         public async Task<Response> Handle(EmergencyContactInfoListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<EmergencyContactInfo> emergencyContactInfo;
-            if (request.UserId == null)
-            {
-                emergencyContactInfo = await _emergencyContactInfoRepository.GetListWithUser();
-            }
-            else
-            {
-                emergencyContactInfo = await _emergencyContactInfoRepository.GetListWithUserByUserId(request.UserId);
-            }
+            var emergencyContactInfo = await _emergencyContactInfoRepository.GetListWithUserByUserId(request.UserId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<EmergencyContactInfoResponse>>(emergencyContactInfo);
             var result = Response.Success(response, 200);
             return result;

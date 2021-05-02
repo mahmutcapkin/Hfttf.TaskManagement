@@ -23,7 +23,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
             var user = await _userRepository.GetUserDetailById(request.Id);
             if (user == null)
             {
-                var unSuccesResult = Response.UnSuccess("User Not Found!", 404, false);
+                var unSuccesResult = Response.UnSuccess("Kullanıcı bulunamadı", 400, false);
                 return unSuccesResult;
 
             }

@@ -23,7 +23,7 @@ namespace Hfttf.TaskManagement.UI.CustomFilters
                 else if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     context.HttpContext.Session.Remove("token");
-                    context.Result = new RedirectToActionResult("SignIn", "Account", null);
+                    context.Result = new RedirectToActionResult("Login", "Account", null);
                 }
                 else
                 {

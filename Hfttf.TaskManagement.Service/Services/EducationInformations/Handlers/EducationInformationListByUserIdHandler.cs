@@ -20,15 +20,7 @@ namespace Hfttf.TaskManagement.Service.Services.EducationInformations.Handlers
         }
         public async Task<Response> Handle(EducationInformationListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<EducationInformation> educationInformation;
-            if (request.UserId == null)
-            {
-                educationInformation = await _educationInformationRepository.GetListWithUser();
-            }
-            else
-            {
-                educationInformation = await _educationInformationRepository.GetListWithUserByUserId(request.UserId);
-            } 
+            var educationInformation = await _educationInformationRepository.GetListWithUserByUserId(request.UserId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<EducationInformationResponse>>(educationInformation);
             var result = Response.Success(response, 200);
             return result;

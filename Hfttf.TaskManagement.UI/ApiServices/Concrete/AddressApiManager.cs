@@ -1,6 +1,7 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
 using Hfttf.TaskManagement.UI.Models;
 using Hfttf.TaskManagement.UI.Models.Address;
+using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -35,7 +36,21 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Addresses/", stringContent);
+                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Addresses/Insert", stringContent);
+                
+            }
+        }
+
+        public async Task UpdateAsync(AddressUpdate model)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonData = JsonConvert.SerializeObject(model);
+                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Addresses/Update", stringContent);
             }
         }
 
@@ -93,23 +108,11 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                     AddressResponse address = addressResponse.Data;
                     return address;
                 }
-
             }
             return null;
         }
       
-        public async Task UpdateAsync(AddressUpdate model)
-        {
-            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
-            if (!string.IsNullOrWhiteSpace(token))
-            {
-                using var httpClient = new HttpClient();
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var jsonData = JsonConvert.SerializeObject(model);
-                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Addresses", stringContent);
-            }
-        }
+
 
         public async Task<List<AddressResponse>> GetListByUserId(string id)
         {

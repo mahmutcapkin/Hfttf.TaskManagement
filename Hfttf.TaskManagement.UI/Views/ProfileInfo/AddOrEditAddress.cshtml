@@ -1,0 +1,59 @@
+﻿@model AddressUpdate
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEditAddress" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ApplicationUserId" />
+            <div class="form-group row">
+                <label asp-for="City" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <input asp-for="City" class="form-control">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                
+                @*<span asp-validation-for="City" class="text-danger"></span>*@
+            </div>
+            <div class="form-group row">
+                <label asp-for="Country" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <input asp-for="Country" class="form-control">
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+               
+                @*<span asp-validation-for="Country" class="text-danger"></span>*@
+            </div>
+            <div class="form-group row">
+                <label asp-for="ZipCode" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <input asp-for="ZipCode" class="form-control">
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+               
+                @*<span asp-validation-for="ZipCode" class="text-danger"></span>*@
+            </div>
+            <div class="form-group row">
+                <label asp-for="Description" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+               
+                @*<span asp-validation-for="Description" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -19,15 +19,7 @@ namespace Hfttf.TaskManagement.Service.Services.Addresses.Handlers
         }
         public async Task<Response> Handle(AddressListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<Address> address;
-            if (request.UserId == null)
-            {
-                address = await _addressRepository.GetListWithUser();
-            }
-            else
-            {
-                address = await _addressRepository.GetListWithUserByUserId(request.UserId);
-            } 
+            var address = await _addressRepository.GetListWithUserByUserId(request.UserId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<AddressResponse>>(address);
             var result = Response.Success(response, 200);
             return result;

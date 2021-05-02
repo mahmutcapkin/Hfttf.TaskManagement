@@ -22,15 +22,7 @@ namespace Hfttf.TaskManagement.Service.Services.Tasks.Handlers
 
         public async Task<Response> Handle(TaskListByProjectIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<Task> tasks;
-            if (request.ProjectId == null)
-            {
-                tasks = await _taskRepository.GetListWithStatusAndProject();
-            }
-            else
-            {
-                tasks = await _taskRepository.GetListByProjectId(request.ProjectId);
-            }
+            var tasks = await _taskRepository.GetListByProjectId(request.ProjectId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<TaskResponse>>(tasks);
             var result = Response.Success(response, 200);
             return result;

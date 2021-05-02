@@ -17,7 +17,7 @@ namespace Hfttf.TaskManagement.Core.ResourceViewModel
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public Gender Gender { get; set; }
         public int? DepartmentId { get; set; }
         public int? JobId { get; set; }

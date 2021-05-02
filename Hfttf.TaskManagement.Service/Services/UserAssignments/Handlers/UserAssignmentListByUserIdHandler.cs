@@ -21,15 +21,7 @@ namespace Hfttf.TaskManagement.Service.Services.UserAssignments.Handlers
 
         public async Task<Response> Handle(UserAssignmentListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<UserAssignment> userAssignment;
-            if (request.UserId == null)
-            {
-                userAssignment = await _UserAssignmentRepository.GetListWithUserandTask();
-            }
-            else
-            {
-                userAssignment = await _UserAssignmentRepository.GetListWithUserandTaskByUserId(request.UserId);
-            }
+            var userAssignment = await _UserAssignmentRepository.GetListWithUserandTaskByUserId(request.UserId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<UserAssignmentResponse>>(userAssignment);
             var result = Response.Success(response, 200);
             return result;

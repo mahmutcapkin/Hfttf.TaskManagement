@@ -1,5 +1,15 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Hfttf.TaskManagement.UI.ApiServices.Concrete;
 using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
+using Hfttf.TaskManagement.UI.Models.Address;
+using Hfttf.TaskManagement.UI.Models.Address.Validators;
+using Hfttf.TaskManagement.UI.Models.BankInformation;
+using Hfttf.TaskManagement.UI.Models.BankInformation.Validators;
+using Hfttf.TaskManagement.UI.Models.Department;
+using Hfttf.TaskManagement.UI.Models.Department.Validators;
+using Hfttf.TaskManagement.UI.Models.EducationInformation;
+using Hfttf.TaskManagement.UI.Models.EducationInformation.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,13 +35,42 @@ namespace Hfttf.TaskManagement.UI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //#region Fluent Validation 
+            //services.AddSingleton<IValidator<AddressAdd>, AddressAddValidator>();
+            //services.AddSingleton<IValidator<AddressUpdate>, AddressUpdateValidator>();
+
+            //services.AddTransient<IValidator<BankInformationAdd>, BankInformationAddValidator>();
+            //services.AddTransient<IValidator<BankInformationUpdate>, BankInformationUpdateValidator>();
+
+            //services.AddTransient<IValidator<DepartmentAdd>, DepartmentAddValidator>();
+            //services.AddTransient<IValidator<DepartmentUpdate>, DepartmentUpdateValidator>();
+
+            //services.AddTransient<IValidator<EducationInformationAdd>, EducationInformationAddValidator>();
+            //services.AddTransient<IValidator<EducationInformationUpdate>, EducationInformationUpdateValidator>();
+
+            ////services.AddTransient<IValidator<AddressAdd>, AddressAddValidator>();
+            ////services.AddTransient<IValidator<AddressUpdate>, AddressUpdateValidator>();
+
+            ////services.AddTransient<IValidator<AddressAdd>, AddressAddValidator>();
+            ////services.AddTransient<IValidator<AddressUpdate>, AddressUpdateValidator>();
+
+            ////services.AddTransient<IValidator<AddressAdd>, AddressAddValidator>();
+            ////services.AddTransient<IValidator<AddressUpdate>, AddressUpdateValidator>();
+
+            ////services.AddTransient<IValidator<AddressAdd>, AddressAddValidator>();
+            ////services.AddTransient<IValidator<AddressUpdate>, AddressUpdateValidator>();
+
+            //#endregion
+
+
+
             services.AddHttpContextAccessor();
             services.AddSession();
 
+            #region ApiServices
             services.AddScoped<IProjectService, ProjectApiManager>();
             services.AddScoped<IAuthService, AuthApiManager>();
             services.AddScoped<IAddressService, AddressApiManager>();
-
             services.AddScoped<IBankInformationService, BankInformationApiManager>();
             services.AddScoped<IDepartmentService, DepartmentApiManager>();
             services.AddScoped<IEducationInformationService, EducationInformationApiManager>();
@@ -47,8 +86,13 @@ namespace Hfttf.TaskManagement.UI
             services.AddScoped<IUserSalaryService, UserSalaryApiManager>();
             services.AddScoped<IUserService, UserApiManager>();
             services.AddScoped<IRoleService, RoleApiManager>();
+            #endregion
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation();
+            //services.AddControllersWithViews().AddFluentValidation(options =>
+            //{
+            //    options.RegisterValidatorsFromAssemblyContaining<Startup>();
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +107,6 @@ namespace Hfttf.TaskManagement.UI
                 app.UseExceptionHandler("/Home/Privacy");
             }
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseSession();
             app.UseStaticFiles();
@@ -73,7 +116,7 @@ namespace Hfttf.TaskManagement.UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

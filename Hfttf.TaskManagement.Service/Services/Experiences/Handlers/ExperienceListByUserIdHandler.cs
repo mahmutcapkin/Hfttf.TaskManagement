@@ -20,15 +20,7 @@ namespace Hfttf.TaskManagement.Service.Services.Experiences.Handlers
         }
         public async Task<Response> Handle(ExperienceListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<Experience> experience;
-            if (request.UserId == null)
-            {
-                experience = await _experienceRepository.GetListWithUser();
-            }
-            else
-            {
-                experience = await _experienceRepository.GetListWithUserByUserId(request.UserId);
-            }
+            var experience = await _experienceRepository.GetListWithUserByUserId(request.UserId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<ExperienceResponse>>(experience);
             var result = Response.Success(response, 200);
             return result;

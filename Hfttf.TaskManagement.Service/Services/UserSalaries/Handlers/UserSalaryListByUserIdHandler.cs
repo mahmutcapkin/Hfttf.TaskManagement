@@ -19,15 +19,8 @@ namespace Hfttf.TaskManagement.Service.Services.UserSalaries.Handlers
         }
         public async Task<Response> Handle(UserSalaryListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<UserSalary> userSalaries;
-            if (request.UserId == null)
-            {
-                userSalaries = await _userSalaryRepository.GetListWithUser();
-            }
-            else
-            {
-                userSalaries = await _userSalaryRepository.GetListWithUserByUserId(request.UserId);
-            }
+
+            var userSalaries = await _userSalaryRepository.GetListWithUserByUserId(request.UserId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<UserSalaryResponse>>(userSalaries);
             var result = Response.Success(response, 200);
             return result;

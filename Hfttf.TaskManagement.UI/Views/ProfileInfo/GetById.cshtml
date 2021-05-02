@@ -6,15 +6,20 @@
 <a asp-action="Create" class="btn btn-primary btn-sm my-2">
     Yeni ürün ekle
 </a>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <table class="table table-sm table-bordered">
     <tbody>
-            <tr>
+        <tr>
+            @if (Model != null)
+            {
                 <td>@Model.Id</td>
                 <td>@Model.City</td>
                 <td>@Model.Country</td>
                 <td>@Model.Description</td>
                 <td>@Model.ZipCode</td>
+            }
 
-            </tr>
+
+        </tr>
     </tbody>
 </table>

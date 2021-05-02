@@ -1,0 +1,32 @@
+﻿@model  Hfttf.TaskManagement.UI.Models.User.UserResponse
+
+
+    <div class="profile-setting">
+        @*<a asp-action="InsertAddress" class="btn btn-light"><i class="fa fa-pencil"></i></a>*@
+        @*<button type="button" data-toggle="ajax-modal" data-target="#insertAddress" data-url="@Url.Action("InsertAddress")" class="btn btn-light ml-8"><i class="fa fa-pencil"></i></button>*@
+        <a onclick="showInPopup('@Url.Action("AddOrEditAddress","ProfileInfo",null,Context.Request.Scheme)', 'Adres Ekle')" class="btn btn-light"><i class="fa fa-plus">Ekle</i></a>
+        @foreach (var address in Model.Addresses)
+        {
+            <a onclick="showInPopup('@Url.Action("AddOrEditAddress","ProfileInfo",new {id=address.Id},Context.Request.Scheme)','Adres Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i>Düzenle</a>
+            @*<a href="/ProfileInfo/EditProfile" class="edit-avatar"><i class="icon-copy fa fa-pencil" aria-hidden="true">Düzenle</i></a>*@
+            <ul class="mb-10 mt-15">
+                <li>
+                    <span>Şehir: </span>
+                    @address.City
+                </li>
+                <li>
+                    <span>Ülke: </span>
+                    @address.Country
+                </li>
+                <li>
+                    <span>Posta Kodu: </span>
+                    @address.ZipCode
+                </li>
+                <li>
+                    <span>Adres: </span>
+                    @address.Description
+                </li>
+            </ul>
+            <hr />
+        }
+    </div>

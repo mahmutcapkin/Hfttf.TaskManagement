@@ -20,15 +20,7 @@ namespace Hfttf.TaskManagement.Service.Services.BankInformations.Handlers
         }
         public async Task<Response> Handle(BankInformationListByUserIdQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<BankInformation> bankInformation;
-            if (request.UserId == null)
-            {
-                bankInformation = await _bankInformationRepository.GetListWithUser();
-            }
-            else
-            {
-                bankInformation = await _bankInformationRepository.GetListWithUserByUserId(request.UserId);
-            } 
+            var bankInformation = await _bankInformationRepository.GetListWithUserByUserId(request.UserId);
             var response = TaskManagementMapper.Mapper.Map<IEnumerable<BankInformationResponse>>(bankInformation);
             var result = Response.Success(response, 200);
             return result;

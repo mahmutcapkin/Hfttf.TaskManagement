@@ -13,6 +13,7 @@ using Hfttf.TaskManagement.UI.Models.UserAssignment;
 using Hfttf.TaskManagement.UI.Models.UserSalary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hfttf.TaskManagement.UI.Models.User
 {
@@ -24,7 +25,11 @@ namespace Hfttf.TaskManagement.UI.Models.User
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
+
+        [Display(Name = "Doğum Tarihi")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DataType(DataType.Date)]
+        public DateTime BirthDate { get; set; }
         public Gender Gender { get; set; }
         public int? DepartmentId { get; set; }
         public int? JobId { get; set; }
