@@ -4,7 +4,7 @@
     <div class="profile-setting">
         @*<a asp-action="InsertAddress" class="btn btn-light"><i class="fa fa-pencil"></i></a>*@
         @*<button type="button" data-toggle="ajax-modal" data-target="#insertAddress" data-url="@Url.Action("InsertAddress")" class="btn btn-light ml-8"><i class="fa fa-pencil"></i></button>*@
-        <a onclick="showInPopup('@Url.Action("AddOrEditAddress","ProfileInfo",null,Context.Request.Scheme)', 'Adres Ekle')" class="btn btn-light"><i class="fa fa-plus">Ekle</i></a>
+        <a onclick="showInPopup('@Url.Action("AddOrEditAddress","ProfileInfo",null,Context.Request.Scheme)', 'Adres Ekle')" class="btn btn-light"><i class="fa fa-plus"></i>Ekle</a>
         @foreach (var address in Model.Addresses)
         {
             <a onclick="showInPopup('@Url.Action("AddOrEditAddress","ProfileInfo",new {id=address.Id},Context.Request.Scheme)','Adres Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i>Düzenle</a>
