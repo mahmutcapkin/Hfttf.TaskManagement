@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/core.css">
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~/src/plugins/jquery-asColorPicker/dist/css/asColorPicker.css">
+    <link href="~/src/plugins/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/style.css">
 
@@ -201,21 +203,81 @@
     </div>
 
     <div class="mobile-menu-overlay"></div>
-    @RenderBody()
+    <div class="main-container">
+        @RenderBody()
+    </div>
 
+    <div class="modal" tabindex="-1" role="dialog" id="education-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="experience-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="user-modal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/src/scripts/jquery.min.js"></script>
+    <script src="~/src/plugins/bootstrap/bootstrap.min.js"></script>
     <script src="~/js/bankinformation.js"></script>
     <script src="~/js/education.js"></script>
     <script src="~/js/experience.js"></script>
     <script src="~/js/emergency.js"></script>
     <script src="~/js/site.js"></script>
-    <script src="~/src/scripts/jquery.min.js"></script>
-    <script src="~/src/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/js/user.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @*@await RenderSectionAsync("ScriptsDate", required: false)*@
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>
     <script src="~/vendors/scripts/layout-settings.js"></script>
+    <script src="~/src/plugins/air-datepicker/dist/js/datepicker.min.js"></script>
     <script src="~/src/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
+    <script src="~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
+    <script src="~/vendors/scripts/colorpicker.js"></script>
     <script src="~/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>

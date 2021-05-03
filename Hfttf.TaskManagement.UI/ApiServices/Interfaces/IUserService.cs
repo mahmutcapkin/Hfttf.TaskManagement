@@ -8,8 +8,8 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
     {
         Task<List<UserResponse>> GetAllAsync();
         Task<UserResponse> GetByIdAsync(string id);
-        Task AddAsync(UserAdd model);
-        Task UpdateAsync(UserUpdate model);
+        Task<bool> AddAsync(UserAdd model);
+        Task<bool> UpdateAsync(UserUpdate model);
         Task DeleteAsync(string id);
         Task<UserResponse> GetByIdWithInfo(string id);
         Task<List<UserResponse>> GetListWithInfo(string id);

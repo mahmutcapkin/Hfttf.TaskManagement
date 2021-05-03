@@ -3,21 +3,6 @@
 
 // Write your JavaScript code.
 
-
-//$(function () {
-
-//    var placeholderElement = $('#Placeholderhere');
-//    $('button[data-toggle="ajax-modal"]').click(function (event) {
-
-
-//        var url = $(this).data('url');
-//        $.get(url).done(function (data) {
-//            placeholderElement.html(data);
-//            placeholderElement.find('.modal').modal('show');
-//        })
-//    })
-//})
-
 $(function () {
     $("#loaderbody").addClass('hide');
 
@@ -28,15 +13,14 @@ $(function () {
     });
 });
 
-
-showInPopup = (url, title) => {
+showInPopupBankInfo = (url, title) => {
     $.ajax({
         type: 'GET',
         url: url,
         success: function (res) {
-            $('#address-modal .modal-body').html(res);
-            $('#address-modal .modal-title').html(title);
-            $('#address-modal').modal('show');
+            $('#bankinfo-modal .modal-body').html(res);
+            $('#bankinfo-modal .modal-title').html(title);
+            $('#bankinfo-modal').modal('show');
             // to make popup draggable
             $('.modal-dialog').draggable({
                 handle: ".modal-header"
@@ -46,7 +30,7 @@ showInPopup = (url, title) => {
 }
 
 
-jQueryAjaxPost = form => {
+jQueryAjaxPostBankInfo = form => {
     try {
         $.ajax({
             type: 'POST',
@@ -56,13 +40,13 @@ jQueryAjaxPost = form => {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    $('#address').html(res.html)
-                    $('#address-modal .modal-body').html('');
-                    $('#address-modal .modal-title').html('');
-                    $('#address-modal').modal('hide');
+                    $('#bankinformation').html(res.html)
+                    $('#bankinfo-modal .modal-body').html('');
+                    $('#bankinfo-modal .modal-title').html('');
+                    $('#bankinfo-modal').modal('hide');
                 }
                 else
-                    $('#address-modal .modal-body').html(res.html);
+                    $('#bankinfo-modal .modal-body').html(res.html);
             },
             error: function (err) {
                 console.log(err)
@@ -77,7 +61,7 @@ jQueryAjaxPost = form => {
 
 
 
-jQueryAjaxDelete = form => {
+jQueryAjaxDeleteBankInfo = form => {
     if (confirm('Are you sure to delete this record ?')) {
         try {
             $.ajax({
@@ -87,7 +71,7 @@ jQueryAjaxDelete = form => {
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    $('#address').html(res.html);
+                    $('#bankinformation').html(res.html);
                 },
                 error: function (err) {
                     console.log(err)

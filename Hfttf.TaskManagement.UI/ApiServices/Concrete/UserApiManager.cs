@@ -21,7 +21,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task AddAsync(UserAdd model)
+        public async Task<bool> AddAsync(UserAdd model)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -33,9 +33,16 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 var jsonData = JsonConvert.SerializeObject(model);
 
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Users/", stringContent);
+               
+                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Users/Insert", stringContent);
+               
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
         public async Task DeleteAsync(string id)
@@ -52,7 +59,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             }
         }
 
-        public async Task UpdateAsync(UserUpdate model)
+        public async Task<bool> UpdateAsync(UserUpdate model)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -61,8 +68,14 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var jsonData = JsonConvert.SerializeObject(model);
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Users", stringContent);
+                var responseMessage = await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Users/Update", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
         public async Task<List<UserResponse>> GetAllAsync()

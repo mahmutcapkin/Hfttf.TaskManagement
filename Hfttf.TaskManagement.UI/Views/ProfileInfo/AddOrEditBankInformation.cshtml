@@ -1,0 +1,43 @@
+﻿@model BankInformationUpdate
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEditBankInformation" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPostBankInfo(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ApplicationUserId" />
+            <div class="form-group row">
+                <label asp-for="BankName" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <input asp-for="BankName" class="form-control">
+                    <span asp-validation-for="BankName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="AccountNo" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <input asp-for="AccountNo" class="form-control">
+                    <span asp-validation-for="AccountNo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="IBANNo" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <input asp-for="IBANNo" class="form-control" value="TR">
+                    <span asp-validation-for="IBANNo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

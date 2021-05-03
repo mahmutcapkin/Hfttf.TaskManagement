@@ -1,0 +1,45 @@
+﻿@model Hfttf.TaskManagement.UI.Models.User.UserResponse
+
+    <div class="profile-photo">
+        <img src="~/vendors/images/photo1.jpg" alt="" class="avatar-photo">
+    </div>
+
+        <h5 class="text-center h5 mb-0">@(Model.FirstName+" "+Model.LastName)</h5>
+        <p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
+        <div class="profile-info">
+
+            <h5 class="mb-20 h5 text-blue">
+                Kişisel Bilgiler
+                <a onclick="showInPopupUser('@Url.Action("EditProfile","ProfileInfo",new {id=Model.Id},Context.Request.Scheme)','Profil Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i></a>
+            </h5>
+            <ul>
+                <li>
+                    <span>Email:</span>
+                    @Model.Email
+                </li>
+                <li>
+                    <span>Kullanıcı Adı:</span>
+                    @Model.UserName
+                </li>
+                <li>
+                    <span>Telefon Numarası:</span>
+                    @Model.PhoneNumber
+                </li>
+                <li>
+                    <span>Cinsiyet:</span>
+                    @Model.Gender.ToString()
+                </li>
+                <li>
+                    <span>Departman:</span>
+                    @Model.Department.Name
+                </li>
+                <li>
+                    <span>Meslek:</span>
+                    @Model.Job.Name
+                </li>
+                <li>
+                    <span>Doğum Tarihi:</span>
+                    @Model.BirthDate.ToString("MM/dd/yyyy")
+                </li>
+            </ul>
+        </div>

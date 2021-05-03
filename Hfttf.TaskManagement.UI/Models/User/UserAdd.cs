@@ -11,7 +11,7 @@ namespace Hfttf.TaskManagement.UI.Models.User
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }
-        public Gender Gender { get; set; }
+        public GenderType Gender { get; set; }
         public int? DepartmentId { get; set; }
         public string PhoneNumber { get; set; }
         public int? JobId { get; set; }

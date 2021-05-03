@@ -38,7 +38,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
             var user = await _userManager.FindByIdAsync(request.Id);
             if (user == null)
             {
-                return Response.UnSuccess("Böyle bir kullanıcı mevcut değildir", 404, true);
+                return Response.UnSuccess("Böyle bir kullanıcı mevcut değildir", 400, true);
             }
             var userFake = await _userManager.Users.Where(x => x.PhoneNumber == request.PhoneNumber).FirstOrDefaultAsync();
             if (userFake != null)
@@ -49,7 +49,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
                 }
                 else
                 {
-                    return Response.UnSuccess("Bu telefon numarası başka bir üyeye aittir", 404, true);
+                    return Response.UnSuccess("Bu telefon numarası başka bir üyeye aittir", 400, true);
                 }
             }
             else
@@ -66,7 +66,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
                 }
                 else
                 {
-                    return Response.UnSuccess("Bu kullanıcı adı başka bir üyeye aittir", 404, true);
+                    return Response.UnSuccess("Bu kullanıcı adı başka bir üyeye aittir", 400, true);
                 }
             }
             else
@@ -84,11 +84,13 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
             {
                 user.JobId = request.JobId;
             }
-            else if (request.DepartmentId != 0)
+
+            if (request.DepartmentId != 0)
             {
                 user.DepartmentId = request.DepartmentId;
             }
-            else if(request.DepartmentId!=0 && request.JobId != 0)
+
+            if(request.DepartmentId!=0 && request.JobId != 0)
             {
                 user.JobId = request.JobId;
                 user.DepartmentId = request.DepartmentId;
@@ -106,7 +108,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
             }
             else
             {
-                return Response.UnSuccess("Kullanıcı güncellenemedi", 404, true);
+                return Response.UnSuccess("Kullanıcı güncellenemedi", 400, true);
             }
 
             //var user = await _userManager.FindByIdAsync(request.Id);

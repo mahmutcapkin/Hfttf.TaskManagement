@@ -86,6 +86,10 @@ namespace Hfttf.TaskManagement.API.Controllers
         public async Task<IActionResult> Update([FromBody] UserUpdateCommand userUpdateCommand)
         {
             var response = await _mediator.Send(userUpdateCommand);
+            if (response.StatusCode == 400)
+            {
+                return BadRequest(response);
+            }
             return Ok(response);
         }
 

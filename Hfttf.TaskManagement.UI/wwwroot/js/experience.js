@@ -4,20 +4,6 @@
 // Write your JavaScript code.
 
 
-//$(function () {
-
-//    var placeholderElement = $('#Placeholderhere');
-//    $('button[data-toggle="ajax-modal"]').click(function (event) {
-
-
-//        var url = $(this).data('url');
-//        $.get(url).done(function (data) {
-//            placeholderElement.html(data);
-//            placeholderElement.find('.modal').modal('show');
-//        })
-//    })
-//})
-
 $(function () {
     $("#loaderbody").addClass('hide');
 
@@ -29,14 +15,14 @@ $(function () {
 });
 
 
-showInPopup = (url, title) => {
+showInPopupExperience = (url, title) => {
     $.ajax({
         type: 'GET',
         url: url,
         success: function (res) {
-            $('#address-modal .modal-body').html(res);
-            $('#address-modal .modal-title').html(title);
-            $('#address-modal').modal('show');
+            $('#experience-modal .modal-body').html(res);
+            $('#experience-modal .modal-title').html(title);
+            $('#experience-modal').modal('show');
             // to make popup draggable
             $('.modal-dialog').draggable({
                 handle: ".modal-header"
@@ -46,7 +32,7 @@ showInPopup = (url, title) => {
 }
 
 
-jQueryAjaxPost = form => {
+jQueryAjaxPostExperience = form => {
     try {
         $.ajax({
             type: 'POST',
@@ -56,13 +42,13 @@ jQueryAjaxPost = form => {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    $('#address').html(res.html)
-                    $('#address-modal .modal-body').html('');
-                    $('#address-modal .modal-title').html('');
-                    $('#address-modal').modal('hide');
+                    $('#experience').html(res.html)
+                    $('#experience-modal .modal-body').html('');
+                    $('#experience-modal .modal-title').html('');
+                    $('#experience-modal').modal('hide');
                 }
                 else
-                    $('#address-modal .modal-body').html(res.html);
+                    $('#experience-modal .modal-body').html(res.html);
             },
             error: function (err) {
                 console.log(err)
@@ -77,7 +63,7 @@ jQueryAjaxPost = form => {
 
 
 
-jQueryAjaxDelete = form => {
+jQueryAjaxDeleteExperience = form => {
     if (confirm('Are you sure to delete this record ?')) {
         try {
             $.ajax({
@@ -87,7 +73,7 @@ jQueryAjaxDelete = form => {
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    $('#address').html(res.html);
+                    $('#experience').html(res.html);
                 },
                 error: function (err) {
                     console.log(err)

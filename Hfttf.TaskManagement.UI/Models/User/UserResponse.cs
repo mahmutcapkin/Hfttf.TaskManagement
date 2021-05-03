@@ -30,7 +30,7 @@ namespace Hfttf.TaskManagement.UI.Models.User
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
-        public Gender Gender { get; set; }
+        public GenderType Gender { get; set; }
         public int? DepartmentId { get; set; }
         public int? JobId { get; set; }
         public JobForUserResponse Job { get; set; }

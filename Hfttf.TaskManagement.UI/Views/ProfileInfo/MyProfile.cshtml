@@ -2,8 +2,9 @@
 @{
     Layout = "_Layout";
 }
+<link rel="stylesheet" type="text/css" href="~/src/plugins/jquery-asColorPicker/dist/css/asColorPicker.css">
 
-<div class="main-container">
+
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
             <div class="page-header">
@@ -24,57 +25,7 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
                     <div class="pd-20 card-box height-100-p">
-                        <div class="profile-photo">
-                            <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
-                            <img src="~/vendors/images/photo1.jpg" alt="" class="avatar-photo">
-                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body pd-5">
-                                            <div class="img-container">
-                                                <img id="image" src="~/vendors/images/photo2.jpg" alt="Picture">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" value="Update" class="btn btn-primary">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h5 class="text-center h5 mb-0">@(Model.FirstName+" "+Model.LastName)</h5>
-                        <p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
-                        <div class="profile-info">
-                            <h5 class="mb-20 h5 text-blue">Kişisel Bilgiler @*<button type="button" data-toggle="ajax-modal" data-target="#insertAddress" data-url="@Url.Action("InsertAddress")" class="btn btn-light ml-8"><i class="fa fa-pencil"></i></button>*@</h5>
-                            @*<button class="edit-avatar" type="button" data-toggle="ajax-modal" data-url="@Url.Action("InsertAddress")" data-target="#insertAddress"><i class="fa fa-pencil"></i></button>*@
-                            <ul>
-                                <li>
-                                    <span>Email:</span>
-                                    @Model.Email
-                                </li>
-                                <li>
-                                    <span>Telefon Numarası:</span>
-                                    @Model.PhoneNumber
-                                </li>
-                                <li>
-                                    <span>Cinsiyet:</span>
-                                    @Model.Gender.ToString()
-                                </li>
-                                <li>
-                                    <span>Departman:</span>
-                                    @Model.Department.Name
-                                </li>
-                                <li>
-                                    <span>Meslek:</span>
-                                    @Model.Job.Name
-                                </li>
-                                <li>
-                                    <span>Doğum Tarihi:</span>
-                                    @Model.BirthDate.ToString("MM/dd/yyyy")
-                                </li>
-                            </ul>
-                        </div>
+                        @await Html.PartialAsync("_ViewAllUser", Model)
                     </div>
                 </div>
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
@@ -111,155 +62,13 @@
 
                                     </div>
                                     <div class="tab-pane fade height-100-p" id="educationinfo" role="tabpanel">
-                                        <div class="profile-setting">
-                                            <a href="/ProfileInfo/InsertEducationInfo" class="edit-avatar"><i class="icon-copy fa fa-plus" aria-hidden="true">Ekle</i></a>
-                                            @foreach (var education in Model.EducationInformations)
-                                            {<a href="/ProfileInfo/EditEducationInfo" class="edit-avatar"><i class="icon-copy fa fa-pencil" aria-hidden="true">Düzenle</i></a>
-                                                <ul class="mb-10 mt-15">
-                                                    <li>
-                                                        <span>Okul Adı : </span>
-                                                        @education.SchoolName
-                                                    </li>
-                                                    <li>
-                                                        <span>Bölüm: </span>
-                                                        @education.Section
-                                                    </li>
-                                                    <li>
-                                                        <span>Başlama Tarihi: </span>
-                                                        @education.StartDate
-                                                    </li>
-                                                    <li>
-                                                        <span>Bitiş Tarihi: </span>
-                                                        @education.EndDate
-                                                    </li>
-                                                </ul>
-                                                <hr />
-                                            }
-                                            @*<form>
-                                                    <ul class="profile-edit-list row">
-                                                        <li class="weight-500 col-md-6">
-                                                            <h4 class="text-blue h5 mb-20">Eğitim Bilgileri</h4>
-                                                            <div class="form-group">
-                                                                <label>Okul Adı</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Bölüm</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Başlama Tarihi</label>
-                                                                <input class="form-control form-control-lg date-picker" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Bitiş Tarihi</label>
-                                                                <input class="form-control form-control-lg date-picker" type="text">
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary" value="Save & Update">
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </form>*@
-                                        </div>
+                                        @await Html.PartialAsync("_ViewAllEducation", Model)
                                     </div>
                                     <div class="tab-pane fade height-100-p" id="bankinformation" role="tabpanel">
-                                        <div class="profile-setting">
-                                            <a href="/ProfileInfo/InsertBankInformation" class="edit-avatar"><i class="icon-copy fa fa-plus" aria-hidden="true">Ekle</i></a>
-                                            @foreach (var bankInformation in Model.BankInformations)
-                                            {<a href="/ProfileInfo/EditBankInformation" class="edit-avatar"><i class="icon-copy fa fa-pencil" aria-hidden="true">Düzenle</i></a>
-                                                <ul class="mb-10 mt-15">
-                                                    <li>
-                                                        <span>Banka Adı : </span>
-                                                        @bankInformation.BankName
-                                                    </li>
-                                                    <li>
-                                                        <span>Hesap Numarası: </span>
-                                                        @bankInformation.AccountNo
-                                                    </li>
-                                                    <li>
-                                                        <span>IBAN No: </span>
-                                                        @bankInformation.IBANNo
-                                                    </li>
-                                                </ul>
-                                                <hr />
-                                            }
-                                            @*<form>
-                                                    <ul class="profile-edit-list row">
-                                                        <li class="weight-500 col-md-6">
-                                                            <h4 class="text-blue h5 mb-20">Banka Bilgileri</h4>
-                                                            <div class="form-group">
-                                                                <label>Banka Adı</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Hesap Numarası</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>IBAN No</label>
-                                                                <input class="form-control form-control-lg" type="email">
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary" value="Save & Update">
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </form>*@
-                                        </div>
+                                        @await Html.PartialAsync("_ViewAllBankInformation", Model)
                                     </div>
                                     <div class="tab-pane fade height-100-p" id="experience" role="tabpanel">
-                                        <div class="profile-setting">
-                                            <a href="/ProfileInfo/InsertExperience" class="edit-avatar"><i class="icon-copy fa fa-plus" aria-hidden="true">Ekle</i></a>
-                                            @foreach (var experience in Model.Experiences)
-                                            {<a href="/ProfileInfo/EditExperience" class="edit-avatar"><i class="icon-copy fa fa-pencil" aria-hidden="true">Düzenle</i></a>
-                                                <ul class="mb-10 mt-15">
-                                                    <li>
-                                                        <span>Şirket Adı : </span>
-                                                        @experience.Company
-                                                    </li>
-                                                    <li>
-                                                        <span>Meslek: </span>
-                                                        @experience.Job
-                                                    </li>
-                                                    <li>
-                                                        <span>Başlangıç Tarihi: </span>
-                                                        @experience.StartDate
-                                                    </li>
-                                                    <li>
-                                                        <span>Bitiş Tarihi: </span>
-                                                        @experience.EndDate
-                                                    </li>
-                                                </ul>
-                                                <hr />
-                                            }
-                                            @*<form>
-                                                    <ul class="profile-edit-list row">
-                                                        <li class="weight-500 col-md-6">
-                                                            <h4 class="text-blue h5 mb-20">Deneyim Bilgileri</h4>
-                                                            <div class="form-group">
-                                                                <label>Firma Adı</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Meslek</label>
-                                                                <input class="form-control form-control-lg" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Başlangıç Tarihi</label>
-                                                                <input class="form-control form-control-lg date-picker" type="text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Bitiş Tarihi</label>
-                                                                <input class="form-control form-control-lg date-picker" type="text">
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary" value="Save & Update">
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </form>*@
-                                        </div>
+                                        @await Html.PartialAsync("_ViewAllExperience", Model)
                                     </div>
                                     <!-- Timeline Tab End -->
                                     <!-- Tasks Tab start -->
@@ -602,7 +411,6 @@
             </div>
         </div>
     </div>
-</div>
 <div class="modal" tabindex="-1" role="dialog" id="address-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -637,10 +445,34 @@
     </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog" id="bankinfo-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
 
 <script src="~/src/scripts/jquery.min.js"></script>
 <script src="~/src/plugins/bootstrap/bootstrap.min.js"></script>
-<script src="~/js/ModalAddress.js"></script>
+<script src="~/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
+<script src="~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
+<script src="~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
+<script src="~/vendors/scripts/colorpicker.js"></script>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

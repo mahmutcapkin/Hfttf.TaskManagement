@@ -3,7 +3,6 @@
 
 // Write your JavaScript code.
 
-
 $(function () {
     $("#loaderbody").addClass('hide');
 
@@ -15,14 +14,14 @@ $(function () {
 });
 
 
-showInPopupEducation = (url, title) => {
+showInPopupUser = (url, title) => {
     $.ajax({
         type: 'GET',
         url: url,
         success: function (res) {
-            $('#education-modal .modal-body').html(res);
-            $('#education-modal .modal-title').html(title);
-            $('#education-modal').modal('show');
+            $('#user-modal .modal-body').html(res);
+            $('#user-modal .modal-title').html(title);
+            $('#user-modal').modal('show');
             // to make popup draggable
             $('.modal-dialog').draggable({
                 handle: ".modal-header"
@@ -32,7 +31,7 @@ showInPopupEducation = (url, title) => {
 }
 
 
-jQueryAjaxPostEducation = form => {
+jQueryAjaxPostUser = form => {
     try {
         $.ajax({
             type: 'POST',
@@ -42,13 +41,14 @@ jQueryAjaxPostEducation = form => {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    $('#educationinfo').html(res.html)
-                    $('#education-modal .modal-body').html('');
-                    $('#education-modal .modal-title').html('');
-                    $('#education-modal').modal('hide');
+                    $('#pd-20 card-box height-100-p').html(res.adres)
+                    $('#user-modal .modal-body').html('');
+                    $('#user-modal .modal-title').html('');
+                    $('#user-modal').modal('hide');
+                    window.location.reload();
                 }
                 else
-                    $('#education-modal .modal-body').html(res.html);
+                    $('#user-modal .modal-body').html(res.adres);
             },
             error: function (err) {
                 console.log(err)
@@ -63,7 +63,7 @@ jQueryAjaxPostEducation = form => {
 
 
 
-jQueryAjaxDeleteEducation = form => {
+jQueryAjaxDeleteUser = form => {
     if (confirm('Are you sure to delete this record ?')) {
         try {
             $.ajax({
@@ -73,7 +73,7 @@ jQueryAjaxDeleteEducation = form => {
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    $('#educationinfo').html(res.html);
+                    $('#pd-20 card-box height-100-p').html(res.html);
                 },
                 error: function (err) {
                     console.log(err)
