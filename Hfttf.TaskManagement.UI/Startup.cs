@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Smidge;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,10 @@ namespace Hfttf.TaskManagement.UI
         //{
         //    Configuration = configuration;
         //}
-
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -62,7 +66,7 @@ namespace Hfttf.TaskManagement.UI
 
             //#endregion
 
-
+            services.AddSmidge(Configuration.GetSection("smidge"));
 
             services.AddHttpContextAccessor();
             services.AddSession();
@@ -111,6 +115,33 @@ namespace Hfttf.TaskManagement.UI
             app.UseSession();
             app.UseStaticFiles();
             app.UseAuthorization();
+
+
+            app.UseSmidge(bundle =>
+            {
+                bundle.CreateJs("my-modal-js",
+                    "~/js/bankinformation.js",
+                    "~/js/emergency.js",
+                    "~/js/education.js",
+                    "~/js/department.js",
+                    "~/js/experience.js",
+                    "~/js/site.js",
+                    "~/js/user.js");
+
+                //bundle.CreateJs("basic-js",
+                //  "~/vendors/scripts/core.js",
+                //  "~/vendors/scripts/process.js",
+                //  "~/vendors/scripts/layout-settings.js",
+                //  "~/src/plugins/jquery-asColor/dist/jquery-asColor.js",
+                //   "~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js",
+                //  "~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js",
+                //   "~/vendors/scripts/colorpicker.js",
+                //  "~/vendors/scripts/datatable-setting.js",
+                //   "~/vendors/scripts/dashboard.js",
+                //   "~/src/plugins/apexcharts/apexcharts.min.js");
+
+            });
+
 
             app.UseEndpoints(endpoints =>
             {

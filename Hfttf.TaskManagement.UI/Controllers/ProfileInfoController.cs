@@ -56,6 +56,8 @@ namespace Hfttf.TaskManagement.UI.Controllers
         {
            //var token = HttpContext.Session.GetString("token");
             var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+
+           
             var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
             return View(myProfile);
         }

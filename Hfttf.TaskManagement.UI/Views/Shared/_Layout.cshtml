@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var appUser = Context.Session.GetObject<AppUser>("activeUser");
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <!-- Basic Page Info -->
@@ -14,14 +18,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/core.css">
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+ 
     <link rel="stylesheet" type="text/css" href="~/src/plugins/jquery-asColorPicker/dist/css/asColorPicker.css">
     <link href="~/src/plugins/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/style.css">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -61,20 +67,23 @@
                     </a>
                 </div>
             </div>
-            <div class="user-info-dropdown">
-                <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                        <span class="user-icon">
-                            <img src="~/vendors/images/photo1.jpg" alt="">
-                        </span>
-                        <span class="user-name">Ross C. Lopez</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                        <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+            @if (appUser.Roles.Contains("Admin"))
+            {
+                <div class="user-info-dropdown">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                            <span class="user-icon">
+                                <img src="~/vendors/images/photo1.jpg" alt="">
+                            </span>
+                            <span class="user-name">Ross C. Lopez</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                            <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                            <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 
@@ -176,6 +185,11 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="/Business/AllDepartments" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-diagram"></span><span class="mtext">Departman</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="calendar.html" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-calendar1"></span><span class="mtext">Calendar</span>
                         </a>
@@ -260,14 +274,18 @@
 
     <script src="~/src/scripts/jquery.min.js"></script>
     <script src="~/src/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="~/js/bankinformation.js"></script>
+
+    <script src="my-modal-js"></script>
+    @*<script src="~/js/bankinformation.js"></script>
     <script src="~/js/education.js"></script>
     <script src="~/js/experience.js"></script>
     <script src="~/js/emergency.js"></script>
     <script src="~/js/site.js"></script>
     <script src="~/js/user.js"></script>
+    <script src="~/js/department.js"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
-    @*@await RenderSectionAsync("ScriptsDate", required: false)*@
+    @await RenderSectionAsync("DataTable", required: false)
+    @await RenderSectionAsync("ScriptsDate", required: false)
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>
@@ -278,6 +296,7 @@
     <script src="~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
     <script src="~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
     <script src="~/vendors/scripts/colorpicker.js"></script>
+    <script src="~/vendors/scripts/datatable-setting.js"></script>
     <script src="~/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>

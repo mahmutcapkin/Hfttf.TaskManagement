@@ -1,0 +1,51 @@
+﻿@model List<DepartmentResponse>
+@{
+    ViewData["Title"] = "AllDepartments";
+}
+
+<div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="title">
+                        <h4>Departmanlar</h4>
+                    </div>
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Departmanlar</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simple Datatable start -->
+        <div class="card-box mb-30">
+            @await Html.PartialAsync("_ViewAllDepartments", Model)
+
+        </div>
+        <!-- Simple Datatable End -->
+
+
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="department-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
