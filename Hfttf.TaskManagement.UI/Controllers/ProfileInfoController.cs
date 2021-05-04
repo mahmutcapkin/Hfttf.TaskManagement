@@ -145,6 +145,36 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditAddress", addressUpdate) });
         }
 
+
+        // GET: Transaction/Delete/5
+        //public async Task<IActionResult> DeleteAddress(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var address =await _addressService.GetByIdAsync((int)id);
+        //    if (address == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(address);
+        //}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAddress(int id)
+        {
+            var address = await _addressService.GetByIdAsync(id);
+            var delete = await _addressService.DeleteAsync(address.Id);
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllAddress", myProfile) });
+        }
+
+
         //GET : ProfileInfo/AddOrEditEmergencyContact
         //GET : ProfileInfo/AddOrEditEmergencyContact/4
         public async Task<IActionResult> AddOrEditEmergencyContact(int id = 0)
@@ -186,6 +216,18 @@ namespace Hfttf.TaskManagement.UI.Controllers
                 return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAllEmergencyContact", myProfile) });
             }
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditEmergencyContact", emergencyContactInfoUpdate) });
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteEmergencyContact(int id)
+        {
+            var emergencyContactInfo = await _emergencyContactInfoService.GetByIdAsync(id);
+            var delete = await _emergencyContactInfoService.DeleteAsync(emergencyContactInfo.Id);
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllEmergencyContact", myProfile) });
         }
 
 
@@ -232,6 +274,17 @@ namespace Hfttf.TaskManagement.UI.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteBankInformation(int id)
+        {
+            var bankinformation = await _bankInformationService.GetByIdAsync(id);
+            var delete = await _bankInformationService.DeleteAsync(bankinformation.Id);
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllBankInformation", myProfile) });
+        }
+
         //GET : ProfileInfo/AddOrEditEmergencyContact
         //GET : ProfileInfo/AddOrEditEmergencyContact/4
         public async Task<IActionResult> AddOrEditEducation(int id = 0)
@@ -272,6 +325,18 @@ namespace Hfttf.TaskManagement.UI.Controllers
                 return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAllEducation", myProfile) });
             }       
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditEducation", educationInformation) });
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteEducation(int id)
+        {
+            var education = await _educationInfoService.GetByIdAsync(id);
+            var delete = await _educationInfoService.DeleteAsync(education.Id);
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllEducation", myProfile) });
         }
 
         //GET : ProfileInfo/AddOrEditEmergencyContact
@@ -316,6 +381,16 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditExperience", experienceUpdate) });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteExperience(int id)
+        {
+            var experience = await _experienceService.GetByIdAsync(id);
+            var delete = await _experienceService.DeleteAsync(experience.Id);
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllExperience", myProfile) });
+        }
 
         public async Task<IActionResult> GetById(int id)
         {

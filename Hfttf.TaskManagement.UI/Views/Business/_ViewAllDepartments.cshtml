@@ -31,10 +31,15 @@
                                 <i class="dw dw-more"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Çalışan Görüntüle</a>
+                                <a class="dropdown-item" href="/Business/DepartmentWithUsers/@department.Id"><i class="dw dw-eye"></i> Çalışan Görüntüle</a>
                                 <a class="dropdown-item" onclick="showInPopupDepartment('@Url.Action("AddOrEditDepartment","Business",new {id=department.Id},Context.Request.Scheme)','Departman Güncelle')"><i class="dw dw-edit2"></i>Güncelle</a>
                                 @*<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Güncelle</a>*@
-                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Sil</a>
+                                @*<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Sil</a>*@
+                                <form asp-action="DeleteDepartment" asp-route-id="@department.Id" onsubmit="return jQueryAjaxDeleteDepartment(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@department.Id" />
+                                    <i class="dw dw-delete-3"></i>
+                                    <input type="submit" value="Sil" class="dropdown-item" />
+                                </form>
                             </div>
                         </div>
                     </td>

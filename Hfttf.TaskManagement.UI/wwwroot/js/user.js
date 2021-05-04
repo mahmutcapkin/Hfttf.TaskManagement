@@ -64,7 +64,7 @@ jQueryAjaxPostUser = form => {
 
 
 jQueryAjaxDeleteUser = form => {
-    if (confirm('Are you sure to delete this record ?')) {
+    if (confirm('Hesabınızı silmek istediğinize emin misiniz?')) {
         try {
             $.ajax({
                 type: 'POST',

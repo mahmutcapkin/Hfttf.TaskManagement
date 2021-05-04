@@ -64,7 +64,7 @@ jQueryAjaxPostEducation = form => {
 
 
 jQueryAjaxDeleteEducation = form => {
-    if (confirm('Are you sure to delete this record ?')) {
+    if (confirm('Bu eğitim bilgisini silmek istediğinize emin misiniz ?')) {
         try {
             $.ajax({
                 type: 'POST',

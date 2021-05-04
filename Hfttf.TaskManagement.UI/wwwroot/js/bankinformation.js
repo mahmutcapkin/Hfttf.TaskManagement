@@ -62,7 +62,7 @@ jQueryAjaxPostBankInfo = form => {
 
 
 jQueryAjaxDeleteBankInfo = form => {
-    if (confirm('Are you sure to delete this record ?')) {
+    if (confirm('Bu banka bilgisini silmek istediğinize emin misiniz ?')) {
         try {
             $.ajax({
                 type: 'POST',

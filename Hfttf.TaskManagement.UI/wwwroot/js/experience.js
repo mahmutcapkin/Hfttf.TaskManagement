@@ -64,7 +64,7 @@ jQueryAjaxPostExperience = form => {
 
 
 jQueryAjaxDeleteExperience = form => {
-    if (confirm('Are you sure to delete this record ?')) {
+    if (confirm('Bu deneyim bilgisini silmek istediğinize emin misiniz ?')) {
         try {
             $.ajax({
                 type: 'POST',

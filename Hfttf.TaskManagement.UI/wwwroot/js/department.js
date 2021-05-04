@@ -61,8 +61,8 @@ jQueryAjaxPostDepartment = form => {
 
 
 
-jQueryAjaxDeleteBankInfo = form => {
-    if (confirm('Are you sure to delete this record ?')) {
+jQueryAjaxDeleteDepartment = form => {
+    if (confirm('Bu departmanı silmek istediğinize emin misiniz?')) {
         try {
             $.ajax({
                 type: 'POST',

@@ -30,6 +30,22 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return View(departments);
         }
 
+        public async Task<IActionResult> DepartmentWithUsers(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("AllDepartments");
+            }
+            var departments = await _departmentService.GetDepartmentWithUsersById(id);
+            if (departments == null)
+            {
+                return NotFound();
+            }
+            return View(departments);
+        }
+
+
+
         //GET : ProfileInfo/AddOrEditAddress
         //GET : ProfileInfo/AddOrEditAddress/4
         [HttpGet]
@@ -72,8 +88,16 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditDepartment", departmentUpdate) });
         }
 
-
-
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteDepartment(int id)
+        {
+            var department = await _departmentService.GetByIdAsync(id);
+            var delete = await _departmentService.DeleteAsync(department.Id);
+            var departments = await _departmentService.GetAllAsync();
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllDepartments", departments) });
+        }
 
 
     }

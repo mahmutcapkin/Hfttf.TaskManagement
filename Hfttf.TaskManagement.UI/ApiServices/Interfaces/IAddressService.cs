@@ -11,7 +11,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<AddressResponse> GetByIdAsync(int id);
         Task AddAsync(AddressAdd model);
         Task UpdateAsync(AddressUpdate model);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
         Task<List<AddressResponse>> GetListByUserId(string id);
 
     }

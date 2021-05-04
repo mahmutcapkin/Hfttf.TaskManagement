@@ -54,7 +54,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -63,9 +63,15 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Addresses/{id}");
+               var responseMessage= await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Addresses/Delete/{id}");
 
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
         public async Task<List<AddressResponse>> GetAllAsync()

@@ -67,7 +67,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
         public async Task<List<UserSalaryResponse>> GetAllAsync()
         {
-            throw new NotImplementedException(); var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
             {
                 using var httpClient = new HttpClient();

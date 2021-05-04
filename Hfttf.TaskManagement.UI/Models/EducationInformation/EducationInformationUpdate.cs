@@ -5,6 +5,7 @@ namespace Hfttf.TaskManagement.UI.Models.EducationInformation
 {
     public class EducationInformationUpdate
     {
+        [Required(ErrorMessage = "{0} alanı boş geçilemez...")]
         public int Id { get; set; }
 
         [DisplayName("Okul Adı"), Required(ErrorMessage = "{0} alanı boş geçilemez..."),

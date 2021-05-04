@@ -10,7 +10,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<EducationInformationResponse> GetByIdAsync(int id);
         Task AddAsync(EducationInformationAdd model);
         Task UpdateAsync(EducationInformationUpdate model);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
         Task<List<EducationInformationResponse>> GetListByUserId(string id);
     }
 }

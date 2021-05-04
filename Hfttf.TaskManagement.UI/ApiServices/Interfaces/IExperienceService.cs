@@ -10,7 +10,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<ExperienceResponse> GetByIdAsync(int id);
         Task AddAsync(ExperienceAdd model);
         Task UpdateAsync(ExperienceUpdate model);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
         Task<List<ExperienceResponse>> GetListByUserId(string id);
     }
 }

@@ -10,7 +10,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<DepartmentResponse> GetByIdAsync(int id);      
         Task AddAsync(DepartmentAdd model);
         Task UpdateAsync(DepartmentUpdate model);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
         Task<List<DepartmentResponse>> GetListWithUsers();
         Task<DepartmentResponse> GetDepartmentWithUsersById(int id);
     }

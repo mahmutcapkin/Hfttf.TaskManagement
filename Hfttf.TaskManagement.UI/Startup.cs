@@ -66,7 +66,7 @@ namespace Hfttf.TaskManagement.UI
 
             //#endregion
 
-            services.AddSmidge(Configuration.GetSection("smidge"));
+            //services.AddSmidge(Configuration.GetSection("smidge"));
 
             services.AddHttpContextAccessor();
             services.AddSession();
@@ -117,30 +117,31 @@ namespace Hfttf.TaskManagement.UI
             app.UseAuthorization();
 
 
-            app.UseSmidge(bundle =>
-            {
-                bundle.CreateJs("my-modal-js",
-                    "~/js/bankinformation.js",
-                    "~/js/emergency.js",
-                    "~/js/education.js",
-                    "~/js/department.js",
-                    "~/js/experience.js",
-                    "~/js/site.js",
-                    "~/js/user.js");
+            //app.UseSmidge(bundle =>
+            //{
+            //    bundle.CreateJs("my-modal-js",
+            //        "~/js/bankinformation.js",
+            //        "~/js/emergency.js",
+            //        "~/js/education.js",
+            //        "~/js/department.js",
+            //        "~/js/experience.js",
+            //        "~/js/site.js",
+            //        "~/js/user.js",
+            //        "~/js/department.js");
 
-                //bundle.CreateJs("basic-js",
-                //  "~/vendors/scripts/core.js",
-                //  "~/vendors/scripts/process.js",
-                //  "~/vendors/scripts/layout-settings.js",
-                //  "~/src/plugins/jquery-asColor/dist/jquery-asColor.js",
-                //   "~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js",
-                //  "~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js",
-                //   "~/vendors/scripts/colorpicker.js",
-                //  "~/vendors/scripts/datatable-setting.js",
-                //   "~/vendors/scripts/dashboard.js",
-                //   "~/src/plugins/apexcharts/apexcharts.min.js");
+            //    //bundle.CreateJs("basic-js",
+            //    //  "~/vendors/scripts/core.js",
+            //    //  "~/vendors/scripts/process.js",
+            //    //  "~/vendors/scripts/layout-settings.js",
+            //    //  "~/src/plugins/jquery-asColor/dist/jquery-asColor.js",
+            //    //   "~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js",
+            //    //  "~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js",
+            //    //   "~/vendors/scripts/colorpicker.js",
+            //    //  "~/vendors/scripts/datatable-setting.js",
+            //    //   "~/vendors/scripts/dashboard.js",
+            //    //   "~/src/plugins/apexcharts/apexcharts.min.js");
 
-            });
+            //});
 
 
             app.UseEndpoints(endpoints =>

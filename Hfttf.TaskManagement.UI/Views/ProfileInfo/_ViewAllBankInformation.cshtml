@@ -9,6 +9,10 @@
     {
         <a onclick="showInPopupBankInfo('@Url.Action("AddOrEditBankInformation","ProfileInfo",new {id=bankInformation.Id},Context.Request.Scheme)','Banka Bilgisi Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i>Düzenle</a>
         @*<a href="/ProfileInfo/EditProfile" class="edit-avatar"><i class="icon-copy fa fa-pencil" aria-hidden="true">Düzenle</i></a>*@
+        <form asp-action="DeleteBankInformation" asp-route-id="@bankInformation.Id" onsubmit="return jQueryAjaxDeleteBankInfo(this)" class="d-inline">
+            <input type="hidden" asp-for="@bankInformation.Id" />
+            <input type="submit" value="Sil" class="btn btn-light" />
+        </form>
         <ul class="mb-10 mt-15">
             <li>
                 <span>Banka Adı: </span>

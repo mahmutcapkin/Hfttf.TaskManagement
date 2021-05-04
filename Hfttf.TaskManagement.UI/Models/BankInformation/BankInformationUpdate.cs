@@ -5,6 +5,7 @@ namespace Hfttf.TaskManagement.UI.Models.BankInformation
 {
     public class BankInformationUpdate
     {
+        [Required(ErrorMessage = "{0} alanı boş geçilemez...")]
         public int Id { get; set; }
 
         [DisplayName("Banka Adı"), Required(ErrorMessage = "{0} alanı boş geçilemez..."),

@@ -10,7 +10,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<EmergencyContactInfoResponse> GetByIdAsync(int id);
         Task AddAsync(EmergencyContactInfoAdd model);
         Task UpdateAsync(EmergencyContactInfoUpdate model);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
         Task<List<EmergencyContactInfoResponse>> GetListByUserId(string id);
     }
 }

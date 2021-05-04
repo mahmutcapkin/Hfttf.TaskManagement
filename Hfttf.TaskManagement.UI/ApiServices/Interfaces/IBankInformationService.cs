@@ -10,7 +10,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<BankInformationResponse> GetByIdAsync(int id);
         Task AddAsync(BankInformationAdd model);
         Task UpdateAsync(BankInformationUpdate model);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
         Task<List<BankInformationResponse>> GetListByUserId(string id);
     }
 }

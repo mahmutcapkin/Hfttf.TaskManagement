@@ -64,7 +64,7 @@ jQueryAjaxPostEmergency = form => {
 
 
 jQueryAjaxDeleteEmergency = form => {
-    if (confirm('Are you sure to delete this record ?')) {
+    if (confirm('Bu acil iletişim bilgisini silmek istediğinize emin misiniz ?')) {
         try {
             $.ajax({
                 type: 'POST',
