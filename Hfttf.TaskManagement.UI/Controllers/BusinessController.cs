@@ -2,8 +2,10 @@
 using Hfttf.TaskManagement.UI.Extensions;
 using Hfttf.TaskManagement.UI.Models.Authentication;
 using Hfttf.TaskManagement.UI.Models.Department;
+using Hfttf.TaskManagement.UI.Models.User;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
@@ -41,7 +43,25 @@ namespace Hfttf.TaskManagement.UI.Controllers
             {
                 return NotFound();
             }
-            return View(departments);
+            List<UserDropdownList> list = new List<UserDropdownList>();
+            var users = await _userService.GetAllAsync();
+            foreach (var user in users)
+            {
+                UserDropdownList userDropdownList = new UserDropdownList();
+                userDropdownList.UserId = user.Id;
+                userDropdownList.FullName = user.FirstName + " " + user.LastName;
+                list.Add(userDropdownList);
+            }
+            ViewBag.Users = list;
+            var departmentViewModel = new DepartmentAddUserViewModel
+            {
+                Department = departments,
+                UserUpdate = new UpdateForDepartment
+                {
+                    DepartmentId = id,
+                }
+            };
+            return View(departmentViewModel);
         }
 
 
@@ -97,6 +117,33 @@ namespace Hfttf.TaskManagement.UI.Controllers
             var delete = await _departmentService.DeleteAsync(department.Id);
             var departments = await _departmentService.GetAllAsync();
             return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllDepartments", departments) });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddUserToDepartment(int id ,DepartmentAddUserViewModel model)
+        {
+            ViewBag.Users = await _userService.GetAllAsync();
+            if (ModelState.IsValid)
+            {
+                var department = await _userService.UpdateForDepartmentAsync(model.UserUpdate);
+                return RedirectToAction("DepartmentWithUsers", id);
+            }
+            return RedirectToAction("DepartmentWithUsers", id);
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUserToDepartment(string id, DepartmentAddUserViewModel model)
+        {
+            UpdateForDepartment updateForDepartment = new UpdateForDepartment();
+            updateForDepartment.UserId = id;
+            updateForDepartment.DepartmentId =null;
+
+            var department = await _userService.UpdateForDepartmentAsync(updateForDepartment); 
+            return RedirectToAction("DepartmentWithUsers", model.UserUpdate.DepartmentId);
         }
 
 

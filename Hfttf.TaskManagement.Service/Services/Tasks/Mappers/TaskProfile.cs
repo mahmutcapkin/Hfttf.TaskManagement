@@ -3,6 +3,7 @@ using Hfttf.TaskManagement.Core.Entities;
 using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Tasks.Commands;
 using Hfttf.TaskManagement.Service.Services.Tasks.Responses;
+using Hfttf.TaskManagement.Service.Services.Users.Responses;
 
 namespace Hfttf.TaskManagement.Service.Services.Tasks.Mappers
 {

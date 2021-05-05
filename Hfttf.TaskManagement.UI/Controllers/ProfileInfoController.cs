@@ -61,6 +61,23 @@ namespace Hfttf.TaskManagement.UI.Controllers
             var myProfile = await _userService.GetByIdWithInfo(activeUser.Id);
             return View(myProfile);
         }
+        public async Task<IActionResult> UserProfile(string id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("AllDepartments", "Business");
+            }
+
+            var userProfile = await _userService.GetByIdWithInfo(id);
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+            return View(userProfile);
+        }
+        
+
+
 
         //GET : ProfileInfo/AddOrEditEmergencyContact
         //GET : ProfileInfo/AddOrEditEmergencyContact/4

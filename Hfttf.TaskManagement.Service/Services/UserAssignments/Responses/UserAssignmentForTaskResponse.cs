@@ -1,4 +1,4 @@
-﻿using Hfttf.TaskManagement.Core.ResourceViewModel;
+﻿using Hfttf.TaskManagement.Service.Services.Users.Responses;
 using System;
 
 namespace Hfttf.TaskManagement.Service.Services.UserAssignments.Responses

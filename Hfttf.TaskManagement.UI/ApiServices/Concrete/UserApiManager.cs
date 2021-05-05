@@ -3,7 +3,6 @@ using Hfttf.TaskManagement.UI.Models;
 using Hfttf.TaskManagement.UI.Models.User;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -12,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 {
-    public class UserApiManager:IUserService
+    public class UserApiManager : IUserService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -33,9 +32,9 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 var jsonData = JsonConvert.SerializeObject(model);
 
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-               
+
                 var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Users/Insert", stringContent);
-               
+
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return true;
@@ -166,6 +165,46 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 }
             }
             return null;
+        }
+
+
+        public async Task<bool> UpdateForDepartmentAsync(UpdateForDepartment model)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonData = JsonConvert.SerializeObject(model);
+                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Users/UpdateForDepartment", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
+
+        public async Task<bool> UpdateForJobAsync(UpdateForJob model)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonData = JsonConvert.SerializeObject(model);
+                var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Users/UpdateForJob", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
 
 

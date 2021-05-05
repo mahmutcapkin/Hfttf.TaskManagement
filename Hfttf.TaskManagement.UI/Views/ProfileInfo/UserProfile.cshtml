@@ -1,0 +1,230 @@
+﻿@model UserResponse
+@{
+    Layout = "_Layout";
+}
+
+<div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title">
+                        <h4>Profile</h4>
+                    </div>
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Profil</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+                <div class="pd-20 card-box height-100-p">
+                    <div class="profile-photo">
+                        <img src="~/vendors/images/photo1.jpg" alt="" class="avatar-photo">
+                    </div>
+                    <h5 class="text-center h5 mb-0">@(Model.FirstName+" "+Model.LastName)</h5>
+                    <p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
+                    <div class="profile-info">
+
+                        <h5 class="mb-20 h5 text-blue">
+                            Kişisel Bilgiler 
+                        </h5>
+                        <ul>
+                            <li>
+                                <span>Email:</span>
+                                @Model.Email
+                            </li>
+                            <li>
+                                <span>Kullanıcı Adı:</span>
+                                @Model.UserName
+                            </li>
+                            <li>
+                                <span>Telefon Numarası:</span>
+                                @Model.PhoneNumber
+                            </li>
+                            <li>
+                                <span>Cinsiyet:</span>
+                                @Model.Gender.ToString()
+                            </li>
+                            <li>
+                                <span>Departman:</span>
+                                @Model.Department.Name
+                            </li>
+                            <li>
+                                <span>Meslek:</span>
+                                @Model.Job.Name
+                            </li>
+                            <li>
+                                <span>Doğum Tarihi:</span>
+                                @Model.BirthDate.Value.ToString("MM/dd/yyyy")
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+                <div class="card-box height-100-p overflow-hidden">
+                    <div class="profile-tab height-100-p">
+                        <div class="tab height-100-p">
+                            <ul class="nav nav-tabs customtab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#address" role="tab">Adreslerim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#emergencycontact" role="tab">Acil İletişimlerim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#educationinfo" role="tab">Eğitim Bilgilerim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#bankinformation" role="tab">Banka Bilgilerim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#experience" role="tab">Tecrübelerim</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Timeline Tab start -->
+                                <div class="tab-pane fade show active height-100-p" id="address" role="tabpanel">
+                                    <div class="profile-setting">                                                                         
+                                        @foreach (var address in Model.Addresses)
+                                        {
+                                            <ul class="mb-10 mt-15">
+                                                <li>
+                                                    <span>Şehir: </span>
+                                                    @address.City
+                                                </li>
+                                                <li>
+                                                    <span>Ülke: </span>
+                                                    @address.Country
+                                                </li>
+                                                <li>
+                                                    <span>Posta Kodu: </span>
+                                                    @address.ZipCode
+                                                </li>
+                                                <li>
+                                                    <span>Adres: </span>
+                                                    @address.Description
+                                                </li>
+                                            </ul>
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade height-100-p" id="emergencycontact" role="tabpanel">
+                                    <div class="profile-setting">
+                                        @foreach (var emergency in Model.EmergencyContactInfos)
+                                        {
+                                         
+                                            <ul class="mb-10 mt-15">
+                                                <li>
+                                                    <span>Ad Soyad: </span>
+                                                    @emergency.Name
+                                                </li>
+                                                <li>
+                                                    <span>Telefon Numarası: </span>
+                                                    @emergency.Phone
+                                                </li>
+                                                <li>
+                                                    <span>Yakınlık Durumu: </span>
+                                                    @emergency.RelationShip
+                                                </li>
+                                            </ul>
+                                            <hr />
+                                        }
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade height-100-p" id="educationinfo" role="tabpanel">
+                                    <div class="profile-setting">
+                                       
+                                        @foreach (var educationInformation in Model.EducationInformations)
+                                        {
+                                            <ul class="mb-10 mt-15">
+                                                <li>
+                                                    <span>Okul Adı: </span>
+                                                    @educationInformation.SchoolName
+                                                </li>
+                                                <li>
+                                                    <span>Bölüm: </span>
+                                                    @educationInformation.Section
+                                                </li>
+                                                <li>
+                                                    <span>Başlangıç Tarihi: </span>
+                                                    @educationInformation.StartDate
+                                                </li>
+                                                <li>
+                                                    <span>Bitiş Tarihi: </span>
+                                                    @educationInformation.EndDate
+                                                </li>
+                                            </ul>
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade height-100-p" id="bankinformation" role="tabpanel">
+                                    <div class="profile-setting">                                    
+                                        @foreach (var bankInformation in Model.BankInformations)
+                                        {
+                                            <ul class="mb-10 mt-15">
+                                                <li>
+                                                    <span>Banka Adı: </span>
+                                                    @bankInformation.BankName
+                                                </li>
+                                                <li>
+                                                    <span>Hesap Numarası: </span>
+                                                    @bankInformation.AccountNo
+                                                </li>
+                                                <li>
+                                                    <span>IBAN Numarası: </span>
+                                                    @bankInformation.IBANNo
+                                                </li>
+                                            </ul>
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade height-100-p" id="experience" role="tabpanel">
+                                    <div class="profile-setting">
+
+                                        @foreach (var experience in Model.Experiences)
+                                        {
+                                            <ul class="mb-10 mt-15">
+                                                <li>
+                                                    <span>Firma Adı: </span>
+                                                    @experience.Company
+                                                </li>
+                                                <li>
+                                                    <span>Meslek: </span>
+                                                    @experience.Job
+                                                </li>
+                                                <li>
+                                                    <span>Başlangıç Tarihi: </span>
+                                                    @experience.StartDate
+                                                </li>
+                                                <li>
+                                                    <span>Bitiş Tarihi: </span>
+                                                    @experience.EndDate
+                                                </li>
+                                            </ul>
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/src/scripts/jquery.min.js"></script>
+<script src="~/src/plugins/bootstrap/bootstrap.min.js"></script>
+
+

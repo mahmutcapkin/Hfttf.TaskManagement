@@ -37,7 +37,6 @@
                                 @*<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Sil</a>*@
                                 <form asp-action="DeleteDepartment" asp-route-id="@department.Id" onsubmit="return jQueryAjaxDeleteDepartment(this)" class="d-inline">
                                     <input type="hidden" asp-for="@department.Id" />
-                                    <i class="dw dw-delete-3"></i>
                                     <input type="submit" value="Sil" class="dropdown-item" />
                                 </form>
                             </div>

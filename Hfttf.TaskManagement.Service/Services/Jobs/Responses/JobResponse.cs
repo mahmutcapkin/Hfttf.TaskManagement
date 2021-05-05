@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.Core.ResourceViewModel;
+using Hfttf.TaskManagement.Service.Services.Users.Responses;
 using System.Collections.Generic;
 
 namespace Hfttf.TaskManagement.Service.Services.Jobs.Responses

@@ -1,6 +1,7 @@
 ﻿using Hfttf.TaskManagement.API.Domain.Responses;
 using Hfttf.TaskManagement.Core.Entities;
 using Hfttf.TaskManagement.Core.ResourceViewModel;
+using Hfttf.TaskManagement.Service.Services.Users.Responses;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;

@@ -94,10 +94,28 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
             {
                 user.JobId = request.JobId;
                 user.DepartmentId = request.DepartmentId;
-            }else
-            {
-              
             }
+            else
+            {
+
+            }
+
+            //if (request.JobId == 0)
+            //{
+            //    user.JobId = 0;
+            //}
+
+            //if (request.DepartmentId == 0)
+            //{
+            //    user.DepartmentId = 0;
+            //}
+
+            //if (request.DepartmentId == 0 && request.JobId == 0)
+            //{
+            //    user.JobId = 0;
+            //    user.DepartmentId = 0;
+            //}
+
             IdentityResult result = await _userManager.UpdateAsync(user);
 
             if (result.Succeeded)

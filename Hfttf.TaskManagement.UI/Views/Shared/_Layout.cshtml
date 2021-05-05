@@ -41,18 +41,18 @@
     </script>
 </head>
 <body>
-    <div class="pre-loader">
-        <div class="pre-loader-box">
-            <div class="loader-logo"><img src="~/vendors/images/deskapp-logo.svg" alt=""></div>
-            <div class='loader-progress' id="progress_div">
-                <div class='bar' id='bar1'></div>
+    @*<div class="pre-loader">
+            <div class="pre-loader-box">
+                <div class="loader-logo"><img src="~/vendors/images/deskapp-logo.svg" alt=""></div>
+                <div class='loader-progress' id="progress_div">
+                    <div class='bar' id='bar1'></div>
+                </div>
+                <div class='percent' id='percent1'>0%</div>
+                <div class="loading-text">
+                    Loading...
+                </div>
             </div>
-            <div class='percent' id='percent1'>0%</div>
-            <div class="loading-text">
-                Loading...
-            </div>
-        </div>
-    </div>
+        </div>*@
 
     <div class="header">
         <div class="header-left">
@@ -75,11 +75,11 @@
                             <span class="user-icon">
                                 <img src="~/vendors/images/photo1.jpg" alt="">
                             </span>
-                            <span class="user-name">Ross C. Lopez</span>
+                            <span class="user-name">@(appUser.FirstName+" "+appUser.LastName)</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                            <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                            <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+                            <a class="dropdown-item" href="/ProfileInfo/MyProfile"><i class="dw dw-user1"></i>Profile</a>
+                            <a class="dropdown-item" href="/Account/Logout"><i class="dw dw-logout"></i> Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -286,6 +286,8 @@
     @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("DataTable", required: false)
     @await RenderSectionAsync("ScriptsDate", required: false)
+
+
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>
@@ -296,11 +298,14 @@
     <script src="~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
     <script src="~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
     <script src="~/vendors/scripts/colorpicker.js"></script>
-    <script src="~/vendors/scripts/datatable-setting.js"></script>
+
+
     <script src="~/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
     <script src="~/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendors/scripts/datatable-setting.js"></script>
     <script src="~/vendors/scripts/dashboard.js"></script>
 </body>
 </html>

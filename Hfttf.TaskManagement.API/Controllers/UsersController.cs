@@ -4,6 +4,7 @@ using Hfttf.TaskManagement.Core.Models;
 using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Users.Commands;
 using Hfttf.TaskManagement.Service.Services.Users.Queries;
+using Hfttf.TaskManagement.Service.Services.Users.Responses;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -158,6 +159,41 @@ namespace Hfttf.TaskManagement.API.Controllers
             var response = await _mediator.Send(userDetailWithInfoQuery);
             return Ok(response);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userUpdateForDepartmentCommand"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateForDepartment([FromBody] UserUpdateForDepartmentCommand   userUpdateForDepartmentCommand)
+        {
+            var response = await _mediator.Send(userUpdateForDepartmentCommand);
+            if (response.StatusCode == 400)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userUpdateForJobCommand"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateForJob([FromBody] UserUpdateForJobCommand  userUpdateForJobCommand)
+        {
+            var response = await _mediator.Send(userUpdateForJobCommand);
+            if (response.StatusCode == 400)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
 
         //[HttpPost]
         //public async Task<IActionResult> UploadUserPicture(IFormFile picture)

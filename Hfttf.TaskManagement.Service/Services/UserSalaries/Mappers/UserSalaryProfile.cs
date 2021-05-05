@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Hfttf.TaskManagement.Core.Entities;
 using Hfttf.TaskManagement.Core.ResourceViewModel;
+using Hfttf.TaskManagement.Service.Services.Users.Responses;
 using Hfttf.TaskManagement.Service.Services.UserSalaries.Commands;
 using Hfttf.TaskManagement.Service.Services.UserSalaries.Responses;
 
