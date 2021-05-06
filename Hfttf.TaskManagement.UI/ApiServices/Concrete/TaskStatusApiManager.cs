@@ -21,7 +21,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task AddAsync(TaskStatusAdd model)
+        public async Task<bool> AddAsync(TaskStatusAdd model)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -34,11 +34,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/TaskStatuses/", stringContent);
+                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/TaskStatuses/Insert", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -47,12 +53,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/TaskStatuses/{id}");
-
+               var responseMessage= await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/TaskStatuses/{id}");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
-        public async Task UpdateAsync(TaskStatusUpdate model)
+        public async Task<bool> UpdateAsync(TaskStatusUpdate model)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -61,8 +72,14 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var jsonData = JsonConvert.SerializeObject(model);
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/TaskStatuses", stringContent);
+                var responseMessage = await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/TaskStatuses/Update", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
         public async Task<List<TaskStatusResponse>> GetAllAsync()

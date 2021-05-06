@@ -12,7 +12,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<bool> UpdateAsync(UserUpdate model);
         Task<bool> UpdateForDepartmentAsync(UpdateForDepartment model);
         Task<bool> UpdateForJobAsync(UpdateForJob model);
-        Task DeleteAsync(string id);
+        Task<bool> DeleteAsync(string id);
         Task<UserResponse> GetByIdWithInfo(string id);
         Task<List<UserResponse>> GetListWithInfo(string id);
     }

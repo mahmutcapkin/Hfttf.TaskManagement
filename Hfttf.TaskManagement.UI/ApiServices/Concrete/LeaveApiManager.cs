@@ -21,7 +21,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             _httpContextAccessor = httpContextAccessor;;
         }
 
-        public async Task AddAsync(LeaveAdd model)
+        public async Task<bool> AddAsync(LeaveAdd model)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -34,11 +34,17 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Leaves/", stringContent);
+                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Leaves/Insert", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -47,11 +53,16 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Leaves/{id}");
-
+                var responseMessage=await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Leaves/{id}");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
-        public async Task UpdateAsync(LeaveUpdate model)
+        public async Task<bool> UpdateAsync(LeaveUpdate model)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -60,8 +71,14 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var jsonData = JsonConvert.SerializeObject(model);
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Leaves", stringContent);
+                var responseMessage = await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Leaves/Update", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
         public async Task<List<LeaveResponse>> GetAllAsync()

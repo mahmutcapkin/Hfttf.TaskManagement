@@ -8,9 +8,9 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
     {
         Task<List<LeaveResponse>> GetAllAsync();
         Task<LeaveResponse> GetByIdAsync(int id);
-        Task AddAsync(LeaveAdd model);
-        Task UpdateAsync(LeaveUpdate model);
-        Task DeleteAsync(int id);
+        Task<bool> AddAsync(LeaveAdd model);
+        Task<bool> UpdateAsync(LeaveUpdate model);
+        Task<bool> DeleteAsync(int id);
         Task<List<LeaveResponse>> GetListByUserId(string id);
     }
 }
