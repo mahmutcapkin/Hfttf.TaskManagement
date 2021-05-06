@@ -61,7 +61,7 @@ namespace Hfttf.TaskManagement.UI.CustomFilters
             {
                 return true;
             }
-            context.Result = new RedirectToActionResult("SignIn", "Account", null);
+            context.Result = new RedirectToActionResult("Login", "Account", null);
             return false;
         }
 

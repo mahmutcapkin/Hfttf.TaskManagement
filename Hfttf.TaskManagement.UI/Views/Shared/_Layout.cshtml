@@ -57,9 +57,10 @@
     <div class="header">
         <div class="header-left">
             <div class="menu-icon dw dw-menu"></div>
-            <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+            @*<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>*@
         </div>
         <div class="header-right">
+           
             <div class="dashboard-setting user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
@@ -67,7 +68,7 @@
                     </a>
                 </div>
             </div>
-            @if (appUser.Roles.Contains("Admin"))
+            @if (appUser.Roles.Contains("User"))
             {
                 <div class="user-info-dropdown">
                     <div class="dropdown">
@@ -167,7 +168,7 @@
             <a href="index.html">
                 <img src="~/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
                 <img src="~/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
-            </a>
+            </a> 
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
             </div>
@@ -193,6 +194,18 @@
                         <a href="/Business/AllJobs" class="dropdown-toggle no-arrow">
                             <span class="micon fa fa-drivers-license-o"></span><span class="mtext">Meslek</span>
                         </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-calendar-6"></span><span class="mtext">İzin İşlemleri</span>
+                        </a>
+                        <ul class="submenu">
+                            @if (appUser.Roles.Contains("Admin"))
+                            {
+                                <li><a href="/Business/AllLeaveList">İzinler</a></li>
+                            }
+                            <li><a href="/UserOperation/LeaveListForUser">İzinlerim</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="calendar.html" class="dropdown-toggle no-arrow">
@@ -298,7 +311,6 @@
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>
     <script src="~/vendors/scripts/layout-settings.js"></script>
-    <script src="~/src/plugins/air-datepicker/dist/js/datepicker.min.js"></script>
     <script src="~/src/plugins/apexcharts/apexcharts.min.js"></script>
     <script src="~/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
     <script src="~/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>

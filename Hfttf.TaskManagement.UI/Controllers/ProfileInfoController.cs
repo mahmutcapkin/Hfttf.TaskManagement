@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
 {
+    [JwtAuthorize(Roles = "Admin,User")]
     public class ProfileInfoController : Controller
     {
         private readonly IAddressService _addressService;

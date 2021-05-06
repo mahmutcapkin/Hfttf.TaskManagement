@@ -34,7 +34,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Roles/", stringContent);
+                var responseMessage = await httpClient.PostAsync("http://localhost:5000/api/TaskManagementApi/Roles/Insert", stringContent);
             }
         }
 
@@ -47,7 +47,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Roles/{id}");
+                await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Roles/Delete{id}");
 
             }
         }
@@ -61,7 +61,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var jsonData = JsonConvert.SerializeObject(model);
                 var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Roles", stringContent);
+                await httpClient.PutAsync("http://localhost:5000/api/TaskManagementApi/Roles/Update", stringContent);
             }
         }
 

@@ -63,7 +63,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/Users/ActiveUser");
         }
 
-        public void LogOut()
+        public async Task LogOut()
         {
             _httpContextAccessor.HttpContext.Session.Remove("token");
             _httpContextAccessor.HttpContext.Session.Remove("activeUser");

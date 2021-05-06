@@ -60,5 +60,21 @@ namespace Hfttf.TaskManagement.UI.Controllers
             }
             return View(signUpViewModel);
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _authService.LogOut();
+            return RedirectToAction("Login","Account");
+        }
+
+        public  IActionResult AccessDenied()
+        {      
+            return View();
+        }
+        public IActionResult ApiError()
+        {
+            return View();
+        }
+        
     }
 }

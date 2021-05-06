@@ -24,6 +24,7 @@ namespace Hfttf.TaskManagement.Service.Services.Leaves.Handlers
             leave.UpdatedDate = DateTime.Now;
             var LeaveGetById = await _leaveRepository.GetByIdAsync(request.Id);
             leave.CreatedDate = LeaveGetById.CreatedDate;
+            leave.CreateBy = LeaveGetById.CreateBy;
             TimeSpan dayDifference = (leave.EndDate - leave.StartDate);
             leave.NumberOfDay = dayDifference.TotalDays.ToString();
             var response = await _leaveRepository.UpdateAsync(leave);

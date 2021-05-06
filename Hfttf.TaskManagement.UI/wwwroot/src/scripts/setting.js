@@ -124,6 +124,8 @@ jQuery(document).ready(function(){
 		$('.left-side-bar').toggleClass('open');
 		$('.mobile-menu-overlay').toggleClass('show');
 	});
+
+
 	$('[data-toggle="header_search"]').on('click', function() {
 		jQuery('.header-search').slideToggle();
 	});

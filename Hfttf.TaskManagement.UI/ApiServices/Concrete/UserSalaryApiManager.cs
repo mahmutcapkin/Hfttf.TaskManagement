@@ -53,7 +53,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/UserSalaries/{id}");
+                var responseMessage = await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/UserSalaries/Delete/{id}");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return true;

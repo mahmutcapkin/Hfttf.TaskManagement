@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Hfttf.TaskManagement.UI.CustomFilters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hfttf.TaskManagement.UI.Controllers
 {
+    [JwtAuthorize]
     public class UserTaskController : Controller
     {
         public IActionResult Index()

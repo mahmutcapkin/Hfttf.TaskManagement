@@ -53,7 +53,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage=await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Users/{id}");
+                var responseMessage=await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Users/Delete/{id}");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return true;
@@ -212,6 +212,18 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return false;
         }
 
-
+        public async Task<List<UserDropdownList>> GetListForDropdown()
+        {
+            List<UserDropdownList> list = new List<UserDropdownList>();
+            var users = await GetAllAsync();
+            foreach (var user in users)
+            {
+                UserDropdownList userDropdownList = new UserDropdownList();
+                userDropdownList.UserId = user.Id;
+                userDropdownList.FullName = user.FirstName + " " + user.LastName;
+                list.Add(userDropdownList);
+            }
+            return list;
+        }
     }
 }

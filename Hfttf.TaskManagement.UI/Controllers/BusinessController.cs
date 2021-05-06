@@ -1,8 +1,10 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
+using Hfttf.TaskManagement.UI.CustomFilters;
 using Hfttf.TaskManagement.UI.Extensions;
 using Hfttf.TaskManagement.UI.Models.Authentication;
 using Hfttf.TaskManagement.UI.Models.Department;
 using Hfttf.TaskManagement.UI.Models.Job;
+using Hfttf.TaskManagement.UI.Models.Leave;
 using Hfttf.TaskManagement.UI.Models.User;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
@@ -11,19 +13,23 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
 {
+    [JwtAuthorize]
     public class BusinessController : Controller
     {
         private readonly IDepartmentService _departmentService;
         private readonly IJobService _jobService;
         private readonly IUserService _userService;
+        private readonly ILeaveService _leaveService;
         public BusinessController(
             IDepartmentService departmentService,
             IJobService jobService,
-            IUserService userService)
+            IUserService userService,
+            ILeaveService leaveService)
         {
             _userService = userService;
             _departmentService = departmentService;
             _jobService = jobService;
+            _leaveService = leaveService;
         }
 
         public async Task<IActionResult> AllDepartments()
@@ -44,16 +50,17 @@ namespace Hfttf.TaskManagement.UI.Controllers
             {
                 return NotFound();
             }
-            List<UserDropdownList> list = new List<UserDropdownList>();
-            var users = await _userService.GetAllAsync();
-            foreach (var user in users)
-            {
-                UserDropdownList userDropdownList = new UserDropdownList();
-                userDropdownList.UserId = user.Id;
-                userDropdownList.FullName = user.FirstName + " " + user.LastName;
-                list.Add(userDropdownList);
-            }
-            ViewBag.Users = list;
+            //List<UserDropdownList> list = new List<UserDropdownList>();
+            //var users = await _userService.GetAllAsync();
+            //foreach (var user in users)
+            //{
+            //    UserDropdownList userDropdownList = new UserDropdownList();
+            //    userDropdownList.UserId = user.Id;
+            //    userDropdownList.FullName = user.FirstName + " " + user.LastName;
+            //    list.Add(userDropdownList);
+            //}
+            //ViewBag.Users = list;
+            ViewBag.Users = await _userService.GetListForDropdown();
             var departmentViewModel = new DepartmentAddUserViewModel
             {
                 Department = departments,
@@ -88,7 +95,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditDepartment(int id, DepartmentUpdate  departmentUpdate)
+        public async Task<IActionResult> AddOrEditDepartment(int id, DepartmentUpdate departmentUpdate)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +116,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEditDepartment", departmentUpdate) });
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteDepartment(int id)
@@ -122,7 +129,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUserToDepartment(int id ,DepartmentAddUserViewModel model)
+        public async Task<IActionResult> AddUserToDepartment(int id, DepartmentAddUserViewModel model)
         {
             ViewBag.Users = await _userService.GetAllAsync();
             if (ModelState.IsValid)
@@ -141,9 +148,9 @@ namespace Hfttf.TaskManagement.UI.Controllers
         {
             UpdateForDepartment updateForDepartment = new UpdateForDepartment();
             updateForDepartment.UserId = id;
-            updateForDepartment.DepartmentId =null;
+            updateForDepartment.DepartmentId = null;
 
-            var department = await _userService.UpdateForDepartmentAsync(updateForDepartment); 
+            var department = await _userService.UpdateForDepartmentAsync(updateForDepartment);
             return RedirectToAction("DepartmentWithUsers", model.UserUpdate.DepartmentId);
         }
 
@@ -167,16 +174,17 @@ namespace Hfttf.TaskManagement.UI.Controllers
             {
                 return NotFound();
             }
-            List<UserDropdownList> list = new List<UserDropdownList>();
-            var users = await _userService.GetAllAsync();
-            foreach (var user in users)
-            {
-                UserDropdownList userDropdownList = new UserDropdownList();
-                userDropdownList.UserId = user.Id;
-                userDropdownList.FullName = user.FirstName + " " + user.LastName;
-                list.Add(userDropdownList);
-            }
-            ViewBag.Users = list;
+            //List<UserDropdownList> list = new List<UserDropdownList>();
+            //var users = await _userService.GetAllAsync();
+            //foreach (var user in users)
+            //{
+            //    UserDropdownList userDropdownList = new UserDropdownList();
+            //    userDropdownList.UserId = user.Id;
+            //    userDropdownList.FullName = user.FirstName + " " + user.LastName;
+            //    list.Add(userDropdownList);
+            //}
+            //ViewBag.Users = list;
+            ViewBag.Users = await _userService.GetListForDropdown();
             var jobAddUserViewModel = new JobAddUserViewModel
             {
                 Job = jobs,
@@ -269,6 +277,117 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return RedirectToAction("JobWithUsers", model.UserUpdate.JobId);
         }
 
+
+        public async Task<IActionResult> AllLeaveList()
+        {
+            var leaves = await _leaveService.GetAllAsync();
+            return View(leaves);
+        }
+
+        public async Task<IActionResult> LeavesForUser(string id)
+        {
+            var leaves = await _leaveService.GetListByUserId(id);
+            return View(leaves);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> InsertLeave()
+        {
+            //List<UserDropdownList> list = new List<UserDropdownList>();
+            //var users = await _userService.GetAllAsync();
+            //foreach (var user in users)
+            //{
+            //    UserDropdownList userDropdownList = new UserDropdownList();
+            //    userDropdownList.UserId = user.Id;
+            //    userDropdownList.FullName = user.FirstName + " " + user.LastName;
+            //    list.Add(userDropdownList);
+            //}
+            ViewBag.Users = await _userService.GetListForDropdown();
+            return View(new LeaveAdd());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertLeave(LeaveAdd leaveAdd)
+        {
+            //List<UserDropdownList> list = new List<UserDropdownList>();
+            //var users = await _userService.GetAllAsync();
+            //foreach (var user in users)
+            //{
+            //    UserDropdownList userDropdownList = new UserDropdownList();
+            //    userDropdownList.UserId = user.Id;
+            //    userDropdownList.FullName = user.FirstName + " " + user.LastName;
+            //    list.Add(userDropdownList);
+            //}
+            ViewBag.Users = await _userService.GetListForDropdown();
+            if (ModelState.IsValid)
+            {
+                var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+                leaveAdd.CreateBy = activeUser.FirstName + " " + activeUser.LastName;
+                var isUpdate = await _leaveService.AddAsync(leaveAdd);
+                return RedirectToAction("LeavesForUser","Business", leaveAdd.ApplicationUserId);
+            }
+            return View(leaveAdd);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditLeave(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var model = await _leaveService.GetByIdAsync((int)id);
+            //List<UserDropdownList> list = new List<UserDropdownList>();
+            //var users = await _userService.GetAllAsync();
+            //foreach (var user in users)
+            //{
+            //    UserDropdownList userDropdownList = new UserDropdownList();
+            //    userDropdownList.UserId = user.Id;
+            //    userDropdownList.FullName = user.FirstName + " " + user.LastName;
+            //    list.Add(userDropdownList);
+            //}
+            ViewBag.Users = await _userService.GetListForDropdown();
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model.Adapt<LeaveUpdate>());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditLeave(int id,LeaveUpdate leaveUpdate)
+        {
+            //List<UserDropdownList> list = new List<UserDropdownList>();
+            //var users = await _userService.GetAllAsync();
+            //foreach (var user in users)
+            //{
+            //    UserDropdownList userDropdownList = new UserDropdownList();
+            //    userDropdownList.UserId = user.Id;
+            //    userDropdownList.FullName = user.FirstName + " " + user.LastName;
+            //    list.Add(userDropdownList);
+            //}
+            ViewBag.Users = await _userService.GetListForDropdown();
+
+            if (ModelState.IsValid)
+            {
+                var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+                leaveUpdate.UpdateBy = activeUser.FirstName + " " + activeUser.LastName;
+                var isUpdate = await _leaveService.UpdateAsync(leaveUpdate);
+                return RedirectToAction("LeavesForUser", "Business", leaveUpdate.ApplicationUserId);
+
+            }
+            ModelState.AddModelError("", "İzin güncelleme işlemi gerçekleştirilemedi");
+            return View(leaveUpdate);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteLeave(int id)
+        {
+            var entity = await _leaveService.DeleteAsync(id);
+            return RedirectToAction("AllLeaveList");
+        }
 
 
     }

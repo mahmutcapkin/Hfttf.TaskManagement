@@ -15,5 +15,6 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<bool> DeleteAsync(string id);
         Task<UserResponse> GetByIdWithInfo(string id);
         Task<List<UserResponse>> GetListWithInfo(string id);
+        Task<List<UserDropdownList>> GetListForDropdown();
     }
 }

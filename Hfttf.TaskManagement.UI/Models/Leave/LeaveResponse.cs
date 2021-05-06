@@ -2,7 +2,7 @@
 using Hfttf.TaskManagement.UI.Models.User;
 using System;
 
-namespace Hfttf.TaskManagement.UI.Models.Holiday
+namespace Hfttf.TaskManagement.UI.Models.Leave
 {
     public class LeaveResponse
     {

@@ -1,6 +1,6 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
 using Hfttf.TaskManagement.UI.Models;
-using Hfttf.TaskManagement.UI.Models.Holiday;
+using Hfttf.TaskManagement.UI.Models.Leave;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -53,7 +53,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage=await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Leaves/{id}");
+                var responseMessage=await httpClient.DeleteAsync($"http://localhost:5000/api/TaskManagementApi/Leaves/Delete/{id}");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return true;

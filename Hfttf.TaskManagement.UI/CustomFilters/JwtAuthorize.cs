@@ -23,12 +23,14 @@ namespace Hfttf.TaskManagement.UI.CustomFilters
                 else if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     context.HttpContext.Session.Remove("token");
+                    context.HttpContext.Session.Remove("activeUser");
                     context.Result = new RedirectToActionResult("Login", "Account", null);
                 }
                 else
                 {
                     var statusCode = responseMessage.StatusCode.ToString();
                     context.HttpContext.Session.Remove("token");
+                    context.HttpContext.Session.Remove("activeUser");
                     context.Result = new RedirectToActionResult("ApiError", "Account", new { code = statusCode });
 
                 }
