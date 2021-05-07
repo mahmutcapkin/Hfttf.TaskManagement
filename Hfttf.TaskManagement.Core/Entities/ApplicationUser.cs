@@ -10,6 +10,7 @@ namespace Hfttf.TaskManagement.Core.Entities
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }
         public Gender Gender { get; set; }
+        public string PictureUrl { get; set; }
         public int? DepartmentId { get; set; }
         public Department Department { get; set; }
         public int? JobId { get; set; }

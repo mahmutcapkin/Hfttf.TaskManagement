@@ -1,45 +1,89 @@
 ﻿@model Hfttf.TaskManagement.UI.Models.User.UserResponse
 
+<h5 class="text-center h5 mb-0">@(Model.FirstName+" "+Model.LastName)</h5>
+@*<p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>*@
+
+<div class="profile-info">
     <div class="profile-photo">
-        <img src="~/vendors/images/photo1.jpg" alt="" class="avatar-photo">
-    </div>
+        <a href="modal" data-toggle="modal" data-target="#picture-modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
+        @if (Model.PictureUrl != null)
+        {   
+          
+                <img src="@Model.PictureUrl" alt="" class="avatar-photo" width="160" height="160">
+        }
+        else
+        {   
+           
+                <img src="~/vendors/images/photo1.jpg" class="avatar-photo">
+        }
 
-        <h5 class="text-center h5 mb-0">@(Model.FirstName+" "+Model.LastName)</h5>
-        <p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
-        <div class="profile-info">
 
-            <h5 class="mb-20 h5 text-blue">
-                Kişisel Bilgiler
-                <a onclick="showInPopupUser('@Url.Action("EditProfile","ProfileInfo",new {id=Model.Id},Context.Request.Scheme)','Profil Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i></a>
-            </h5>
-            <ul>
-                <li>
-                    <span>Email:</span>
-                    @Model.Email
-                </li>
-                <li>
-                    <span>Kullanıcı Adı:</span>
-                    @Model.UserName
-                </li>
-                <li>
-                    <span>Telefon Numarası:</span>
-                    @Model.PhoneNumber
-                </li>
-                <li>
-                    <span>Cinsiyet:</span>
-                    @Model.Gender.ToString()
-                </li>
-                <li>
-                    <span>Departman:</span>
-                    @Model.Department.Name
-                </li>
-                <li>
-                    <span>Meslek:</span>
-                    @Model.Job.Name
-                </li>
-                <li>
-                    <span>Doğum Tarihi:</span>
-                    @Model.BirthDate.Value.ToString("MM/dd/yyyy")
-                </li>
-            </ul>
+    <div class="modal" tabindex="-1" role="dialog" id="picture-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" asp-action="UploadUserPicture" asp-controller="ProfileInfo" asp-route-id="@Model.Id">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="ProfilePicture" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="ProfilePicture" class="custom-file-input" id="customFile" accept="image/*">
+                                <label class="custom-file-label" for="customFile">Dosya Seç</label>
+                            </div>
+                            <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Kaydet" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
+    </div>
+</div>
+    <h5 class="mb-20 h5 text-blue">
+        Kişisel Bilgiler
+        <a onclick="showInPopupUser('@Url.Action("EditProfile","ProfileInfo",new {id=Model.Id},Context.Request.Scheme)','Profil Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i></a>
+    </h5>
+    <ul>
+        <li>
+            <span>Email:</span>
+            @Model.Email
+        </li>
+        <li>
+            <span>Kullanıcı Adı:</span>
+            @Model.UserName
+        </li>
+        <li>
+            <span>Telefon Numarası:</span>
+            @Model.PhoneNumber
+        </li>
+        <li>
+            <span>Cinsiyet:</span>
+            @Model.Gender.ToString()
+        </li>
+        <li>
+            <span>Departman:</span>
+            @Model.Department.Name
+        </li>
+        <li>
+            <span>Meslek:</span>
+            @Model.Job.Name
+        </li>
+        <li>
+            <span>Doğum Tarihi:</span>
+            @Model.BirthDate.Value.ToString("MM/dd/yyyy")
+        </li>
+    </ul>
+</div>
+<div class="profile-photo">
+   
+</div>

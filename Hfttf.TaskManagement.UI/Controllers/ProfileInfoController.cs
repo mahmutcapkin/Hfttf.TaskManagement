@@ -11,10 +11,12 @@ using Hfttf.TaskManagement.UI.Models.EmergencyContactInfo;
 using Hfttf.TaskManagement.UI.Models.Experience;
 using Hfttf.TaskManagement.UI.Models.User;
 using Mapster;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,6 +33,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
         private readonly IEmergencyContactInfoService _emergencyContactInfoService;
         private readonly IDepartmentService _departmentService;
         private readonly IJobService _jobService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         public ProfileInfoController(
             IAddressService addressService, 
             IUserService userService,
@@ -39,7 +42,8 @@ namespace Hfttf.TaskManagement.UI.Controllers
             IBankInformationService bankInformationService,
             IExperienceService experienceService,
             IDepartmentService departmentService,
-            IJobService jobService)
+            IJobService jobService,
+             IWebHostEnvironment webHostEnvironment)
         {
             _addressService = addressService;
             _userService = userService;
@@ -49,6 +53,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
             _educationInfoService = educationInfoService;
             _departmentService = departmentService;
             _jobService = jobService;
+            _webHostEnvironment = webHostEnvironment;
         }
         //protected AppUser CurrentUser => userManager.FindByNameAsync(User.Identity.Name).Result;
 
@@ -76,9 +81,37 @@ namespace Hfttf.TaskManagement.UI.Controllers
             }
             return View(userProfile);
         }
-        
 
+        [HttpPost]
+        public async Task<IActionResult> UploadUserPicture(string id,UserResponse userResponse)
+        {
+            var user = await _userService.GetByIdAsync(id);
+            var userUpdate = user.Adapt<UserUpdate>();
+            userUpdate.ProfilePicture = userResponse.ProfilePicture;
+            if (user == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                if (userResponse.ProfilePicture != null)
+                {
+                    string folder = "userImage/user/";
+                    folder += Guid.NewGuid().ToString() + "_" + userUpdate.ProfilePicture.FileName;
+                    userUpdate.PictureUrl = "/"+folder;
+                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
 
+                    await userUpdate.ProfilePicture.CopyToAsync(new FileStream(serverFolder, FileMode.Create));     
+                }
+                var addPhoto = await _userService.UpdateAsync(userUpdate);
+                if (addPhoto)
+                {
+                    return RedirectToAction("MyProfile");
+                }
+            }
+            ModelState.AddModelError("", "Profil fotoğrafı yüklenemedi");
+            return RedirectToAction("MyProfile");
+        }
 
         //GET : ProfileInfo/AddOrEditEmergencyContact
         //GET : ProfileInfo/AddOrEditEmergencyContact/4

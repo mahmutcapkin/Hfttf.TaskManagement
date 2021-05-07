@@ -80,6 +80,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
             user.Gender = request.Gender;
             user.Email = request.Email;
             user.PhoneNumber = request.PhoneNumber;
+            user.PictureUrl = request.PictureUrl;
             if (request.JobId != 0)
             {
                 user.JobId = request.JobId;

@@ -47,9 +47,10 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Responses
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string LastName { get; set; }   
         public DateTime? BirthDate { get; set; }
         public Gender Gender { get; set; }
+        public string PictureUrl { get; set; }
         public int? DepartmentId { get; set; }
         public int? JobId { get; set; }
         public JobForUserResponse Job { get; set; }

@@ -11,6 +11,7 @@ using Hfttf.TaskManagement.UI.Models.Leave;
 using Hfttf.TaskManagement.UI.Models.Project;
 using Hfttf.TaskManagement.UI.Models.UserAssignment;
 using Hfttf.TaskManagement.UI.Models.UserSalary;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,6 +32,11 @@ namespace Hfttf.TaskManagement.UI.Models.User
         [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
         public GenderType Gender { get; set; }
+        public string PictureUrl { get; set; }
+
+        [Display(Name = "Profil Fotoğrafı"), 
+        Required(ErrorMessage = "{0} alanı boş geçilemez...")] 
+        public IFormFile ProfilePicture { get; set; }
         public int? DepartmentId { get; set; }
         public int? JobId { get; set; }
         public JobForUserResponse Job { get; set; }

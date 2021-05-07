@@ -70,6 +70,7 @@ namespace Hfttf.TaskManagement.API.Services
             userWithRolesResponse.PhoneNumber = user.PhoneNumber;
             userWithRolesResponse.UserName = user.UserName;
             userWithRolesResponse.Gender = user.Gender;
+            userWithRolesResponse.PictureUrl = user.PictureUrl;
             userWithRolesResponse.BirthDate = user.BirthDate;
             userWithRolesResponse.Roles = roles.ToList();
 

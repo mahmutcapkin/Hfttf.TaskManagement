@@ -13,6 +13,7 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Responses
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public Gender Gender { get; set; }
+        public string PictureUrl { get; set; }
         public int? DepartmentId { get; set; }
         public int? JobId { get; set; }
         //public Job Job { get; set; }

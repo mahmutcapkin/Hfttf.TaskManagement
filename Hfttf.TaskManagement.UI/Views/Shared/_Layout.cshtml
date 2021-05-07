@@ -74,7 +74,14 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                             <span class="user-icon">
-                                <img src="~/vendors/images/photo1.jpg" alt="">
+                                @if (appUser.PictureUrl != null)
+                                {
+                                    <img src="@appUser.PictureUrl" alt="" width="52" height="52">
+                                }
+                                else
+                                {
+                                    <img src="~/vendors/images/photo1.jpg">
+                                }
                             </span>
                             <span class="user-name">@(appUser.FirstName+" "+appUser.LastName)</span>
                         </a>

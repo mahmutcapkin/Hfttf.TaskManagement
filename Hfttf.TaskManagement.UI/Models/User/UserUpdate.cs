@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.UI.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -32,6 +33,12 @@ namespace Hfttf.TaskManagement.UI.Models.User
         [EnumDataType(typeof(GenderType))]
         [DisplayName("Cinsiyet")]
         public GenderType Gender { get; set; }
+
+        [DisplayName("Profil Resmi")]
+        public string PictureUrl { get; set; }
+
+        [Display(Name = "Profil Fotoğrafı seçiniz")]
+        public IFormFile ProfilePicture { get; set; }
 
         [DisplayName("Departman")]
         public int? DepartmentId { get; set; }
