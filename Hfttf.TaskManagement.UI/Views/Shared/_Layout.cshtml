@@ -18,12 +18,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/core.css">
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="~/src/plugins/cropperjs/dist/cropper.css">
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
- 
+
     <link rel="stylesheet" type="text/css" href="~/src/plugins/jquery-asColorPicker/dist/css/asColorPicker.css">
     <link href="~/src/plugins/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css">
@@ -60,7 +61,7 @@
             @*<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>*@
         </div>
         <div class="header-right">
-           
+
             <div class="dashboard-setting user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
@@ -86,8 +87,14 @@
                             <span class="user-name">@(appUser.FirstName+" "+appUser.LastName)</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                            <a class="dropdown-item" href="/ProfileInfo/MyProfile"><i class="dw dw-user1"></i>Profile</a>
-                            <a class="dropdown-item" href="/Account/Logout"><i class="dw dw-logout"></i> Log Out</a>
+                            <a class="dropdown-item" href="/ProfileInfo/MyProfile"><i class="dw dw-user1"></i>Profilim</a>
+                            <a class="dropdown-item" href="@Url.Action("DeleteProfile","ProfileInfo")" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz?');">
+                                <i class="dw dw-delete"></i>
+                                Profili Sil
+                            </a>
+                            <a class="dropdown-item" href="/Account/Logout"><i class="dw dw-logout"></i> Çıkış Yap</a>
+
+
                         </div>
                     </div>
                 </div>
@@ -175,7 +182,7 @@
             <a href="index.html">
                 <img src="~/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
                 <img src="~/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
-            </a> 
+            </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
             </div>
@@ -195,6 +202,11 @@
                     <li>
                         <a href="/Business/AllDepartments" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-diagram"></span><span class="mtext">Departman</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Business/AllStaffs" class="dropdown-toggle no-arrow">
+                            <span class="micon fa fa-users"></span><span class="mtext">Personel İşlemleri</span>
                         </a>
                     </li>
                     <li>
@@ -311,9 +323,6 @@
     <script src="~/js/job.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("DataTable", required: false)
-    @await RenderSectionAsync("ScriptsDate", required: false)
-
-
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>
@@ -324,6 +333,14 @@
     <script src="~/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
     <script src="~/vendors/scripts/colorpicker.js"></script>
 
+
+    <script src="~/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="~/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/src/plugins/datatables/js/buttons.print.min.js"></script>
+    <script src="~/src/plugins/datatables/js/buttons.html5.min.js"></script>
+    <script src="~/src/plugins/datatables/js/buttons.flash.min.js"></script>
+    <script src="~/src/plugins/datatables/js/pdfmake.min.js"></script>
+    <script src="~/src/plugins/datatables/js/vfs_fonts.js"></script>
 
     <script src="~/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>

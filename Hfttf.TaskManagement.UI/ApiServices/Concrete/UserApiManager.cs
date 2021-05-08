@@ -149,7 +149,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return null;
         }
 
-        public async Task<List<UserResponse>> GetListWithInfo(string id)
+        public async Task<List<UserResponse>> GetListWithInfo()
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))

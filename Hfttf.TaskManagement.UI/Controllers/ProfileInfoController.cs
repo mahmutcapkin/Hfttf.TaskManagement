@@ -139,6 +139,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
             if (ModelState.IsValid)
             {
                 var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+
                 //Update
                 if(!(await _userService.UpdateAsync(userUpdate)))
                 {
@@ -151,8 +152,24 @@ namespace Hfttf.TaskManagement.UI.Controllers
                 //return RedirectToAction("MyProfile");
                 return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAllUser", myProfile) });
             }
-            return Json(new { isValid = false, adres = Helper.RenderRazorViewToString(this, "EditProfile", userUpdate) });
+            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "EditProfile", userUpdate) });
         }
+
+        public async Task<IActionResult> DeleteProfile()
+        {
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var user = await _userService.DeleteAsync(activeUser.Id);
+            if (user)
+            {
+                return RedirectToAction("Logout","Account");
+            }
+
+            return View("MyProfile");
+        }
+        
+
+
+
 
         //GET : ProfileInfo/AddOrEditAddress
         //GET : ProfileInfo/AddOrEditAddress/4

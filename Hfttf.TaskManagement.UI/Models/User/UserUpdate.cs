@@ -20,11 +20,11 @@ namespace Hfttf.TaskManagement.UI.Models.User
         public string Email { get; set; }
 
         [DisplayName("Ad"), Required(ErrorMessage = "{0} alanı boş geçilemez..."),
-     StringLength(50, ErrorMessage = "{0} max. {1} karakter olmalı")]
+     StringLength(25, ErrorMessage = "{0} max. {1} karakter olmalı")]
         public string FirstName { get; set; }
 
         [DisplayName("Soyad"), Required(ErrorMessage = "{0} alanı boş geçilemez..."),
-     StringLength(50, ErrorMessage = "{0} max. {1} karakter olmalı")]
+     StringLength(25, ErrorMessage = "{0} max. {1} karakter olmalı")]
         public string LastName { get; set; }
 
         [DisplayName("Doğum Tarihi")]
@@ -37,7 +37,7 @@ namespace Hfttf.TaskManagement.UI.Models.User
         [DisplayName("Profil Resmi")]
         public string PictureUrl { get; set; }
 
-        [Display(Name = "Profil Fotoğrafı seçiniz")]
+        [Display(Name = "Profil Fotoğrafı")]
         public IFormFile ProfilePicture { get; set; }
 
         [DisplayName("Departman")]

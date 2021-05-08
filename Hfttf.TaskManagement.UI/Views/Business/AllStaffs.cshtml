@@ -1,0 +1,159 @@
+﻿@model List<UserResponse>
+@{
+    ViewData["Title"] = "AllStaffs";
+}
+
+
+<div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title">
+                        <h4>Personeller</h4>
+                    </div>
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Personeller</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="card-box height-100-p overflow-hidden">
+            <div class="profile-tab height-100-p">
+                <div class="tab height-100-p">
+                    <ul class="nav nav-tabs customtab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#staffTable" role="tab">Personel Tablosu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#staffProfile" role="tab">Personel Profil</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- Timeline Tab start -->
+                        <div class="tab-pane fade show active" id="staffTable" role="tabpanel">
+                            <div class="pd-20">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="text-blue h4">Personeller</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a   href="/Business/InsertStaff" class="btn btn-light"><i class="fa fa-plus"></i>Kullanıcı Ekle</a>
+                                    </div>
+                                </div>
+                                <div class="profile-setting">
+                                    <table class="table hover multiple-select-row data-table-export nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="table-plus datatable-nosort">Ad Soyad</th>
+                                                <th>Telefon Numarası</th>
+                                                <th>Email</th>
+                                                <th>Meslek</th>
+                                                <th>Departman</th>
+                                                <th class="datatable-nosort">İşlemler</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var user in Model)
+                                            {
+                                                <tr>
+                                                    <td class="table-plus">@(user.FirstName+" "+user.LastName)</td>
+                                                    <td>@user.PhoneNumber</td>
+                                                    <td>@user.Email</td>
+                                                    @if (user.Job == null)
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@user.Job.Name</td>
+                                                    }
+
+                                                    @if (user.Department == null)
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@user.Department.Name</td>
+                                                    }
+
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                                <i class="dw dw-more"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                @*<a class="dropdown-item" href="/ProfileInfo/UserProfile/@user.Id"><i class="dw dw-eye"></i> Çalışan Görüntüle</a>*@
+                                                                <a href="/Business/EditStaff/@user.Id" class="btn btn-light"><i class="dw dw-pencil"></i>Kullanıcı Güncelle</a>
+                                                                <form method="post" asp-action="DeleteStaff" asp-route-id="@user.Id">
+                                                                    <input type="hidden" asp-for="@user.Id" />
+                                                                    <input type="submit" value="Sil" class="dropdown-item" />
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Tab End -->
+                        <!-- Tasks Tab start -->
+                        <div class="tab-pane fade" id="staffProfile" role="tabpanel">
+                            <div class="pd-20">
+                                <div class="profile-setting">
+                                    <h5 class="h4 text-blue mb-10">Fade-in effect</h5>
+                                    <p class="mb-30">You can use by default <code>.da-overlay</code></p>
+                                    <div class="row clearfix">
+                                        @foreach (var user in Model)
+                                        {
+                                            <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+                                                <div class="da-card">
+                                                    <div class="da-card-photo">
+                                                        @if (user.PictureUrl != null)
+                                                        {
+                                                            <img src="@user.PictureUrl" alt="">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/src/images/photo1.jpg" alt="">
+                                                        }
+                                                        <div class="da-overlay">
+                                                            <div class="da-social">
+                                                                <ul class="clearfix">
+                                                                    <li><a href="/ProfileInfo/UserProfile/@user.Id"><i class="fa fa-eye"></i></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="da-card-content">
+                                                        <h5 class="h5 mb-10">@(user.FirstName+" "+user.LastName)</h5>
+                                                        <p class="mb-0">@user.Email</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tasks Tab End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

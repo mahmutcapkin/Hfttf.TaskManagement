@@ -31,7 +31,7 @@
                     <div class="profile-info">
 
                         <h5 class="mb-20 h5 text-blue">
-                            Kişisel Bilgiler 
+                            Kişisel Bilgiler
                         </h5>
                         <ul>
                             <li>
@@ -48,19 +48,49 @@
                             </li>
                             <li>
                                 <span>Cinsiyet:</span>
-                                @Model.Gender.ToString()
+                                @if (Model.Gender == 0)
+                                {
+
+                                }
+                                else
+                                {
+                                    @Model.Gender.ToString();
+                                }
                             </li>
                             <li>
                                 <span>Departman:</span>
-                                @Model.Department.Name
+                                @if (Model.Department == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    @Model.Department.Name
+                                }
+
                             </li>
                             <li>
                                 <span>Meslek:</span>
-                                @Model.Job.Name
+                                @if (Model.Job == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    @Model.Job.Name
+                                }
                             </li>
                             <li>
                                 <span>Doğum Tarihi:</span>
-                                @Model.BirthDate.Value.ToString("MM/dd/yyyy")
+                                @if (Model.BirthDate == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    @Model.BirthDate.Value.ToString("MM/dd/yyyy")
+                                }
+
                             </li>
                         </ul>
                     </div>

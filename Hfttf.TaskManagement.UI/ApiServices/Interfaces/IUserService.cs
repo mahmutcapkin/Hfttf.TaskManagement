@@ -14,7 +14,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<bool> UpdateForJobAsync(UpdateForJob model);
         Task<bool> DeleteAsync(string id);
         Task<UserResponse> GetByIdWithInfo(string id);
-        Task<List<UserResponse>> GetListWithInfo(string id);
+        Task<List<UserResponse>> GetListWithInfo();
         Task<List<UserDropdownList>> GetListForDropdown();
     }
 }

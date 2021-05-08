@@ -41,14 +41,14 @@ jQueryAjaxPostUser = form => {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    $('#pd-20 card-box height-100-p').html(res.adres)
+                    $('#pd-20 card-box height-100-p').html(res.html)
                     $('#user-modal .modal-body').html('');
                     $('#user-modal .modal-title').html('');
                     $('#user-modal').modal('hide');
                     window.location.reload();
                 }
                 else
-                    $('#user-modal .modal-body').html(res.adres);
+                    $('#user-modal .modal-body').html(res.html);
             },
             error: function (err) {
                 console.log(err)
@@ -73,7 +73,7 @@ jQueryAjaxDeleteUser = form => {
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    $('#pd-20 card-box height-100-p').html(res.html);
+                    //$('#pd-20 card-box height-100-p').html(res.html);
                 },
                 error: function (err) {
                     console.log(err)

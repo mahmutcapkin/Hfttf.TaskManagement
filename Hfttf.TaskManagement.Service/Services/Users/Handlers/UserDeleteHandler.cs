@@ -20,7 +20,8 @@ namespace Hfttf.TaskManagement.Service.Services.Users.Handlers
 
         public async Task<Response> Handle(UserDeleteCommand request, CancellationToken cancellationToken)
         {
-            var user = TaskManagementMapper.Mapper.Map<ApplicationUser>(request);
+            var userType = await _userManager.FindByIdAsync(request.Id);
+            var user = TaskManagementMapper.Mapper.Map<ApplicationUser>(userType);
             IdentityResult result = await _userManager.DeleteAsync(user);
             if (result.Succeeded)
             {

@@ -7,8 +7,11 @@ using Hfttf.TaskManagement.UI.Models.Job;
 using Hfttf.TaskManagement.UI.Models.Leave;
 using Hfttf.TaskManagement.UI.Models.User;
 using Mapster;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
@@ -20,16 +23,19 @@ namespace Hfttf.TaskManagement.UI.Controllers
         private readonly IJobService _jobService;
         private readonly IUserService _userService;
         private readonly ILeaveService _leaveService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         public BusinessController(
             IDepartmentService departmentService,
             IJobService jobService,
             IUserService userService,
-            ILeaveService leaveService)
+            ILeaveService leaveService,
+            IWebHostEnvironment webHostEnvironment)
         {
             _userService = userService;
             _departmentService = departmentService;
             _jobService = jobService;
             _leaveService = leaveService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> AllDepartments()
@@ -198,8 +204,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
         }
 
 
-        //GET : ProfileInfo/AddOrEditAddress
-        //GET : ProfileInfo/AddOrEditAddress/4
+
         [HttpGet]
         public async Task<IActionResult> AddOrEditJob(int id = 0)
         {
@@ -388,6 +393,102 @@ namespace Hfttf.TaskManagement.UI.Controllers
             var entity = await _leaveService.DeleteAsync(id);
             return RedirectToAction("AllLeaveList");
         }
+
+
+
+        public async Task<IActionResult> AllStaffs()
+        {
+            var users = await _userService.GetListWithInfo();
+            return View(users);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> InsertStaff()
+        {
+            ViewBag.Departments = await _departmentService.GetAllAsync();
+            ViewBag.Jobs = await _jobService.GetAllAsync();
+            return View(new UserAdd());
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> InsertStaff(UserAdd userAdd)
+        {
+            ViewBag.Departments = await _departmentService.GetAllAsync();
+            ViewBag.Jobs = await _jobService.GetAllAsync();
+            if (ModelState.IsValid)
+            {
+                if (userAdd.ProfilePicture != null)
+                {
+                    string folder = "userImage/user/";
+                    folder += Guid.NewGuid().ToString() + "_" + userAdd.ProfilePicture.FileName;
+                    userAdd.PictureUrl = "/" + folder;
+                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                    await userAdd.ProfilePicture.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
+                var addPhoto = await _userService.AddAsync(userAdd);
+                if (addPhoto)
+                {
+                    return RedirectToAction("AllStaffs");
+                }
+            }
+            ModelState.AddModelError("", "Personel Eklenemedi");
+            return View(userAdd);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditStaff(string id)
+        {
+            ViewBag.Departments = await _departmentService.GetAllAsync();
+            ViewBag.Jobs = await _jobService.GetAllAsync();
+            var user = await _userService.GetByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user.Adapt<UserUpdate>());
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditStaff(string id, UserUpdate userUpdate)
+        {
+            ViewBag.Departments = await _departmentService.GetAllAsync();
+            ViewBag.Jobs = await _jobService.GetAllAsync();
+            if (ModelState.IsValid)
+            {
+                if (userUpdate.ProfilePicture != null)
+                {
+                    string folder = "userImage/user/";
+                    folder += Guid.NewGuid().ToString() + "_" + userUpdate.ProfilePicture.FileName;
+                    userUpdate.PictureUrl = "/" + folder;
+                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                    await userUpdate.ProfilePicture.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
+                var addPhoto = await _userService.UpdateAsync(userUpdate);
+                if (addPhoto)
+                {
+                    return RedirectToAction("AllStaffs");
+                }
+            }
+            ModelState.AddModelError("", "Personel Güncellenemedi");
+            return View(userUpdate);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteStaff(string id)
+        {
+           
+            var delete = await _userService.DeleteAsync(id);
+            return RedirectToAction("AllStaffs");
+        }
+
+
 
 
     }
