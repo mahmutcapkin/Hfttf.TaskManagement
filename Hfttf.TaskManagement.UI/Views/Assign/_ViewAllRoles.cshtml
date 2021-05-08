@@ -1,0 +1,56 @@
+﻿@model List<RoleResponse>
+
+<div class="pd-20">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="text-blue h4">Roller</h4>
+        </div>
+        <div class="col-md-6">
+            <a onclick="showInPopupRole('@Url.Action("AddOrEditRole","Assign",null,Context.Request.Scheme)', 'Rol Ekle')" class="btn btn-light"><i class="fa fa-plus"></i>Ekle</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="pb-20">
+    <table class="data-table table stripe hover nowrap">
+        <thead>
+            <tr>
+                <th class="table-plus datatable-nosort">Rol Adı</th>
+                <th class="datatable-nosort">İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <td class="table-plus">@role.Name</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="/Assign/RoleWithUsers/@role.Id"><i class="dw dw-eye"></i> Çalışan Görüntüle</a>
+                                <a class="dropdown-item" onclick="showInPopupRole('@Url.Action("AddOrEditRole","Assign",new {id=role.Id},Context.Request.Scheme)','Departman Güncelle')"><i class="dw dw-edit2"></i>Güncelle</a>
+                                <a class="dropdown-item" href="/Assign/DeleteRole/@role.Id" onclick="return confirm('Bu rolü silmek istediğinize emin misiniz?');">
+                                    <i class="dw dw-delete"></i>
+                                    Sil
+                                </a>
+                                @*<form asp-action="DeleteRole" asp-route-id="@role.Id" onsubmit="return jQueryAjaxDeleteRole(this)" class="d-inline">
+                                        <input type="hidden" asp-for="@role.Id" />
+                                        <input type="submit" value="Sil" class="dropdown-item" />
+                                    </form>*@
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+@section DataTable {
+    @{await Html.RenderPartialAsync("_ValidationDataTable");}
+}

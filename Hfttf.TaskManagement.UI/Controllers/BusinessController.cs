@@ -22,8 +22,9 @@ namespace Hfttf.TaskManagement.UI.Controllers
         private readonly IDepartmentService _departmentService;
         private readonly IJobService _jobService;
         private readonly IUserService _userService;
-        private readonly ILeaveService _leaveService;
+        private readonly ILeaveService _leaveService;     
         private readonly IWebHostEnvironment _webHostEnvironment;
+
         public BusinessController(
             IDepartmentService departmentService,
             IJobService jobService,
@@ -105,7 +106,6 @@ namespace Hfttf.TaskManagement.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
                 //Insert
                 if (id == 0)
                 {
@@ -227,8 +227,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
         public async Task<IActionResult> AddOrEditJob(int id, JobUpdate jobUpdate)
         {
             if (ModelState.IsValid)
-            {
-                var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            {            
                 //Insert
                 if (id == 0)
                 {
@@ -487,7 +486,6 @@ namespace Hfttf.TaskManagement.UI.Controllers
             var delete = await _userService.DeleteAsync(id);
             return RedirectToAction("AllStaffs");
         }
-
 
 
 
