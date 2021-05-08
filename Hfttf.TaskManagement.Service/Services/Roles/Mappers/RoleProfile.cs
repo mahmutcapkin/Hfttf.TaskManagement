@@ -12,7 +12,7 @@ namespace Hfttf.TaskManagement.Service.Services.Roles.Mappers
             CreateMap<RoleDeleteCommand, ApplicationRole>().ReverseMap();
             CreateMap<RoleInsertCommand, ApplicationRole>().ReverseMap();
             CreateMap<RoleUpdateCommand, ApplicationRole>().ReverseMap();
-            CreateMap<ApplicationRole, RoleResponse>().ReverseMap();          
+            CreateMap<ApplicationRole, RoleResponse>().ReverseMap();                   
 
         }
     }

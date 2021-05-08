@@ -14,7 +14,7 @@ namespace Hfttf.TaskManagement.Service.Services.Roles.Handlers
 {
     public class RoleInsertHandler : BaseRoleHandler, IRequestHandler<RoleInsertCommand, Response>
     {
-        public RoleInsertHandler(RoleManager<ApplicationRole> roleManager, IRoleRepository roleRepository) : base(roleManager, roleRepository)
+        public RoleInsertHandler(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IRoleRepository roleRepository) : base(roleManager, userManager, roleRepository)
         {
         }
 

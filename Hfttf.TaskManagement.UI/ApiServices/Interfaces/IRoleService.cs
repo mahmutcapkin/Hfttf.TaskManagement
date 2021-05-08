@@ -13,5 +13,6 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<bool> DeleteAsync(string id);
         Task<bool> AssignRoleToUser(RoleAssignModel model);
         Task<bool> DeleteRoleToUser(RoleAssignModel model);
+        Task<RoleResponse> GetRoleWithUsersById(string id);
     }
 }

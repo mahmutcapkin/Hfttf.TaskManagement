@@ -14,7 +14,7 @@ namespace Hfttf.TaskManagement.Service.Services.Roles.Handlers
 {
     public class RoleUpdateHandler : BaseRoleHandler, IRequestHandler<RoleUpdateCommand, Response>
     {
-        public RoleUpdateHandler(RoleManager<ApplicationRole> roleManager, IRoleRepository roleRepository) : base(roleManager, roleRepository)
+        public RoleUpdateHandler(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IRoleRepository roleRepository) : base(roleManager, userManager, roleRepository)
         {
         }
         public async Task<Response> Handle(RoleUpdateCommand request, CancellationToken cancellationToken)

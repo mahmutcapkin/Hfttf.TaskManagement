@@ -18,10 +18,8 @@ namespace Hfttf.TaskManagement.Service.Services.Roles.Handlers
 {
     public class RoleAssignRoleToUserHandler : BaseRoleHandler, IRequestHandler<RoleAssignRoleToUserCommand, Response>
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        public RoleAssignRoleToUserHandler(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IRoleRepository roleRepository) : base(roleManager, roleRepository)
-        {
-            _userManager = userManager;
+        public RoleAssignRoleToUserHandler(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IRoleRepository roleRepository) : base(roleManager,userManager, roleRepository)
+        {         
         }
 
         public async Task<Response> Handle(RoleAssignRoleToUserCommand request, CancellationToken cancellationToken)

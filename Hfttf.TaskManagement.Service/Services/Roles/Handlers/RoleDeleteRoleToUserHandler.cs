@@ -14,10 +14,8 @@ namespace Hfttf.TaskManagement.Service.Services.Roles.Handlers
 {
     public class RoleDeleteRoleToUserHandler : BaseRoleHandler, IRequestHandler<RoleDeleteRoleToUserCommand, Response>
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        public RoleDeleteRoleToUserHandler(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IRoleRepository roleRepository) : base(roleManager, roleRepository)
+        public RoleDeleteRoleToUserHandler(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IRoleRepository roleRepository) : base(roleManager, userManager, roleRepository)
         {
-            _userManager = userManager;
         }
 
         public async Task<Response> Handle(RoleDeleteRoleToUserCommand request, CancellationToken cancellationToken)

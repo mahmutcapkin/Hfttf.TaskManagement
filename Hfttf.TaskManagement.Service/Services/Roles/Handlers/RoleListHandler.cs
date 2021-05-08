@@ -16,7 +16,7 @@ namespace Hfttf.TaskManagement.Service.Services.Roles.Handlers
 {
     public class RoleListHandler : BaseRoleHandler, IRequestHandler<RoleListQuery, Response>
     {
-        public RoleListHandler(RoleManager<ApplicationRole> roleManager, IRoleRepository roleRepository) : base(roleManager, roleRepository)
+        public RoleListHandler(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IRoleRepository roleRepository) : base(roleManager, userManager, roleRepository)
         {
         }
         public async Task<Response> Handle(RoleListQuery request, CancellationToken cancellationToken)

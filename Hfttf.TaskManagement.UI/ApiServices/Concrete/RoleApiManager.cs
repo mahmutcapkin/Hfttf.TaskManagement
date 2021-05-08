@@ -171,6 +171,25 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return false;
         }
 
+        public async Task<RoleResponse> GetRoleWithUsersById(string id)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
 
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/Roles/GetRoleWithUsersById?Id={id}");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var roleResponse = JsonConvert.DeserializeObject<BaseResponse<RoleResponse>>(await responseMessage.Content.ReadAsStringAsync());
+                    RoleResponse role = roleResponse.Data;
+                    return role;
+                }
+            }
+            return null;
+        }
     }
 }

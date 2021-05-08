@@ -165,5 +165,18 @@ namespace Hfttf.TaskManagement.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="roleDetailWithUsersQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetRoleWithUsersById([FromQuery] RoleDetailWithUsersQuery  roleDetailWithUsersQuery)
+        {
+            var response = await _mediator.Send(roleDetailWithUsersQuery);
+            return Ok(response);
+        }
+
     }
 }
