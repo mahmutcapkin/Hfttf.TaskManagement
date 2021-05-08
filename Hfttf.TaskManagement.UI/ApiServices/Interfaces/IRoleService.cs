@@ -8,10 +8,10 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
     {
         Task<List<RoleResponse>> GetAllAsync();
         Task<RoleResponse> GetByIdAsync(string id);
-        Task AddAsync(RoleAdd model);
-        Task UpdateAsync(RoleUpdate model);
-        Task DeleteAsync(string id);
-        Task AssignRoleToUser(string userId, List<string> roleId);
-        Task DeleteRoleToUser(string userId, List<string> roleId);
+        Task<bool> AddAsync(RoleAdd model);
+        Task<bool> UpdateAsync(RoleUpdate model);
+        Task<bool> DeleteAsync(string id);
+        Task<bool> AssignRoleToUser(RoleAssignModel model);
+        Task<bool> DeleteRoleToUser(RoleAssignModel model);
     }
 }
