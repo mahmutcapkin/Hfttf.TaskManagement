@@ -19,13 +19,30 @@ namespace Hfttf.TaskManagement.UI.Controllers
 
         public async Task<IActionResult> AllRoles()
         {
+            ViewBag.Users = await _userService.GetListForDropdown();
+            ViewBag.Roles = await _roleService.GetAllAsync();
+
+
             var roles = await _roleService.GetAllAsync();
-            return View(roles);
+            var roleAddViewModel = new RoleAddUserViewModel
+            {
+                Roles = roles,
+            };
+
+            return View(roleAddViewModel);
         }
 
-        public async Task<IActionResult> RolesWithUsers()
-        {
-            var roles = await _roleService.GetAllAsync();
+        public async Task<IActionResult> RoleWithUsers(string id)
+        {       
+            if (id == null)
+            {
+                return RedirectToAction("AllRoles");
+            }
+            var roles = await _roleService.GetRoleWithUsersById(id);
+            if (roles == null)
+            {
+                return NotFound();
+            }
             return View(roles);
         }
 
@@ -81,31 +98,36 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return RedirectToAction("AllRoles");
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AssignRoleToUser(int id, JobAddUserViewModel model)
-        //{
-        //    ViewBag.Users = await _userService.GetAllAsync();
-        //    if (ModelState.IsValid)
-        //    {
-        //        var job = await _userService.UpdateForJobAsync(model.UserUpdate);
-        //        return RedirectToAction("JobWithUsers", id);
-        //    }
-        //    return RedirectToAction("JobWithUsers", id);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AssignRoleToUser(RoleAddUserViewModel model)
+        {
+            ViewBag.Users = await _userService.GetListForDropdown();
+            ViewBag.Roles = await _roleService.GetAllAsync();
+            if (ModelState.IsValid)
+            {
+                var role = await _roleService.AssignRoleToUser(model.Assign);
+                return RedirectToAction("AllRoles");
+            }
+            ModelState.AddModelError("", "Kullanıcı rol atama işlemi başarısız");
+            return RedirectToAction("AllRoles");
 
-        //}
+        }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteRoleToUser(string id, JobAddUserViewModel model)
-        //{
-        //    UpdateForJob updateForjob = new UpdateForJob();
-        //    updateForjob.UserId = id;
-        //    updateForjob.JobId = null;
-
-        //    var job = await _userService.UpdateForJobAsync(updateForjob);
-        //    return RedirectToAction("JobWithUsers", model.UserUpdate.JobId);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteRoleToUser(RoleAddUserViewModel model)
+        {
+            ViewBag.Users = await _userService.GetListForDropdown();
+            ViewBag.Roles = await _roleService.GetAllAsync();
+            if (ModelState.IsValid)
+            {
+                var role = await _roleService.DeleteRoleToUser(model.Assign);
+                return RedirectToAction("AllRoles");
+            }
+            ModelState.AddModelError("", "Kullanıcı rol silme işlemi başarısız");
+            return RedirectToAction("AllRoles");
+        }
     }
 }

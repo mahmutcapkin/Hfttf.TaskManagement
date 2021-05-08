@@ -54,30 +54,37 @@
                                     <tbody>
                                         @foreach (var user in Model.Department.ApplicationUsers)
                                         {
-                                            <tr>
-                                                <td class="table-plus">@(user.FirstName+" "+user.LastName)</td>
-                                                <td>@user.Email</td>
-                                                <td>@user.PhoneNumber</td>
+                                        <tr>
+                                            <td class="table-plus">@(user.FirstName+" "+user.LastName)</td>
+                                            <td>@user.Email</td>
+                                            <td>@user.PhoneNumber</td>
+                                            @if (user.BirthDate != null)
+                                            {
                                                 <td>@user.BirthDate.Value.ToString("MM/dd/yyyy")</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                            <i class="dw dw-more"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                            <a class="dropdown-item" href="/ProfileInfo/UserProfile/@user.Id"><i class="dw dw-eye"></i> Profil Görüntüle</a>
-                                                            @*<a class="dropdown-item" href="/Business/DeleteUserToDepartment/@user.Id"><i class="dw dw-delete-3"></i>Departmandan Çıkar</a>*@
-                                                            <form method="post" asp-action="DeleteUserToDepartment" asp-route-id="@user.Id">
-                                                                <input type="hidden" asp-for="@user.Id" />
-                                                                <input type="hidden" asp-for="UserUpdate.DepartmentId" />
-                                                                <input type="submit" value="Departmandan Çıkar" class="dropdown-item" />
-                                                            </form>
-                                                            @*<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Güncelle</a>*@
-                                                            @*<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Sil</a>*@
-                                                        </div>
+                                            }
+                                            else
+                                            {
+                                                <td></td>
+                                            }
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="/ProfileInfo/UserProfile/@user.Id"><i class="dw dw-eye"></i> Profil Görüntüle</a>
+                                                        @*<a class="dropdown-item" href="/Business/DeleteUserToDepartment/@user.Id"><i class="dw dw-delete-3"></i>Departmandan Çıkar</a>*@
+                                                        <form method="post" asp-action="DeleteUserToDepartment" asp-route-id="@user.Id">
+                                                            <input type="hidden" asp-for="@user.Id" />
+                                                            <input type="hidden" asp-for="UserUpdate.DepartmentId" />
+                                                            <input type="submit" value="Departmandan Çıkar" class="dropdown-item" />
+                                                        </form>
+                                                        @*<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Güncelle</a>*@
+                                                        @*<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Sil</a>*@
                                                     </div>
-                                                </td>
-                                            </tr>
+                                                </div>
+                                            </td>
+                                        </tr>
 
                                         }
                                     </tbody>

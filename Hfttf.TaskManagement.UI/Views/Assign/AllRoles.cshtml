@@ -1,4 +1,4 @@
-﻿@model List<RoleResponse>
+﻿@model RoleAddUserViewModel
 @{
     ViewData["Title"] = "AllRoles";
 }
@@ -49,3 +49,6 @@
     </div>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

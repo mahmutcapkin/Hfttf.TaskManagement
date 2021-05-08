@@ -1,9 +1,7 @@
-﻿@model JobAddUserViewModel
-
+﻿@model RoleResponse
 @{
-    ViewData["Title"] = "JobWithUsers";
+    ViewData["Title"] = "RoleWithUsers";
 }
-
 
 <div class="pd-ltr-20 xs-pd-20-10">
     <div class="min-height-200px">
@@ -11,17 +9,17 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Meslekler</h4>
+                        <h4>Roller</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Meslekler</li>
+                            <li class="breadcrumb-item active" aria-current="page">Roller</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalJob">Kullanıcı Ekle</button>
+                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalRole">Kullanıcı Ekle</button>
                 </div>
             </div>
         </div>
@@ -31,7 +29,7 @@
                 <div class="tab height-100-p">
                     <ul class="nav nav-tabs customtab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#job" role="tab">@Model.Job.Name</a>
+                            <a class="nav-link active" data-toggle="tab" href="#role" role="tab">@Model.Name</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tasks</a>
@@ -39,7 +37,7 @@
                     </ul>
                     <div class="tab-content">
                         <!-- Department Tab start -->
-                        <div class="tab-pane fade show active" id="job" role="tabpanel">
+                        <div class="tab-pane fade show active" id="role" role="tabpanel">
                             <div class="profile-setting">
                                 <table class="data-table table stripe hover nowrap mb-30">
                                     <thead>
@@ -52,7 +50,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var user in Model.Job.ApplicationUsers)
+                                        @foreach (var user in Model.ApplicationUsers)
                                         {
                                         <tr>
                                             <td class="table-plus">@(user.FirstName+" "+user.LastName)</td>
@@ -73,14 +71,6 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                         <a class="dropdown-item" href="/ProfileInfo/UserProfile/@user.Id"><i class="dw dw-eye"></i> Profil Görüntüle</a>
-                                                        @*<a class="dropdown-item" href="/Business/DeleteUserToDepartment/@user.Id"><i class="dw dw-delete-3"></i>Departmandan Çıkar</a>*@
-                                                        <form method="post" asp-action="DeleteUserToJob" asp-route-id="@user.Id">
-                                                            <input type="hidden" asp-for="@user.Id" />
-                                                            <input type="hidden" asp-for="UserUpdate.JobId" />
-                                                            <input type="submit" value="Departmandan Çıkar" class="dropdown-item" />
-                                                        </form>
-                                                        @*<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Güncelle</a>*@
-                                                        @*<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Sil</a>*@
                                                     </div>
                                                 </div>
                                             </td>
@@ -94,52 +84,17 @@
                         <!-- Department Tab End -->
                         <!-- Tasks Tab start -->
                         <div class="tab-pane fade" id="tasks" role="tabpanel">
-                            <p>@Model.Job.Id</p>
+                            <p>@Model.Id</p>
                         </div>
                         <!-- Tasks Tab End -->
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="modal" tabindex="-1" role="dialog" id="modalJob">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Kullanıcı Ekle</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form method="post" asp-action="AddUserToJob" asp-route-id="@Model.UserUpdate.JobId">
-                        <div class="modal-body">
-                            <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
-                            <input type="hidden" asp-for="UserUpdate.JobId" />
-                            <div class="form-group row">
-                                <label asp-for="UserUpdate.UserId" class="col-sm-12 col-md-2 col-form-label"></label>
-                                <div class="col-sm-12 col-md-10">
-                                    <select asp-for="UserUpdate.UserId" class="form-control"
-                                            asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))">
-                                        <option selected="selected" value="">Kullanıcı seçiniz</option>
-                                    </select>
-                                    <span asp-validation-for="UserUpdate.UserId" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
+        </div>     
     </div>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

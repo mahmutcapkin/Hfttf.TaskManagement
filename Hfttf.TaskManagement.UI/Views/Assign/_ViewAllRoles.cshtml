@@ -1,4 +1,4 @@
-﻿@model List<RoleResponse>
+﻿@model RoleAddUserViewModel
 
 <div class="pd-20">
     <div class="row">
@@ -7,11 +7,54 @@
         </div>
         <div class="col-md-6">
             <a onclick="showInPopupRole('@Url.Action("AddOrEditRole","Assign",null,Context.Request.Scheme)', 'Rol Ekle')" class="btn btn-light"><i class="fa fa-plus"></i>Ekle</a>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalRole">Kullanıcı Rol Ekle</button>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalRoleUpdate">Kullanıcı Rol Sil</button>
         </div>
     </div>
 
 </div>
+<div class="modal" tabindex="-1" role="dialog" id="modalRole">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kullanıcıya Rol Atama</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-action="AssignRoleToUser">
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+                    <div class="form-group row">
+                        <label asp-for="Assign.UserId" class="col-sm-12 col-md-2 col-form-label"></label>
+                        <div class="col-sm-12 col-md-10">
+                            <select asp-for="Assign.UserId" class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))">
+                                <option selected="selected" value="">Kullanıcı seçiniz</option>
+                            </select>
+                            <span asp-validation-for="Assign.UserId" class="text-danger"></span>
+                        </div>
+                    </div>
 
+                    <div class="form-group row">
+                        <label asp-for="Assign.RoleId" class="col-sm-12 col-md-2 col-form-label"></label>
+                        <div class="col-sm-12 col-md-10">
+                            <select class="custom-select2 form-control" asp-for="Assign.RoleId" asp-items="@(new SelectList(ViewBag.Roles,"Id","Name"))" multiple="multiple" style="width: 100%;">
+                            </select>
+                            <span asp-validation-for="Assign.RoleId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="pb-20">
     <table class="data-table table stripe hover nowrap">
         <thead>
@@ -21,7 +64,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var role in Model)
+            @foreach (var role in Model.Roles)
             {
                 <tr>
                     <td class="table-plus">@role.Name</td>
@@ -51,6 +94,50 @@
     </table>
 </div>
 
-@section DataTable {
-    @{await Html.RenderPartialAsync("_ValidationDataTable");}
+
+<div class="modal" tabindex="-1" role="dialog" id="modalRoleUpdate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kullanıcı Rol Silme</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-action="DeleteRoleToUser">
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+                    <div class="form-group row">
+                        <label asp-for="Assign.UserId" class="col-sm-12 col-md-2 col-form-label"></label>
+                        <div class="col-sm-12 col-md-10">
+                            <select asp-for="Assign.UserId" class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))">
+                                <option selected="selected" value="">Kullanıcı seçiniz</option>
+                            </select>
+                            <span asp-validation-for="Assign.UserId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label asp-for="Assign.RoleId" class="col-sm-12 col-md-2 col-form-label"></label>
+                        <div class="col-sm-12 col-md-10">
+                            <select class="custom-select2 form-control" asp-for="Assign.RoleId" asp-items="@(new SelectList(ViewBag.Roles,"Id","Name"))" multiple="multiple" style="width: 100%;">
+                            </select>
+                            <span asp-validation-for="Assign.RoleId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
