@@ -215,6 +215,7 @@
                         <ul class="submenu">
                             <li><a href="/Business/AllStaffs">Personeller</a></li>
                             <li><a href="/Assign/AllRoles">Roller</a></li>
+                            <li><a href="/Assign/AllSalaries">Maaş İşlemleri</a></li>
                         </ul>
                     </li>
                     <li>
@@ -232,6 +233,18 @@
                                 <li><a href="/Business/AllLeaveList">İzinler</a></li>
                             }
                             <li><a href="/UserOperation/LeaveListForUser">İzinlerim</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-money-2"></span><span class="mtext">Maaş İşlemleri</span>
+                        </a>
+                        <ul class="submenu">
+                            @if (appUser.Roles.Contains("Admin"))
+                            {
+                                <li><a href="/Assign/AllSalaries">Personel Maaş İşlemleri</a></li>
+                            }
+                            <li><a href="/UserOperation/SalaryListForUser">Maaş Bilgilerim</a></li>
                         </ul>
                     </li>
                     <li>
@@ -330,6 +343,7 @@
     <script src="~/js/department.js"></script>
     <script src="~/js/job.js"></script>
     <script src="~/js/role.js"></script>
+    <script src="~/js/salary.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("DataTable", required: false)
     <script src="~/vendors/scripts/core.js"></script>

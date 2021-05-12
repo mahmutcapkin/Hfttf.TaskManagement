@@ -30,6 +30,15 @@ namespace Hfttf.TaskManagement.UI.Controllers
             return View(leaves);
         }
 
+        public async Task<IActionResult> SalaryListForUser()
+        {
+            var activeUser = HttpContext.Session.GetObject<AppUser>("activeUser");
+            var leaves = await _userSalaryService.GetListByUserId(activeUser.Id);
+            return View(leaves);
+        }
+
+
+
         [HttpGet]
         public IActionResult LeaveInsertForUser(string id)
         {

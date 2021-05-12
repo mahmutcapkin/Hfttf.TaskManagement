@@ -1,0 +1,38 @@
+﻿@model UserSalaryUpdate
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEditSalary" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPostSalary(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group row">
+                <label asp-for="Salary" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <input asp-for="Salary" class="form-control" type="number" min="100">
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ApplicationUserId" class="col-sm-12 col-md-2 col-form-label"></label>
+                <div class="col-sm-12 col-md-10">
+                    <select asp-for="ApplicationUserId" class="form-control"
+                            asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))">
+                        <option selected="selected" value="">Kullanıcı seçiniz</option>
+                    </select>
+                    <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
