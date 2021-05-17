@@ -1,4 +1,4 @@
-﻿using Hfttf.TaskManagement.UI.Models.Authentication;
+﻿using Hfttf.TaskManagement.UI.Enums;
 using Hfttf.TaskManagement.UI.Models.Leader;
 using Hfttf.TaskManagement.UI.Models.Task;
 using Hfttf.TaskManagement.UI.Models.User;
@@ -12,7 +12,7 @@ namespace Hfttf.TaskManagement.UI.Models.Project
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Priority { get; set; }
+        public PriorityLevel Priority { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CreatedDate { get; set; }

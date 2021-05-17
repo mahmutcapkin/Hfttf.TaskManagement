@@ -16,5 +16,6 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<List<LeaderResponse>> GetListByProjectIdandUserId(int projectId, string userId);
         Task<List<LeaderResponse>> GetListByUserId(string id);
         Task<List<LeaderResponse>> GetListByProjectId(int id);
+        Task<List<LeaderDropDownList>> GetListForDropdown(int id);
     }
 }

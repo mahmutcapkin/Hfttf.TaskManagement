@@ -238,6 +238,20 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return null;
         }
 
+        public async Task<List<LeaderDropDownList>> GetListForDropdown(int id)
+        {
+            List<LeaderDropDownList> list = new List<LeaderDropDownList>();
+            var users = await GetListByProjectId(id);
+            foreach (var user in users)
+            {
+                LeaderDropDownList leaderDropDownList = new LeaderDropDownList();
+                leaderDropDownList.UserId = user.ApplicationUser.Id;
+                leaderDropDownList.FullName = user.ApplicationUser.FirstName + " " + user.ApplicationUser.LastName;
+                list.Add(leaderDropDownList);
+            }
+            return list;
+        }
+
 
     }
 }

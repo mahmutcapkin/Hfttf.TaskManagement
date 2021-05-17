@@ -15,8 +15,6 @@ namespace Hfttf.TaskManagement.Service.Services.Projects.Validatior
             RuleFor(x => x.Description).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.CreateBy).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.CreateBy).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
-            RuleFor(x => x.Priority).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
-            RuleFor(x => x.Priority).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.StartDate).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage);
             RuleFor(x => x.StartDate).NotNull().WithMessage(ValidatorMessages.NotNullMessage);
             RuleFor(x => x.EndDate).NotEmpty().WithMessage(ValidatorMessages.NotEmptyMessage).GreaterThan(m => m.StartDate).WithMessage(ValidatorMessages.DateTimeNotEarlierStart);

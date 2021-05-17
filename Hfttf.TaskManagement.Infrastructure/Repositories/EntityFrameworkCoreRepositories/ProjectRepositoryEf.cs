@@ -55,7 +55,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
 
         public async Task<Project> GetProjectWithUsersById(int id)
         {
-            var projects = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).FirstOrDefaultAsync(x => x.Id == id);
+            var projects = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).Include(x=>x.Leader).ThenInclude(x => x.ApplicationUser).FirstOrDefaultAsync(x => x.Id == id);
             return projects;
 
         }
@@ -72,7 +72,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
             //    }
             //}
             //return newProjects;
-            var data = await _taskManagementContext.Projects.Include(x=>x.ApplicationUsers).Include(x=>x.Tasks).Include(x => x.Leader).ToListAsync();
+            var data = await _taskManagementContext.Projects.Include(x=>x.ApplicationUsers).Include(x=>x.Tasks).Include(x => x.Leader).ThenInclude(x => x.ApplicationUser).ToListAsync();
             return data;
         }
         public async Task<Project> GetProjectWithUsersAndTasks(int id)
@@ -87,13 +87,13 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
             //    }
             //}
             //return newProjects;
-            var data = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).Include(x => x.Leader).FirstOrDefaultAsync(x=>x.Id==id);
+            var data = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).Include(x => x.Leader).ThenInclude(x=>x.ApplicationUser).FirstOrDefaultAsync(x=>x.Id==id);
             return data;
         }
 
         public async Task<IReadOnlyList<Project>> GetListWithUsersAndTasksByUserId(string userId)
         {
-            var projects = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).Include(x => x.Leader).ToListAsync();
+            var projects = await _taskManagementContext.Projects.Include(x => x.ApplicationUsers).Include(x => x.Tasks).Include(x => x.Leader).ThenInclude(x => x.ApplicationUser).ToListAsync();
             var newProjects = new List<Project>();
             foreach (var project in projects)
             {

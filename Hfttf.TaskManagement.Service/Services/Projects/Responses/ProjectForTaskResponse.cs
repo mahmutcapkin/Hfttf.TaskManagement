@@ -1,4 +1,5 @@
-﻿using Hfttf.TaskManagement.Core.ResourceViewModel;
+﻿using Hfttf.TaskManagement.Core.Entities;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Leaders.Responses;
 using Hfttf.TaskManagement.Service.Services.Users.Responses;
 using System;
@@ -11,7 +12,7 @@ namespace Hfttf.TaskManagement.Service.Services.Projects.Responses
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Priority { get; set; }
+        public PriorityLevel Priority { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CreatedDate { get; set; }

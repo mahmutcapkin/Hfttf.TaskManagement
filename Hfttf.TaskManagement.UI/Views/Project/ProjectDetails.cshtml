@@ -1,0 +1,314 @@
+﻿@model ProjectAddUserViewModel
+@{
+    ViewData["Title"] = "ProjectDetails";
+    var appUser = Context.Session.GetObject<AppUser>("activeUser");
+}
+
+<!--<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="text-blue h4">Projeler</h4>
+        </div>
+        <div class="col-md-6">
+            <a href="/Project/InsertProject" class="btn btn-light"><i class="fa fa-plus"></i>Proje Ekle</a>-->
+@*<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
+    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>*@
+<!--</div>
+    </div>
+
+
+</div>-->
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="text-blue h4">Projeler</h4>
+            </div>
+            <div class="col-md-6">
+                @*<a href="/Project/InsertProject" class="btn btn-light"><i class="fa fa-plus"></i>Proje Ekle</a>*@
+                @if (appUser.Roles.Contains("Admin"))
+                {
+                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
+                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>
+                    @if (Model.Project.Leader == null)
+                    {
+                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalLeaderAdd">Lider Ekle</button>
+                    }
+                }
+                else
+                {
+                    if (Model.Project.Leader != null)
+                    {
+                        if (Model.Project.Leader.ApplicationUserId == appUser.Id)
+                        {
+                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
+                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>
+                        }
+                    }
+                }
+
+
+                @*else
+        {
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalLeaderEdit">Lider Güncelle</button>
+        }*@
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pb-20">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="mt-20 mb-20 h5 text-blue">Proje Detaylar</h5>
+                <ul class="mt-20">
+                    <li>
+                        <span class="text-blue">Başlık: </span>
+                        @Model.Project.Title
+                    </li>
+
+                    <li>
+                        <span class="text-blue">Açıklama: </span>
+                        @Html.Raw(Model.Project.Title)
+                    </li>
+
+                    <li>
+                        <span class="text-blue">Başlangıç Tarihi: </span>
+                        @Model.Project.StartDate.ToString("dd MMMM yyyy")
+                    </li>
+                    <li>
+                        <span class="text-blue">Bitiş Tarihi:</span>
+                        @Model.Project.EndDate.ToString("dd MMMM yyyy")
+                    </li>
+
+                    <li>
+                        <span class="text-blue">Oluşturan: </span>
+                        @Model.Project.CreateBy
+                    </li>
+
+                    <li>
+                        <span class="text-blue">Oluşturma Tarihi: </span>
+                        @Model.Project.CreatedDate.ToString("dd MMMM yyyy")
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5 class="mt-20 mb-20 h5 text-blue">Proje Çalışanları</h5>
+
+                <table class="mt-20 table">
+                    <thead>
+                        <tr>
+                            <th>Ad Soyad</th>
+                            <th>E-mail</th>
+                            <th>Telefon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Project.ApplicationUsers)
+                        {
+                            <tr>
+                                <td class="table-plus">@(user.FirstName+" "+user.LastName)</td>
+                                <td>@user.Email</td>
+                                <td>@user.PhoneNumber</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h5 class="mt-20 mb-20 h5 text-blue">Proje Lider</h5>
+        @if (appUser.Roles.Contains("Admin"))
+        {
+            @if (Model.Project.Leader != null)
+            {
+                <ul class="mt-20">
+                    <li>
+                        <span class="text-blue">Ad Soyad: </span>
+                        @(Model.Project.Leader.ApplicationUser.FirstName+" "+Model.Project.Leader.ApplicationUser.LastName)
+                    </li>
+
+                    <li>
+                        <span class="text-blue">E-mail: </span>
+                        @Model.Project.Leader.ApplicationUser.Email
+                    </li>
+
+                    <li>
+                        <span class="text-blue">Telefon: </span>
+                        @Model.Project.Leader.ApplicationUser.PhoneNumber
+                    </li>
+                </ul>
+                    <a class="ml-30 btn btn-primary btn-sm" href="/Project/DeleteLeaderInProject/@Model.Project.Leader.Id" onclick="return confirm('Bu lideri silmek istediğinize emin misiniz?');">
+                        <i class="dw dw-delete-3"></i>
+                        Sil
+                    </a>
+            }
+        }
+        else
+        {
+            @if (Model.Project.Leader != null)
+            {
+                <ul class="mt-20">
+                    <li>
+                        <span class="text-blue">Ad Soyad: </span>
+                        @(Model.Project.Leader.ApplicationUser.FirstName+" "+Model.Project.Leader.ApplicationUser.LastName)
+                    </li>
+
+                    <li>
+                        <span class="text-blue">E-mail: </span>
+                        @Model.Project.Leader.ApplicationUser.Email
+                    </li>
+
+                    <li>
+                        <span class="text-blue">Telefon: </span>
+                        @Model.Project.Leader.ApplicationUser.PhoneNumber
+                    </li>
+                </ul>
+                @if (Model.Project.Leader.ApplicationUserId == appUser.Id)
+                {
+                    <a class="ml-30 btn btn-primary btn-sm" href="/Project/DeleteLeaderInProject/@Model.Project.Leader.Id" onclick="return confirm('Bu lideri silmek istediğinize emin misiniz?');">
+                        <i class="dw dw-delete-3"></i>
+                        Sil
+                    </a>
+                }
+
+            }
+            else
+            { 
+                <p>Henüz projenin lideri mevuct değil.</p>
+            }
+        }
+
+    </div>
+
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalProject">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Kullanıcı Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" asp-action="AssignProjectToUser" asp-route-id="@Model.Project.Id">
+                    <div class="modal-body">
+                        <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+                        <input type="hidden" asp-for="@Model.Project.Id" />
+                                        @*<div class="form-group row">
+                            <label asp-for="Assign.Id" class="col-sm-12 col-md-2 col-form-label"></label>
+                            <div class="col-sm-12 col-md-10">
+                                <select asp-for="Assign.Id" class="form-control"
+                                        asp-items="@(new SelectList(ViewBag.Projects,"Id","Title"))">
+                                    <option selected="selected" value="">Kullanıcı seçiniz</option>
+                                </select>
+                                <span asp-validation-for="Assign.Id" class="text-danger"></span>
+                            </div>
+                        </div>*@
+
+                        <div class="form-group row">
+                            <label asp-for="Assign.UserIds" class="col-sm-12 col-md-2 col-form-label"></label>
+                            <div class="col-sm-12 col-md-10">
+                                <select class="custom-select2 form-control" asp-for="Assign.UserIds" asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))" multiple="multiple" style="width: 100%;">
+                                </select>
+                                <span asp-validation-for="Assign.UserIds" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modalProjectUpdate">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Kullanıcı Silme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" asp-action="DeleteProjectToUser" asp-route-id="@Model.Project.Id">
+                    <div class="modal-body">
+                        <input type="hidden" asp-for="@Model.Project.Id" />
+                        <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+                        @*<div class="form-group row">
+            <label asp-for="Assign.Id" class="col-sm-12 col-md-2 col-form-label"></label>
+            <div class="col-sm-12 col-md-10">
+                <select asp-for="Assign.Id" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Projects,"Id","Title"))">
+                    <option selected="selected" value="">Kullanıcı seçiniz</option>
+                </select>
+                <span asp-validation-for="Assign.Id" class="text-danger"></span>
+            </div>
+        </div>*@
+
+                        <div class="form-group row">
+                            <label asp-for="Assign.UserIds" class="col-sm-12 col-md-2 col-form-label"></label>
+                            <div class="col-sm-12 col-md-10">
+                                <select class="custom-select2 form-control" asp-for="Assign.UserIds" asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))" multiple="multiple" style="width: 100%;">
+                                </select>
+                                <span asp-validation-for="Assign.UserIds" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modalLeaderAdd">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lider Ekleme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" asp-action="InsertLeaderInProject" asp-route-id="@Model.Project.Id">
+                    <div class="modal-body">
+                        <input type="hidden" asp-for="@Model.Project.Id" />
+                        <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+
+                        <div class="form-group row">
+                            <label asp-for="LeaderAssign.ApplicationUserId" class="col-sm-12 col-md-2 col-form-label"></label>
+                            <div class="col-sm-12 col-md-10">
+                                <select asp-for="LeaderAssign.ApplicationUserId" class="form-control"
+                                        asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))">
+                                    <option selected="selected" value="">Kullanıcı seçiniz</option>
+                                </select>
+                                <span asp-validation-for="LeaderAssign.ApplicationUserId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
