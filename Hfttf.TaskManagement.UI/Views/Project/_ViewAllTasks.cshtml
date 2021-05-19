@@ -1,0 +1,41 @@
+﻿@model TaskStatusOperationModel
+
+
+@foreach (var item in Model.TaskStatusResponses)
+{
+    <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card bg-light">
+            <div class="card-body" id="@item.Id">
+                <h6 class="card-title text-uppercase text-truncate py-2">@item.Status.ToString()</h6>
+                <div class="items border border-light">
+                    @foreach (var task in item.Tasks)
+                    {
+                        <div class="card shadow-sm" id="@task.Id">
+                            <div class="card-body p-2">
+                                <div class="card-title">
+                                    <img src="//placehold.it/30" class="rounded-circle float-right">
+                                    <a href="" class="lead font-weight-light">@task.Title</a>
+                                    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {id=task.Id},Context.Request.Scheme)','Görev Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i></a>
+                                    <form asp-action="DeleteTask" asp-route-id="@task.Id" onsubmit="return jQueryAjaxDeleteTask(this)" class="d-inline">
+                                        <input type="hidden" asp-for="@task.Id" />
+                                        <input type="submit" value="Sil" class="btn btn-light" />
+                                    </form>
+                                </div>
+                                <p>
+                                    @task.Description
+                                </p>
+                                <a class="btn btn-primary btn-sm" href="/UserTask/TaskDetails/@task.Id">Detay</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+              
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

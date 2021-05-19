@@ -18,12 +18,12 @@ namespace Izersoft.TaskManagement.API.Controllers
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
     //[Authorize]
-    public class UserAssignmentController : ControllerBase
+    public class UserAssignmentsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<UserAssignmentController> _logger;
+        private readonly ILogger<UserAssignmentsController> _logger;
 
-        public UserAssignmentController(IMediator mediator, ILogger<UserAssignmentController> logger)
+        public UserAssignmentsController(IMediator mediator, ILogger<UserAssignmentsController> logger)
         {
             _mediator = mediator;
             _logger = logger;
@@ -121,6 +121,31 @@ namespace Izersoft.TaskManagement.API.Controllers
         public async Task<ActionResult<Response>> GetListByUserId([FromQuery] UserAssignmentListByUserIdQuery  userAssignmentListByUserIdQuery)
         {
             var response = await _mediator.Send(userAssignmentListByUserIdQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// You can call it to the whole   User Assign list by User Id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetListByProjectId([FromQuery] UserAssignmentListByProjectIdQuery  userAssignmentListByProjectIdQuery)
+        {
+            var response = await _mediator.Send(userAssignmentListByProjectIdQuery);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userAssignmentDetailWithTaskandUserQuery"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> GetByIdWithTaskAndUser([FromQuery] UserAssignmentDetailWithTaskandUserQuery  userAssignmentDetailWithTaskandUserQuery)
+        {
+            var response = await _mediator.Send(userAssignmentDetailWithTaskandUserQuery);
             return Ok(response);
         }
     }

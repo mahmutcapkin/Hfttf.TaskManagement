@@ -14,7 +14,7 @@ namespace Hfttf.TaskManagement.Core.Entities
         public DateTime? CreatedDate { get; set; }
         public string UpdateBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public int? ProjectId { get; set; }
+        public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
         public int TaskStatusId { get; set; }
         public virtual TaskStatus TaskStatus { get; set; }

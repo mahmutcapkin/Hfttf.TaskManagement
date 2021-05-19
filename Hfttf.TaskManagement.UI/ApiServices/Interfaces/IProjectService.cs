@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.UI.Models.Project;
+using Hfttf.TaskManagement.UI.Models.User;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,5 +17,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<ProjectResponse> GetProjectWithUserandTaskById(int id);
         Task<bool> ProjectDeleteUser(ProjectAssignUser model);
         Task<bool> ProjectAddUser(ProjectAssignUser model);
+
+        Task<List<UserDropdownList>> GetListForDropdown(int projectId);
     }
 }

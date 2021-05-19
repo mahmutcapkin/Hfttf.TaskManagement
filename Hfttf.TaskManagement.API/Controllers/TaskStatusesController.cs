@@ -101,9 +101,9 @@ namespace Izersoft.TaskManagement.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response>> GetListWithTasks()
+        public async Task<ActionResult<Response>> GetListWithTasks([FromQuery] TaskStatusListWithTasksQuery taskStatusListWithTasksQuery)
         {
-            var response = await _mediator.Send(new TaskStatusListWithTasksQuery());
+            var response = await _mediator.Send(taskStatusListWithTasksQuery);
             return Ok(response);
         }
 

@@ -1,0 +1,112 @@
+﻿@model TaskDetailAssignModel
+@{
+    ViewData["Title"] = "TaskDetails";
+}
+
+<div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title">
+                        <h4>Profile</h4>
+                    </div>
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="card-box height-100-p overflow-hidden">
+            <div class="profile-tab height-100-p">
+                <div class="tab height-100-p">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <ul class="nav nav-tabs customtab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#task" role="tab">Görev Detay</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAssign">Kullanıcı Atama</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="task" role="tabpanel">
+                            <div class="pd-20">
+                                <div class="profile-timeline">
+                                    <h6 class="text-blue">Başlık: </h6>
+                                    <p>@Model.Task.Title</p>
+
+                                    <h6 class="text-blue">Açıklama: </h6>
+                                    <p>@Model.Task.Description</p>
+
+                                    <h6 class="text-blue">Öncelik: </h6>
+                                    <p>@Model.Task.Priority.ToString()</p>
+
+                                    <h6 class="text-blue">Bitiş Tarihi: </h6>
+                                    <p>@Model.Task.DueDate.ToString("dd MMMM yyyy")</p>
+
+                                    <h6 class="text-blue">Görev Durumu: </h6>
+                                    <p>@Model.Task.TaskStatus.Status.ToString()</p>
+
+                                    <h6 class="text-blue">Oluşturulma Tarihi: </h6>
+                                    <p>@Model.Task.CreatedDate.ToString("dd MMMM yyyy")</p>
+
+                                    <h6 class="text-blue">Oluşturan: </h6>
+                                    <p>@Model.Task.CreateBy</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modalAssign">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kullanıcı Atama</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-action="UserAssignTask" asp-route-id="@Model.Task.Id">
+                <div class="modal-body">
+                    <input type="hidden" asp-for="UserAssignment.TaskId" />
+                    <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+                    <div class="form-group row">
+                        <label asp-for="UserAssignment.ApplicationUserId" class="col-sm-12 col-md-2 col-form-label"></label>
+                        <div class="col-sm-12 col-md-10">
+                            <select asp-for="UserAssignment.ApplicationUserId" class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.Users,"UserId","FullName"))">
+                                <option selected="selected" value="">Kullanıcı seçiniz</option>
+                            </select>
+                            <span asp-validation-for="UserAssignment.ApplicationUserId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

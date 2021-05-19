@@ -149,6 +149,48 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return null;
         }
 
+        public async Task<List<UserAssignmentResponse>> GetListByProjectId(int projectId)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
 
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/UserAssignments/GetListByProjectId?ProjectId={projectId}");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var veri = await responseMessage.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<BaseResponse<List<UserAssignmentResponse>>>(veri);
+                    List<UserAssignmentResponse> userAssignmentResponses = data.Data;
+                    return userAssignmentResponses;
+                }
+            }
+            return null;
+        }
+
+        public async Task<UserAssignmentResponse> GetByIdWithUserAndTaskAsync(int id)
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                using var httpClient = new HttpClient();
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/UserAssignments/GetByIdWithTaskAndUser?Id={id}");
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var userAssignmentResponses = JsonConvert.DeserializeObject<BaseResponse<UserAssignmentResponse>>(await responseMessage.Content.ReadAsStringAsync());
+                    UserAssignmentResponse assignmentResponse = userAssignmentResponses.Data;
+                    return assignmentResponse;
+                }
+
+            }
+            return null;
+        }
     }
 }

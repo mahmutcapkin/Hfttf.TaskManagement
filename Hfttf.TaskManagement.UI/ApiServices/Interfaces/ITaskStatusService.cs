@@ -11,7 +11,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Interfaces
         Task<bool> AddAsync(TaskStatusAdd model);
         Task<bool> UpdateAsync(TaskStatusUpdate model);
         Task<bool> DeleteAsync(int id);
-        Task<List<TaskStatusResponse>> GetListWithTasks();
+        Task<List<TaskStatusResponse>> GetListWithTasks(int id);
         Task<TaskStatusResponse> GetTaskStatusWithTasksByStatusId(int id);
     }
 }

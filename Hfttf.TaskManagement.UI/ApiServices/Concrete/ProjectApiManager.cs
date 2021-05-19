@@ -1,6 +1,7 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
 using Hfttf.TaskManagement.UI.Models;
 using Hfttf.TaskManagement.UI.Models.Project;
+using Hfttf.TaskManagement.UI.Models.User;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -231,6 +232,18 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return false;
         }
 
-
+        public async Task<List<UserDropdownList>> GetListForDropdown(int projectId)
+        {
+            List<UserDropdownList> list = new List<UserDropdownList>();
+            var project = await GetProjectWithUserandTaskById(projectId);
+            foreach (var user in project.ApplicationUsers)
+            {
+                UserDropdownList userDropdownList = new UserDropdownList();
+                userDropdownList.UserId = user.Id;
+                userDropdownList.FullName = user.FirstName + " " + user.LastName;
+                list.Add(userDropdownList);
+            }
+            return list;
+        }
     }
 }

@@ -16,9 +16,9 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
         {
         }
 
-        public async Task<IReadOnlyList<Core.Entities.TaskStatus>> GetTaskStatusesWithTasks()
+        public async Task<IReadOnlyList<Core.Entities.TaskStatus>> GetTaskStatusesWithTasks(int Id)
         {
-            var data = await _taskManagementContext.TaskStatuses.Include(x => x.Tasks).AsNoTracking().ToListAsync();
+            var data = await _taskManagementContext.TaskStatuses.Include(x => x.Tasks.Where(x=>x.ProjectId==Id)).AsNoTracking().ToListAsync();
             return data;
             
         }

@@ -22,7 +22,29 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
 
         public async Task<IReadOnlyList<UserAssignment>> GetListWithUserandTaskByUserId(string userId)
         {
-            var data = await _taskManagementContext.UserAssignments.Where(x => x.ApplicationUserId == userId).Include(x => x.ApplicationUser).Include(x => x.Task).AsNoTracking().ToListAsync();
+            var data = await _taskManagementContext.UserAssignments.Where(x => x.ApplicationUserId == userId).Include(x => x.ApplicationUser).Include(x => x.Task).ThenInclude(x => x.TaskStatus).AsNoTracking().ToListAsync();
+            return data;
+        }
+
+        public async Task<IReadOnlyList<UserAssignment>> GetListWithUserandTaskByProjectId(int projectId)
+        {
+            var data = await _taskManagementContext.UserAssignments.Include(x => x.ApplicationUser).Include(x => x.Task).ThenInclude(x=>x.TaskStatus).AsNoTracking().ToListAsync();
+            
+            var newAssignments = new List<UserAssignment>();
+            foreach (var assignment in data)
+            {
+                if (assignment.Task.ProjectId == projectId)
+                {
+
+                    newAssignments.Add(assignment);
+                }
+            }
+            return newAssignments;
+        }
+
+        public async Task<UserAssignment> GetDetailWithUserandTask(int id)
+        {
+            var data = await _taskManagementContext.UserAssignments.Include(x => x.ApplicationUser).Include(x => x.Task).AsNoTracking().FirstOrDefaultAsync(x=>x.Id==id);
             return data;
         }
     }

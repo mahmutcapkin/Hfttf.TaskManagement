@@ -9,7 +9,7 @@ namespace Hfttf.TaskManagement.Core.Repositories
     {
         //Task<IReadOnlyList<TaskStatus>> GetTaskByProjectId();
         //Task<TaskStatus> GetTaskStatusWithTasksByStatusNameId(int id);
-        Task<IReadOnlyList<TaskStatus>> GetTaskStatusesWithTasks();
+        Task<IReadOnlyList<TaskStatus>> GetTaskStatusesWithTasks(int Id);
         Task<TaskStatus> GetTaskStatusWithTasksByStatusId(int statusLevel);
     }
 }

@@ -127,7 +127,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
             return null;
         }
 
-        public async Task<List<TaskStatusResponse>> GetListWithTasks()
+        public async Task<List<TaskStatusResponse>> GetListWithTasks(int id)
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("token");
             if (!string.IsNullOrWhiteSpace(token))
@@ -136,7 +136,7 @@ namespace Hfttf.TaskManagement.UI.ApiServices.Concrete
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var responseMessage = await httpClient.GetAsync("http://localhost:5000/api/TaskManagementApi/TaskStatuses/GetListWithTasks");
+                var responseMessage = await httpClient.GetAsync($"http://localhost:5000/api/TaskManagementApi/TaskStatuses/GetListWithTasks?ProjectId={id}");
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
