@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
+using Hfttf.TaskManagement.UI.CustomFilters;
 using Hfttf.TaskManagement.UI.Extensions;
 using Hfttf.TaskManagement.UI.Models.Authentication;
 using Hfttf.TaskManagement.UI.Models.Role;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
 {
+    [JwtAuthorize]
     public class AssignController : Controller
     {
         private readonly IRoleService _roleService;

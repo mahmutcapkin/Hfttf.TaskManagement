@@ -2,14 +2,13 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+    <title>Customized Task Management</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/vendors/images/apple-touch-icon.png">
@@ -94,7 +93,6 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group mb-0">
-                                        @*<button class="btn btn-primary btn-lg btn-block" href="/Account/Login">Kaydol</button>*@
                                         <input type="submit" value="Kaydol" class="btn btn-primary  btn-lg btn-block" href="/Account/Login" />
                                     </div>
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -106,24 +104,6 @@
             </div>
         </div>
     </div>
-    <!-- success Popup html Start -->
-    <!--<button type="button" id="success-modal-btn" hidden data-toggle="modal" data-target="#success-modal" data-backdrop="static">Launch modal</button>
-    <div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered max-width-400" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center font-18">
-                    <h3 class="mb-20">Form Submitted!</h3>
-                    <div class="mb-30 text-center"><img src="~/vendors/images/success.png"></div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <a href="login.html" class="btn btn-primary">Done</a>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    <!-- success Popup html End -->
-    <!-- js -->
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>

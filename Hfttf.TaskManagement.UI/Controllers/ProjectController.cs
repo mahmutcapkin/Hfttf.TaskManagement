@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.UI.ApiServices.Interfaces;
+using Hfttf.TaskManagement.UI.CustomFilters;
 using Hfttf.TaskManagement.UI.Extensions;
 using Hfttf.TaskManagement.UI.Models.Authentication;
 using Hfttf.TaskManagement.UI.Models.Leader;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
 {
+    [JwtAuthorize]
     public class ProjectController : Controller
     {
         private readonly IProjectService _projectService;

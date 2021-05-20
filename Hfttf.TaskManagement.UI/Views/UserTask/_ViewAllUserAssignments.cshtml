@@ -31,9 +31,9 @@
                             <i class="dw dw-more"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                            <a onclick="showInPopupAssignment('@Url.Action("EditUserAssignment","UserTask",new {id=userAssignment.Id},Context.Request.Scheme)','Atama Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i>Düzenle</a>
+                            <a onclick="showInPopupAssignment('@Url.Action("EditUserAssignment","UserTask",new {id=userAssignment.Id},Context.Request.Scheme)','Atama Güncelle')" class="dropdown-item"><i class="fa fa-pencil"></i>Düzenle</a>
                             <a class="dropdown-item" href="/UserTask/DeleteUserAssignment/@userAssignment.Id" onclick="return confirm('Bu projeyi silmek istediğinize emin misiniz?');">
-                                <i class="dw dw-delete"></i>
+                                <i class="dw dw-delete-3"></i>
                                 Sil
                             </a>
                         </div>

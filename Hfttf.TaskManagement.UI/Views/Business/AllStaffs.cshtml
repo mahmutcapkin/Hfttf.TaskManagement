@@ -41,7 +41,7 @@
                                         <h4 class="text-blue h4">Personeller</h4>
                                     </div>
                                     <div class="col-md-6">
-                                        <a   href="/Business/InsertStaff" class="btn btn-light"><i class="fa fa-plus"></i>Kullanıcı Ekle</a>
+                                        <a   href="/Business/InsertStaff" class="btn btn-light"><i class="dw dw-add-user"></i>Kullanıcı Ekle</a>
                                     </div>
                                 </div>
                                 <div class="profile-setting">
@@ -87,8 +87,7 @@
                                                                 <i class="dw dw-more"></i>
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                                @*<a class="dropdown-item" href="/ProfileInfo/UserProfile/@user.Id"><i class="dw dw-eye"></i> Çalışan Görüntüle</a>*@
-                                                                <a href="/Business/EditStaff/@user.Id" class="btn btn-light"><i class="dw dw-pencil"></i>Kullanıcı Güncelle</a>
+                                                                <a href="/Business/EditStaff/@user.Id" class="dropdown-item"><i class="dw dw-pencil"></i>Kullanıcı Güncelle</a>
                                                                 <form method="post" asp-action="DeleteStaff" asp-route-id="@user.Id">
                                                                     <input type="hidden" asp-for="@user.Id" />
                                                                     <input type="submit" value="Sil" class="dropdown-item" />
@@ -107,8 +106,6 @@
                             </div>
                         </div>
 
-                        <!-- Timeline Tab End -->
-                        <!-- Tasks Tab start -->
                         <div class="tab-pane fade" id="staffProfile" role="tabpanel">
                             <div class="pd-20">
                                 <div class="profile-setting">
@@ -147,7 +144,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Tasks Tab End -->
+
                     </div>
                 </div>
             </div>

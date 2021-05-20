@@ -13,12 +13,12 @@
                         <div class="card shadow-sm" id="@task.Id">
                             <div class="card-body p-2">
                                 <div class="card-title">
-                                    <img src="//placehold.it/30" class="rounded-circle float-right">
+                                    @*<img src="//placehold.it/30" class="rounded-circle float-right">*@
                                     <a href="" class="lead font-weight-light">@task.Title</a>
-                                    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {id=task.Id},Context.Request.Scheme)','Görev Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i></a>
+                                    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {id=task.Id},Context.Request.Scheme)','Görev Güncelle')" class="btn btn-danger"><i class="fa fa-pencil"></i></a>
                                     <form asp-action="DeleteTask" asp-route-id="@task.Id" onsubmit="return jQueryAjaxDeleteTask(this)" class="d-inline">
                                         <input type="hidden" asp-for="@task.Id" />
-                                        <input type="submit" value="Sil" class="btn btn-light" />
+                                        <input type="submit" value="Sil" class="btn btn-warning" />
                                     </form>
                                 </div>
                                 <p>

@@ -6,9 +6,9 @@
             <h4 class="text-blue h4">Roller</h4>
         </div>
         <div class="col-md-6">
-            <a onclick="showInPopupRole('@Url.Action("AddOrEditRole","Assign",null,Context.Request.Scheme)', 'Rol Ekle')" class="btn btn-light"><i class="fa fa-plus"></i>Ekle</a>
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalRole">Kullanıcı Rol Ekle</button>
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalRoleUpdate">Kullanıcı Rol Sil</button>
+            <a onclick="showInPopupRole('@Url.Action("AddOrEditRole","Assign",null,Context.Request.Scheme)', 'Rol Ekle')" class="btn btn-light"><i class="dw dw-user-11"></i>Ekle</a>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalRole"><i class="dw dw-add"></i>Kullanıcı Rol Ekle</button>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalRoleUpdate"><i class="dw dw-delete-3"></i>Kullanıcı Rol Sil</button>
         </div>
     </div>
 
@@ -77,13 +77,9 @@
                                 <a class="dropdown-item" href="/Assign/RoleWithUsers/@role.Id"><i class="dw dw-eye"></i> Çalışan Görüntüle</a>
                                 <a class="dropdown-item" onclick="showInPopupRole('@Url.Action("AddOrEditRole","Assign",new {id=role.Id},Context.Request.Scheme)','Departman Güncelle')"><i class="dw dw-edit2"></i>Güncelle</a>
                                 <a class="dropdown-item" href="/Assign/DeleteRole/@role.Id" onclick="return confirm('Bu rolü silmek istediğinize emin misiniz?');">
-                                    <i class="dw dw-delete"></i>
+                                    <i class="dw dw-delete-3"></i>
                                     Sil
                                 </a>
-                                @*<form asp-action="DeleteRole" asp-route-id="@role.Id" onsubmit="return jQueryAjaxDeleteRole(this)" class="d-inline">
-                                        <input type="hidden" asp-for="@role.Id" />
-                                        <input type="submit" value="Sil" class="dropdown-item" />
-                                    </form>*@
                             </div>
                         </div>
                     </td>

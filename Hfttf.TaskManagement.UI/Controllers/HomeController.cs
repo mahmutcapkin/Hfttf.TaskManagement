@@ -1,4 +1,5 @@
-﻿using Hfttf.TaskManagement.UI.Models;
+﻿using Hfttf.TaskManagement.UI.CustomFilters;
+using Hfttf.TaskManagement.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
 {
+    [JwtAuthorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

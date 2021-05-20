@@ -5,20 +5,9 @@
 
 
 <div class="container-fluid pt-3">
-    <h3 class="font-weight-light text-white">Kanban Board</h3>
-    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {projectId=Model.ProjectId},Context.Request.Scheme)', 'Görev Ekle')" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+    <h3 class="font-weight-light text-white">Görevler</h3>
+    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {projectId=Model.ProjectId},Context.Request.Scheme)', 'Görev Ekle')" class="btn btn-info"><i class="fa fa-plus"></i></a>
     <div class="row flex-row flex-sm-nowrap py-3">
         @await Html.PartialAsync("_ViewAllTasks", Model)
-        @*@foreach (var item in Model.TaskStatusResponses)
-        {
-            <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card bg-light">
-                    <div class="card-body" id="@item.Id">
-                        <h6 class="card-title text-uppercase text-truncate py-2">@item.Status.ToString()</h6>
-                        @await Html.PartialAsync("_ViewAllTasks", Model)
-                    </div>
-                </div>
-            </div>
-        }*@
     </div>
 </div>

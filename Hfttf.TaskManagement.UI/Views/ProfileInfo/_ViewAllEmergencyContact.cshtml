@@ -2,25 +2,25 @@
 
 
 <div class="profile-setting">
-    <a onclick="showInPopupEmergency('@Url.Action("AddOrEditEmergencyContact","ProfileInfo",null,Context.Request.Scheme)', 'Acil İletişim Bilgisi Ekle')" class="btn btn-light"><i class="fa fa-plus"></i>Ekle</a>
+    <a onclick="showInPopupEmergency('@Url.Action("AddOrEditEmergencyContact","ProfileInfo",null,Context.Request.Scheme)', 'Acil İletişim Bilgisi Ekle')" class="btn btn-info btn-sm"><i class="fa fa-plus"></i>Ekle</a>
     @foreach (var emergency in Model.EmergencyContactInfos)
     {
-        <a onclick="showInPopupEmergency('@Url.Action("AddOrEditEmergencyContact","ProfileInfo",new {id=emergency.Id},Context.Request.Scheme)','Acil İletişim Bilgisi Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i>Düzenle</a>
+        <a onclick="showInPopupEmergency('@Url.Action("AddOrEditEmergencyContact","ProfileInfo",new {id=emergency.Id},Context.Request.Scheme)','Acil İletişim Bilgisi Güncelle')" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i>Düzenle</a>
         <form asp-action="DeleteEmergencyContact" asp-route-id="@emergency.Id" onsubmit="return jQueryAjaxDeleteEmergency(this)" class="d-inline">
             <input type="hidden" asp-for="@emergency.Id" />
-            <input type="submit" value="Sil" class="btn btn-light" />
+            <input type="submit" value="Sil" class="btn btn-light btn-sm" />
         </form>
         <ul class="mb-10 mt-15">
             <li>
-                <span>Ad Soyad: </span>
+                <span class="text-blue">Ad Soyad: </span>
                 @emergency.Name
             </li>
             <li>
-                <span>Telefon Numarası: </span>
+                <span class="text-blue">Telefon Numarası: </span>
                 @emergency.Phone
             </li>
             <li>
-                <span>Yakınlık Durumu: </span>
+                <span class="text-blue">Yakınlık Durumu: </span>
                 @emergency.RelationShip
             </li>
         </ul>

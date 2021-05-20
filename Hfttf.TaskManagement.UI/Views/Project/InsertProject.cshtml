@@ -76,18 +76,6 @@
                                 <span asp-validation-for="Priority" class="text-danger"></span>
                             </div>
                         </div>
-
-                        @*<div class="form-group row">
-                            <label asp-for="LeaderId" class="col-sm-12 col-md-2 col-form-label"></label>
-                            <div class="col-sm-12 col-md-10">
-                                <select asp-for="LeaderId" class="form-control"
-                                        asp-items="@(new SelectList(ViewBag.Leaders,"UserId","FullName"))">
-                                    <option selected="selected" value="">Lider seçiniz</option>
-                                </select>
-                                <span asp-validation-for="LeaderId" class="text-danger"></span>
-                            </div>
-                        </div>*@
-
                         <div class="form-group">
                             <div class="col-md-6 offset-md-3">
                                 <input type="submit" value="Kaydet" class="btn btn-primary btn-block" id="submitButton" />

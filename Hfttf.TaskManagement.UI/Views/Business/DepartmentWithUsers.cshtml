@@ -21,7 +21,7 @@
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalDepartment">Kullanıcı Ekle</button>
+                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalDepartment"><i class="dw dw-add-user"></i>Kullanıcı Ekle</button>
                 </div>
             </div>
         </div>
@@ -33,12 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#department" role="tab">@Model.Department.Name</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tasks</a>
-                        </li>
+
                     </ul>
                     <div class="tab-content">
-                        <!-- Department Tab start -->
                         <div class="tab-pane fade show active" id="department" role="tabpanel">
                             <div class="profile-setting">
                                 <table class="data-table table stripe hover nowrap mb-30">
@@ -73,14 +70,11 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                         <a class="dropdown-item" href="/ProfileInfo/UserProfile/@user.Id"><i class="dw dw-eye"></i> Profil Görüntüle</a>
-                                                        @*<a class="dropdown-item" href="/Business/DeleteUserToDepartment/@user.Id"><i class="dw dw-delete-3"></i>Departmandan Çıkar</a>*@
                                                         <form method="post" asp-action="DeleteUserToDepartment" asp-route-id="@user.Id">
                                                             <input type="hidden" asp-for="@user.Id" />
                                                             <input type="hidden" asp-for="UserUpdate.DepartmentId" />
                                                             <input type="submit" value="Departmandan Çıkar" class="dropdown-item" />
                                                         </form>
-                                                        @*<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Güncelle</a>*@
-                                                        @*<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Sil</a>*@
                                                     </div>
                                                 </div>
                                             </td>
@@ -91,12 +85,6 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- Department Tab End -->
-                        <!-- Tasks Tab start -->
-                        <div class="tab-pane fade" id="tasks" role="tabpanel">
-                            <p>@Model.Department.Id</p>
-                        </div>
-                        <!-- Tasks Tab End -->
                     </div>
                 </div>
             </div>
@@ -125,9 +113,7 @@
                                     <span asp-validation-for="UserUpdate.UserId" class="text-danger"></span>
                                 </div>
                             </div>
-
-                        </div>
-                        
+                        </div>                     
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Kaydet</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>

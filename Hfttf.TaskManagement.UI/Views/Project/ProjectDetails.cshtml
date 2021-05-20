@@ -29,11 +29,11 @@
                 @*<a href="/Project/InsertProject" class="btn btn-light"><i class="fa fa-plus"></i>Proje Ekle</a>*@
                 @if (appUser.Roles.Contains("Admin"))
                 {
-                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
-                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>
                     @if (Model.Project.Leader == null)
                     {
-                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalLeaderAdd">Lider Ekle</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalLeaderAdd">Lider Ekle</button>
                     }
                 }
                 else
@@ -42,8 +42,8 @@
                     {
                         if (Model.Project.Leader.ApplicationUserId == appUser.Id)
                         {
-                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
-                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>
                         }
                     }
                 }
@@ -141,7 +141,7 @@
                         @Model.Project.Leader.ApplicationUser.PhoneNumber
                     </li>
                 </ul>
-                    <a class="ml-30 btn btn-primary btn-sm" href="/Project/DeleteLeaderInProject/@Model.Project.Leader.Id" onclick="return confirm('Bu lideri silmek istediğinize emin misiniz?');">
+                    <a class="ml-30 btn btn-warning btn-sm" href="/Project/DeleteLeaderInProject/@Model.Project.Leader.Id" onclick="return confirm('Bu lideri silmek istediğinize emin misiniz?');">
                         <i class="dw dw-delete-3"></i>
                         Sil
                     </a>
@@ -169,7 +169,7 @@
                 </ul>
                 @if (Model.Project.Leader.ApplicationUserId == appUser.Id)
                 {
-                    <a class="ml-30 btn btn-primary btn-sm" href="/Project/DeleteLeaderInProject/@Model.Project.Leader.Id" onclick="return confirm('Bu lideri silmek istediğinize emin misiniz?');">
+                    <a class="ml-30 btn btn-warning btn-sm" href="/Project/DeleteLeaderInProject/@Model.Project.Leader.Id" onclick="return confirm('Bu lideri silmek istediğinize emin misiniz?');">
                         <i class="dw dw-delete-3"></i>
                         Sil
                     </a>
@@ -199,17 +199,6 @@
                     <div class="modal-body">
                         <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
                         <input type="hidden" asp-for="@Model.Project.Id" />
-                                        @*<div class="form-group row">
-                            <label asp-for="Assign.Id" class="col-sm-12 col-md-2 col-form-label"></label>
-                            <div class="col-sm-12 col-md-10">
-                                <select asp-for="Assign.Id" class="form-control"
-                                        asp-items="@(new SelectList(ViewBag.Projects,"Id","Title"))">
-                                    <option selected="selected" value="">Kullanıcı seçiniz</option>
-                                </select>
-                                <span asp-validation-for="Assign.Id" class="text-danger"></span>
-                            </div>
-                        </div>*@
-
                         <div class="form-group row">
                             <label asp-for="Assign.UserIds" class="col-sm-12 col-md-2 col-form-label"></label>
                             <div class="col-sm-12 col-md-10">
@@ -242,17 +231,6 @@
                     <div class="modal-body">
                         <input type="hidden" asp-for="@Model.Project.Id" />
                         <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
-                        @*<div class="form-group row">
-            <label asp-for="Assign.Id" class="col-sm-12 col-md-2 col-form-label"></label>
-            <div class="col-sm-12 col-md-10">
-                <select asp-for="Assign.Id" class="form-control"
-                        asp-items="@(new SelectList(ViewBag.Projects,"Id","Title"))">
-                    <option selected="selected" value="">Kullanıcı seçiniz</option>
-                </select>
-                <span asp-validation-for="Assign.Id" class="text-danger"></span>
-            </div>
-        </div>*@
-
                         <div class="form-group row">
                             <label asp-for="Assign.UserIds" class="col-sm-12 col-md-2 col-form-label"></label>
                             <div class="col-sm-12 col-md-10">
@@ -261,9 +239,7 @@
                                 <span asp-validation-for="Assign.UserIds" class="text-danger"></span>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Kaydet</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
@@ -286,7 +262,6 @@
                     <div class="modal-body">
                         <input type="hidden" asp-for="@Model.Project.Id" />
                         <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
-
                         <div class="form-group row">
                             <label asp-for="LeaderAssign.ApplicationUserId" class="col-sm-12 col-md-2 col-form-label"></label>
                             <div class="col-sm-12 col-md-10">
@@ -298,7 +273,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Kaydet</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>

@@ -4,31 +4,31 @@
 <div class="profile-setting">
     @*<a asp-action="InsertAddress" class="btn btn-light"><i class="fa fa-pencil"></i></a>*@
     @*<button type="button" data-toggle="ajax-modal" data-target="#insertAddress" data-url="@Url.Action("InsertAddress")" class="btn btn-light ml-8"><i class="fa fa-pencil"></i></button>*@
-    <a onclick="showInPopupExperience('@Url.Action("AddOrEditExperience","ProfileInfo",null,Context.Request.Scheme)', 'Tecrübe Bilgisi Ekle')" class="btn btn-light"><i class="fa fa-plus"></i>Ekle</a>
+    <a onclick="showInPopupExperience('@Url.Action("AddOrEditExperience","ProfileInfo",null,Context.Request.Scheme)', 'Tecrübe Bilgisi Ekle')" class="btn btn-info btn-sm"><i class="fa fa-plus"></i>Ekle</a>
     @foreach (var experience in Model.Experiences)
     {
-        <a onclick="showInPopupExperience('@Url.Action("AddOrEditExperience","ProfileInfo",new {id=experience.Id},Context.Request.Scheme)','Tecrübe Bilgisi Güncelle')" class="btn btn-light"><i class="fa fa-pencil"></i>Düzenle</a>
+        <a onclick="showInPopupExperience('@Url.Action("AddOrEditExperience","ProfileInfo",new {id=experience.Id},Context.Request.Scheme)','Tecrübe Bilgisi Güncelle')" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i>Düzenle</a>
         @*<a href="/ProfileInfo/EditProfile" class="edit-avatar"><i class="icon-copy fa fa-pencil" aria-hidden="true">Düzenle</i></a>*@
         <form asp-action="DeleteExperience" asp-route-id="@experience.Id" onsubmit="return jQueryAjaxDeleteExperience(this)" class="d-inline">
             <input type="hidden" asp-for="@experience.Id" />
-            <input type="submit" value="Sil" class="btn btn-light" />
+            <input type="submit" value="Sil" class="btn btn-light btn-sm" />
         </form>
 
         <ul class="mb-10 mt-15">
             <li>
-                <span>Firma Adı: </span>
+                <span class="text-blue">Firma Adı: </span>
                 @experience.Company
             </li>
             <li>
-                <span>Meslek: </span>
+                <span class="text-blue">Meslek: </span>
                 @experience.Job
             </li>
             <li>
-                <span>Başlangıç Tarihi: </span>
+                <span class="text-blue">Başlangıç Tarihi: </span>
                 @experience.StartDate
             </li>
             <li>
-                <span>Bitiş Tarihi: </span>
+                <span class="text-blue">Bitiş Tarihi: </span>
                 @experience.EndDate
             </li>
         </ul>

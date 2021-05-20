@@ -3,7 +3,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+    <title>Customized Task Management</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/vendors/images/apple-touch-icon.png">
@@ -37,26 +37,7 @@
     <div class="mobile-menu-overlay"></div>
     <div>
         @RenderBody()
-        @*<div class="modal" tabindex="-1" role="dialog" id="experience-modal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                    </div>
-
-                </div>
-            </div>
-        </div>*@
     </div>
-
-
-
 
     <script src="~/src/scripts/jquery.min.js"></script>
     <script src="~/src/plugins/bootstrap/bootstrap.min.js"></script>
@@ -66,7 +47,6 @@
     <script src="~/js/emergency.js"></script>
     <script src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    @*@await RenderSectionAsync("ScriptsDate", required: false)*@
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>

@@ -21,7 +21,6 @@
             </div>
         </div>
 
-        <!-- Simple Datatable start -->
         <div class="card-box mb-30">
             <div class="pd-20">
                 <div class="row">
@@ -29,7 +28,7 @@
                         <h4 class="text-blue h4">@ViewBag.User</h4>
                     </div>
                     <div class="col-md-6">
-                        <a onclick="showInPopupSalary('@Url.Action("AddOrEditSalary","Assign",null,Context.Request.Scheme)', 'Maaş Ekle')" class="btn btn-light"><i class="fa fa-plus"></i>Ekle</a>
+                        <a onclick="showInPopupSalary('@Url.Action("AddOrEditSalary","Assign",null,Context.Request.Scheme)', 'Maaş Ekle')" class="btn btn-info btn-sm"><i class="dw dw-add"></i>Ekle</a>
                     </div>
                 </div>
 
@@ -65,7 +64,7 @@
                                         <a class="dropdown-item" onclick="showInPopupSalary('@Url.Action("AddOrEditSalary","Assign",new {id=salary.Id},Context.Request.Scheme)','Maaş Güncelle')"><i class="dw dw-edit2"></i>Güncelle</a>
 
                                         <a class="dropdown-item" href="/Assign/DeleteSalary/@salary.Id" onclick="return confirm('Bu maaş bilgisini silmek istediğinize emin misiniz?');">
-                                            <i class="dw dw-delete"></i>
+                                            <i class="dw dw-delete-3"></i>
                                             Sil
                                         </a>
                                     </div>
@@ -79,9 +78,6 @@
             </div>
 
         </div>
-        <!-- Simple Datatable End -->
-
-
     </div>
 </div>
 
