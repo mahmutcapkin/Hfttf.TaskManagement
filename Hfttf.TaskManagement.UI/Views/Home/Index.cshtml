@@ -1,8 +1,58 @@
-﻿@{
+﻿@model List<UserAssignmentResponse>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title">
+                        <h4>Atamalarım</h4>
+                    </div>
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Atamalarım</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container pd-0">
+            <div class="timeline mb-30">
+                <ul>
+                    @foreach (var assignment in Model)
+                    {
+                        <li>
+                            <div class="timeline-date btn btn-info">
+                                @assignment.Task.DueDate.ToString("dd MMMM yyyy")
+                            </div>
+                            <div class="timeline-desc card-box">
+                                @if (assignment.Task.TaskStatus.Status == StatusLevel.Done)
+                                {
+                                    <div class="pd-20">
+                                        <a href="/Project/GetTasksInProject/@assignment.Task.ProjectId">
+                                            <h4 class="mb-10 h4"><del>@assignment.Task.Title</del></h4></a>
+                                            <p><del>@assignment.Task.Description</del></p>
+</div>
+                                }
+                                else
+                                {
+                                    <div class="pd-20">
+                                         <a href="/Project/GetTasksInProject/@assignment.Task.ProjectId">
+                                            <h4 class="mb-10 h4">@assignment.Task.Title</h4></a>
+                                        <p>@assignment.Task.Description</p>
+                                    </div>
+                                }
+
+                            </div>
+                        </li>  
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

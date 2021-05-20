@@ -30,7 +30,7 @@ namespace Hfttf.TaskManagement.UI.Controllers
                         return Redirect(TempData["returnUrl"].ToString());
                     }
                     var token = HttpContext.Session.GetString("token");
-                    return RedirectToAction("MyProfile", "ProfileInfo");
+                    return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "kullanıcı adı veya şifre hatalı");
             }

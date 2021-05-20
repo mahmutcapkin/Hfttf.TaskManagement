@@ -22,7 +22,7 @@ namespace Hfttf.TaskManagement.Infrastructure.Repositories.EntityFrameworkCoreRe
 
         public async Task<IReadOnlyList<UserAssignment>> GetListWithUserandTaskByUserId(string userId)
         {
-            var data = await _taskManagementContext.UserAssignments.Where(x => x.ApplicationUserId == userId).Include(x => x.ApplicationUser).Include(x => x.Task).ThenInclude(x => x.TaskStatus).AsNoTracking().ToListAsync();
+            var data = await _taskManagementContext.UserAssignments.Where(x => x.ApplicationUserId == userId).Include(x => x.ApplicationUser).Include(x => x.Task).ThenInclude(x => x.TaskStatus).OrderByDescending(x=>x.Task.DueDate).AsNoTracking().ToListAsync();
             return data;
         }
 

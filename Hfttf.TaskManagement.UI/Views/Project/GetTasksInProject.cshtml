@@ -6,7 +6,7 @@
 
 <div class="container-fluid pt-3">
     <h3 class="font-weight-light text-white">Görevler</h3>
-    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {projectId=Model.ProjectId},Context.Request.Scheme)', 'Görev Ekle')" class="btn btn-info"><i class="fa fa-plus"></i></a>
+    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {projectId=Model.ProjectId},Context.Request.Scheme)', 'Görev Ekle')" class="btn btn-info"><i class="dw dw-add"></i>Görev Ekle</a>
     <div class="row flex-row flex-sm-nowrap py-3">
         @await Html.PartialAsync("_ViewAllTasks", Model)
     </div>

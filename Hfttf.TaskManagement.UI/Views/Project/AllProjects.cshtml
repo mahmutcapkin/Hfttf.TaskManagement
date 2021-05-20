@@ -30,8 +30,6 @@
                     </div>
                     <div class="col-md-6">
                         <a href="/Project/InsertProject" class="btn btn-light"><i class="fa fa-plus"></i>Proje Ekle</a>
-                        @*<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProject">Kullanıcı Ekle</button>
-                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalProjectUpdate">Kullanıcı Sil</button>*@
                     </div>
                 </div>
 
@@ -78,7 +76,7 @@
                                             <a class="dropdown-item" href="/Project/ProjectDetails/@project.Id"><i class="dw dw-eye"></i> Detay Görüntüle</a>
                                             <a href="/UserTask/UserAssignmentsForProject/@project.Id" class="dropdown-item"><i class="dw dw-calendar-1"></i>Atamalar</a>
                                             <a class="dropdown-item" href="/Project/GetTasksInProject/@project.Id"><i class="dw dw-file-57"></i> Görevler</a>
-                                            <a href="/Project/EditProject/@project.Id" class="btn btn-light"><i class="dw dw-pencil"></i>Proje Güncelle</a>
+                                            <a href="/Project/EditProject/@project.Id" class="dropdown-item"><i class="dw dw-pencil"></i>Proje Güncelle</a>
                                             <a class="dropdown-item" href="/Project/DeleteProject/@project.Id" onclick="return confirm('Bu projeyi silmek istediğinize emin misiniz?');">
                                                 <i class="dw dw-delete"></i>
                                                 Sil

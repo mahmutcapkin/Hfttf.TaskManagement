@@ -5,6 +5,7 @@
         Pending = 1,
         InProgress,
         OnHold,
-        Cancelled
+        Cancelled,
+        Done
     }
 }

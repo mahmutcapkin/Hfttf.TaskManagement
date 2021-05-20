@@ -14,12 +14,22 @@
                             <div class="card-body p-2">
                                 <div class="card-title">
                                     @*<img src="//placehold.it/30" class="rounded-circle float-right">*@
-                                    <a href="" class="lead font-weight-light">@task.Title</a>
-                                    <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {id=task.Id},Context.Request.Scheme)','Görev Güncelle')" class="btn btn-danger"><i class="fa fa-pencil"></i></a>
-                                    <form asp-action="DeleteTask" asp-route-id="@task.Id" onsubmit="return jQueryAjaxDeleteTask(this)" class="d-inline">
-                                        <input type="hidden" asp-for="@task.Id" />
-                                        <input type="submit" value="Sil" class="btn btn-warning" />
-                                    </form>
+
+                                    @if (task.TaskStatusId == 5)
+                                    {
+                                    <h5 class="mb-10">@task.Title  <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {id=task.Id},Context.Request.Scheme)','Görev Güncelle')" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a></h5>
+                                       
+                                    }
+                                    else
+                                    {
+                                        <h5 class="mb-10">@task.Title</h5>
+                                        <a onclick="showInPopupTask('@Url.Action("AddOrEditTask","Project",new {id=task.Id},Context.Request.Scheme)','Görev Güncelle')" class="btn btn-danger"><i class="fa fa-pencil"></i></a>
+                                        <form asp-action="DeleteTask" asp-route-id="@task.Id" onsubmit="return jQueryAjaxDeleteTask(this)" class="d-inline">
+                                            <input type="hidden" asp-for="@task.Id" />
+                                            <input type="submit" value="Sil" class="btn btn-warning" />
+                                        </form>
+                                    }
+
                                 </div>
                                 <p>
                                     @task.Description

@@ -14,7 +14,8 @@ namespace Hfttf.TaskManagement.Core.Entities
         Pending=1,
         InProgress,
         OnHold,
-        Cancelled
+        Cancelled,
+        Done
     }
 
 }
