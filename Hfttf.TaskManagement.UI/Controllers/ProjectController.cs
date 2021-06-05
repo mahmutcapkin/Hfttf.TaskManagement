@@ -20,20 +20,33 @@ namespace Hfttf.TaskManagement.UI.Controllers
         private readonly IUserService _userService;
         private readonly ITaskStatusService _taskStatusService;
         private readonly ITaskService _taskService;
+        private readonly IUserAssignmentService _userAssignmentService;
 
-        public ProjectController(IProjectService projectService, ILeaderService leaderService, IUserService userService, ITaskStatusService taskStatusService, ITaskService taskService)
+        public ProjectController(IProjectService projectService, ILeaderService leaderService, IUserService userService, ITaskStatusService taskStatusService, ITaskService taskService, IUserAssignmentService userAssignmentService)
         {
             _projectService = projectService;
             _leaderService = leaderService;
             _userService = userService;
             _taskStatusService = taskStatusService;
             _taskService = taskService;
+            _userAssignmentService = userAssignmentService;
         }
 
         public async Task<IActionResult> AllProjects()
         {
             var projects = await _projectService.GetAllAsync();
           return View(projects);
+        }
+        public async Task<IActionResult> AllAssignments()
+        {
+            var userAssignments = await _userAssignmentService.GetAllAsync();
+            return View(userAssignments);
+        }
+
+        public async Task<IActionResult> DeleteAssignment(int id)
+        {
+            var delete = await _userAssignmentService.DeleteAsync(id);
+            return RedirectToAction("AllAssignments");
         }
 
         public async Task<IActionResult> MyProjects()
