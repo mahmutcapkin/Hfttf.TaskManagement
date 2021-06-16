@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.Core.Models;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Jobs.Commands;
 using Hfttf.TaskManagement.Service.Services.Jobs.Queries;
 using Hfttf.TaskManagement.Service.Services.Jobs.Responses;
@@ -16,7 +17,7 @@ namespace Izersoft.IdentityServer.API.Controllers
 
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Roles = UserRoles.User + "," + UserRoles.Admin)]
     public class JobsController : ControllerBase
     {
         private readonly IMediator _mediator;

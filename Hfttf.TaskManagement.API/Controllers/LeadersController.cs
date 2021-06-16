@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.Core.Models;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Leaders.Commands;
 using Hfttf.TaskManagement.Service.Services.Leaders.Queries;
 using Hfttf.TaskManagement.Service.Services.Leaders.Responses;
@@ -14,7 +15,7 @@ namespace Izersoft.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Roles = UserRoles.User + "," + UserRoles.Admin)]
     public class LeadersController : ControllerBase
     {
         private readonly IMediator _mediator;

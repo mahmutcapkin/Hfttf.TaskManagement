@@ -1,4 +1,5 @@
 ﻿using Hfttf.TaskManagement.Core.Models;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Experiences.Commands;
 using Hfttf.TaskManagement.Service.Services.Experiences.Queries;
 using MediatR;
@@ -12,7 +13,7 @@ namespace Hfttf.TaskManagement.API.Controllers
 {
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Roles = UserRoles.User + "," + UserRoles.Admin)]
     public class ExperiencesController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -18,7 +18,7 @@ namespace Hfttf.TaskManagement.API.Controllers
     
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Roles = UserRoles.User + "," + UserRoles.Admin)]
     public class UsersController : ControllerBase
     {
         private readonly IUserService userService;

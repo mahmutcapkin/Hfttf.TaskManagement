@@ -1,5 +1,6 @@
 ﻿using Hfttf.TaskManagement.Core.Entities;
 using Hfttf.TaskManagement.Core.Models;
+using Hfttf.TaskManagement.Core.ResourceViewModel;
 using Hfttf.TaskManagement.Service.Services.Roles.Commands;
 using Hfttf.TaskManagement.Service.Services.Roles.Queries;
 using MediatR;
@@ -17,7 +18,7 @@ namespace Hfttf.TaskManagement.API.Controllers
     /// </summary>
     [Route("api/TaskManagementApi/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Roles = UserRoles.User + "," + UserRoles.Admin)]
     public class RolesController : ControllerBase
     {
         private readonly RoleManager<ApplicationRole> _roleManager;

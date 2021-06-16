@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Hfttf.TaskManagement.UI.Controllers
 {
-    [JwtAuthorize]
+    [JwtAuthorize(Roles = "Admin")]
     public class BusinessController : Controller
     {
         private readonly IDepartmentService _departmentService;
